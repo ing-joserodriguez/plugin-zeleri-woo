@@ -64,6 +64,27 @@ register_deactivation_hook( __FILE__, 'deactivate_zeleri' );
  */
 require plugin_dir_path( __FILE__ ) . 'includes/class-zeleri.php';
 
+
+$woocommerce_is_present = false;
+
+$all_plugins = apply_filters('active_plugins', get_option('active_plugins'));
+if (stripos(implode($all_plugins), 'woocommerce.php')) {
+    $woocommerce_is_present = true;
+}
+
+/*
+ * Check if WooCommerce is active
+ */
+if ( $woocommerce_is_present ) {
+
+	function add_zeleri_woo_oficial_payment_gateways( $gateways ) {
+        $gateways[] = 'Zeleri_Woo_Oficial_Payment_Gateways';
+        return $gateways;
+    }
+ 
+    add_filter( 'woocommerce_payment_gateways', 'add_zeleri_woo_oficial_payment_gateways' );
+}
+
 /**
  * Begins execution of the plugin.
  *
