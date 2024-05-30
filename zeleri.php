@@ -76,7 +76,8 @@ if (stripos(implode($all_plugins), 'woocommerce.php')) {
  * Check if WooCommerce is active
  */
 if ( $woocommerce_is_present ) {
-
+	// En tu-plugin.php
+	require_once plugin_dir_path(__FILE__) . 'includes/class-zeleri-woo-oficial-payment-gateways.php';
 	function add_zeleri_woo_oficial_payment_gateways( $gateways ) {
         $gateways[] = 'Zeleri_Woo_Oficial_Payment_Gateways';
         return $gateways;
