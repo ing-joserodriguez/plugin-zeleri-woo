@@ -42,6 +42,9 @@
 	
 		<div class="col-md-3">
 			<ul class="nav flex-column">
+				<li class="nav-item success" style="background-color: green; color: white; pointer-events: none;">
+          <h3>Servicios</h3>
+        </li>
 				<li class="nav-item">
 					<a class="nav-link active" data-bs-toggle="pill" href="#home">Inicio</a>
 				</li>
