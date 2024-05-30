@@ -1,0 +1,14 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+
+.section-tab-home.d-flex.flex-column.align-items-center {
+  margin: 50px;
+  text-align: center;
+}
+
+.section-tab-home.d-flex.flex-column.align-items-center img,
+h5 {
+  margin-bottom: 30px;
+}
