@@ -106,10 +106,20 @@ class Zeleri_Admin {
 
 	public function add_menu() {
 		// add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position );
-		add_menu_page(
+		/*add_menu_page(
 			"Zeleri", // Título de la página
 			"Zeleri", // Literal de la opción
 			"manage_options", // Dejadlo tal cual
+			'zeleri', // Slug
+			array( $this, 'index' ), // Función que llama al pulsar
+			plugins_url( 'zeleri/admin/images/logo-zeleri.webp' ) // Icono del menú
+		);*/
+
+		add_submenu_page(
+			'woocommerce',
+			'Zeleri', // Título de la página
+			'Zeleri', // Literal de la opción
+			'manage_options', // Dejadlo tal cual
 			'zeleri', // Slug
 			array( $this, 'index' ), // Función que llama al pulsar
 			plugins_url( 'zeleri/admin/images/logo-zeleri.webp' ) // Icono del menú
