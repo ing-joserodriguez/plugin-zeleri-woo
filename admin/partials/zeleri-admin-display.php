@@ -37,7 +37,7 @@
 	<!-- <h1><?php //echo esc_html( get_admin_page_title() ); ?></h1> -->
 	
  	<!-- Nav tabs -->
-	<ul class="nav flex-column" role="tablist">
+	<ul class="nav nav-pills nav-stacked" role="tablist">
 		<li class="nav-item">
 			<a class="nav-link active" data-bs-toggle="tab" href="#home">Inicio</a>
 		</li>
@@ -51,14 +51,14 @@
 
   	<!-- Tab panes -->
   	<div class="tab-content">
-		<div id="home" class="container tab-pane active">
+		<div id="home" class="tab-pane fade in active">
 			<div class="section-tab-home d-flex flex-column align-items-center">
 				<img src="http://localhost/wordpress/wp-content/uploads/2023/10/Z-logo.png" alt="Logo Zeleri" />
 				<h5>Te damos la bienvenida a Zeleri para WordPress</h5>
 				<p>Con el plugin oficial de Zeleri para WordPress podrás realizar tus pagos, <br> de manera facil, rapida y segura.</p>
 			</div>
 		</div>
-		<div id="setting" class="container tab-pane fade"><br>
+		<div id="setting" class="tab-pane fade"><br>
 			<form action='options.php' method='post'>
 				<?php
 					settings_fields( 'pluginPage' );
@@ -67,7 +67,7 @@
 				?>
 			</form>
 		</div>
-		<div id="help" class="container tab-pane fade"><br>
+		<div id="help" class="tab-pane fade"><br>
 			<h3>Centro de ayuda</h3>
 			<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
 		</div>
