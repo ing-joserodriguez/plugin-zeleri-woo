@@ -122,6 +122,7 @@ class Zeleri_Admin {
 			'manage_options', // Dejadlo tal cual
 			'zeleri', // Slug
 			array( $this, 'index' ), // Función que llama al pulsar
+			100 // Para colocarlo en la ultima posicion del submenu
 		);
 	}
 		
