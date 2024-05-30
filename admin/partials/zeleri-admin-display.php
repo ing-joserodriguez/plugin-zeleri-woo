@@ -37,7 +37,7 @@
 	<!-- <h1><?php //echo esc_html( get_admin_page_title() ); ?></h1> -->
 	
  	<!-- Nav tabs -->
-	<ul class="nav nav-tabs" role="tablist">
+	<ul class="nav flex-column" role="tablist">
 		<li class="nav-item">
 			<a class="nav-link active" data-bs-toggle="tab" href="#home">Inicio</a>
 		</li>
