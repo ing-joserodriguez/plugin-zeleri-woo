@@ -43,9 +43,6 @@
 		<div class="col-md-3">
 			<ul class="nav flex-column">
 				<li class="nav-item">
-					<a class="nav-link" href="#">Servicios</a>
-        </li>
-				<li class="nav-item">
 					<a class="nav-link active" data-bs-toggle="pill" href="#home">Inicio</a>
 				</li>
 				<li class="nav-item">
@@ -53,6 +50,9 @@
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" data-bs-toggle="pill" href="#transactions">Transacciones</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-bs-toggle="pill" href="#ayuda">Ayuda</a>
 				</li>
 			</ul>
 		</div>
@@ -80,7 +80,12 @@
 				</div>
 
 				<div class="tab-pane fade" id="transactions">
-					<h3>Centro de ayuda</h3>
+					<h3>Transacciones</h3>
+					<p>Tabla de trasacciones.</p>
+				</div>
+
+				<div class="tab-pane fade" id="transactions">
+					<h3>Ayuda</h3>
 					<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
 				</div>
 				
