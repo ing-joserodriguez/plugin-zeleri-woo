@@ -46,10 +46,10 @@
 					<a class="nav-link active" data-bs-toggle="pill" href="#home">Inicio</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" data-bs-toggle="pill" href="#settings">Configuracion</a>
+					<a class="nav-link" data-bs-toggle="pill" href="#transactions">Transacciones</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" data-bs-toggle="pill" href="#transactions">Transacciones</a>
+					<a class="nav-link" data-bs-toggle="pill" href="#settings">Configuracion</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" data-bs-toggle="pill" href="#ayuda">Ayuda</a>
@@ -69,6 +69,11 @@
 					</div>
 				</div>
 
+				<div class="tab-pane fade" id="transactions">
+					<h3>Transacciones</h3>
+					<p>Tabla de trasacciones.</p>
+				</div>
+
 				<div class="tab-pane fade" id="settings">
 					<form action='options.php' method='post'>
 						<?php
@@ -77,11 +82,6 @@
 							submit_button();
 						?>
 					</form>
-				</div>
-
-				<div class="tab-pane fade" id="transactions">
-					<h3>Transacciones</h3>
-					<p>Tabla de trasacciones.</p>
 				</div>
 
 				<div class="tab-pane fade" id="transactions">
