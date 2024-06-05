@@ -75,7 +75,7 @@ class Zeleri_Admin {
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/zeleri-admin.css', array(), $this->version, 'all' );
 
-		wp_enqueue_style( 'Bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' );
+		wp_enqueue_style( 'Bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' );
 
 		wp_enqueue_style( 'phosphor-icons', 'https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css' );
 
@@ -102,7 +102,7 @@ class Zeleri_Admin {
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/zeleri-admin.js', array( 'jquery' ), $this->version, false );
 
-		wp_enqueue_script( 'Bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js' );
+		wp_enqueue_script( 'Bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js' );
 
 	}
 
