@@ -211,7 +211,7 @@ class Zeleri_Admin {
 
 	public function zeleri_settings_section_callback() { 
 	
-		echo __( 'Tokens de conexion', 'zeleri' );
+		//echo __( 'Tokens de conexion', 'zeleri' );
 	
 	}
 
@@ -281,7 +281,7 @@ class Zeleri_Admin {
 		$options = get_option('zeleri_settings');
 		?>
 		<textarea id="<?php echo esc_attr($args['label_for']); ?>" name='zeleri_settings[<?php echo esc_attr($args['label_for']); ?>]'>
-        <?php echo isset($options[$args['label_for']]) ? esc_attr($options[$args['label_for']]) : ''; ?>
+        <?php echo isset($options[$args['label_for']]) ? esc_attr(trim($options[$args['label_for']])) : ''; ?>
     </textarea>
 		<?php
 	
