@@ -148,13 +148,13 @@ class Zeleri_Admin {
 		);
 	
 		add_settings_field( 
-			'zeleri_select_field_0', 
+			'zeleri_checkbox_field_0', 
 			__( 'Activar/Desactivar plugin:', 'zeleri' ), 
-			array( $this, 'zeleri_select_field_0_render' ), 
+			array( $this, 'zeleri_checkbox_field_0_render' ), 
 			'pluginPage', 
 			'zeleri_pluginPage_section',
 			array(
-				'label_for'         => 'zeleri_text_field_0',
+				'label_for'         => 'zeleri_checkbox_field_0',
 				'class'             => 'zeleri-field-setting',
 			)
 		);
@@ -184,25 +184,25 @@ class Zeleri_Admin {
 		);
 
 		add_settings_field( 
-			'zeleri_text_field_3', 
+			'zeleri_select_field_3', 
 			__( 'Estado de orden:', 'zeleri' ), 
-			array( $this, 'zeleri_text_field_3_render' ), 
+			array( $this, 'zeleri_select_field_3_render' ), 
 			'pluginPage', 
 			'zeleri_pluginPage_section',
 			array(
-				'label_for' => 'zeleri_text_field_3',
+				'label_for' => 'zeleri_select_field_3',
 				'class'     => 'zeleri-field-setting'
 			)
 		);
 
 		add_settings_field( 
-			'zeleri_text_field_4', 
+			'zeleri_textarea_field_4', 
 			__( 'Descripcion medio de pago:', 'zeleri' ), 
-			array( $this, 'zeleri_text_field_4_render' ), 
+			array( $this, 'zeleri_textarea_field_4_render' ), 
 			'pluginPage', 
 			'zeleri_pluginPage_section',
 			array(
-				'label_for' => 'zeleri_text_field_4',
+				'label_for' => 'zeleri_textarea_field_4',
 				'class'     => 'zeleri-field-setting'
 			)
 		);
@@ -216,16 +216,16 @@ class Zeleri_Admin {
 	}
 
 	public function zeleri_validate_plugin_settings( $input ) {
-		$output['zeleri_select_field_0'] = absint( $input['zeleri_select_field_0'] );
+		$output['zeleri_checkbox_field_0'] = sanitize_text_field( $input['zeleri_checkbox_field_0'] );
 		$output['zeleri_text_field_1']   = sanitize_text_field( $input['zeleri_text_field_1'] );
 		$output['zeleri_text_field_2']   = sanitize_text_field( $input['zeleri_text_field_2'] );
-		$output['zeleri_text_field_3']   = sanitize_text_field( $input['zeleri_text_field_3'] );
-		$output['zeleri_text_field_4']   = sanitize_text_field( $input['zeleri_text_field_4'] );
+		$output['zeleri_select_field_3']   = sanitize_text_field( $input['zeleri_select_field_3'] );
+		$output['zeleri_textarea_field_4']   = sanitize_text_field( $input['zeleri_textarea_field_4'] );
 		// ...
 		return $output;
 	}
 	
-	public function zeleri_select_field_0_render($args) { 
+	public function zeleri_checkbox_field_0_render($args) { 
 	
 		$options = get_option( 'zeleri_settings' );
 		?>
@@ -276,11 +276,13 @@ class Zeleri_Admin {
 		<?php
 	}
 
-	public function zeleri_text_field_4_render($args) { 
+	public function zeleri_textarea_field_4_render($args) { 
 	
-		$options = get_option( 'zeleri_settings' );
+		$options = get_option('zeleri_settings');
 		?>
-		<textarea id="<?php echo esc_attr( $args['label_for'] ); ?>" name='zeleri_settings[<?php echo esc_attr( $args['label_for'] ); ?>]'> <?php echo isset( $options[ $args['label_for'] ] ) ? esc_attr( $options[$args['label_for']] ) : ''; ?> </textarea>
+		<textarea id="<?php echo esc_attr($args['label_for']); ?>" name='zeleri_settings[<?php echo esc_attr($args['label_for']); ?>]'>
+        <?php echo isset($options[$args['label_for']]) ? esc_attr($options[$args['label_for']]) : ''; ?>
+    </textarea>
 		<?php
 	
 	}
