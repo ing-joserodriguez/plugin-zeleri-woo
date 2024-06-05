@@ -74,9 +74,6 @@ class Zeleri_Public {
 		 */
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/zeleri-public.css', array(), $this->version, 'all' );
-		wp_enqueue_style( 'phosphor-icons', 'https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css', array(), $this->version, 'all' );
-
-		
 
 	}
 

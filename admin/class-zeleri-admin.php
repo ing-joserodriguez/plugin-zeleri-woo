@@ -77,6 +77,8 @@ class Zeleri_Admin {
 
 		wp_enqueue_style( 'Bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' );
 
+		wp_enqueue_style( 'phosphor-icons', 'https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css' );
+
 	}
 
 	/**
