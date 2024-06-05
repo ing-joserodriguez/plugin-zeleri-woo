@@ -3,26 +3,16 @@
  * included in this file.
  */
 
-.section-tab-home.d-flex.flex-column.align-items-center {
-  margin: 50px;
-  text-align: center;
-}
-
-.section-tab-home.d-flex.flex-column.align-items-center img,
-h5 {
-  margin-bottom: 30px;
-}
-
 /* Inicio Estructura Menu */
-.container {
+.menu-principal {
   padding: 20px;
 }
-.nav-tabs .nav-item.show .nav-link,
-.nav-tabs .nav-link.active {
+.menu-principal .nav-tabs .nav-item.show .nav-link,
+.menu-principal .nav-tabs .nav-link.active {
   background-color: #28a745;
   color: #fff;
 }
-.nav-tabs .nav-link {
+.menu-principal .nav-tabs .nav-link {
   color: #000;
   display: flex;
   justify-content: space-between;
@@ -30,14 +20,14 @@ h5 {
   border-bottom: 1px solid #ccc; /* Agrega un borde alrededor de cada opción del menú */
   padding: 10px; /* Espaciado interno para mayor claridad */
 }
-.nav-tabs {
+.menu-principal .nav-tabs {
   border: 1px solid #ccc; /* Agrega un borde alrededor de todo el elemento <ul> */
   border-radius: 5px;
 }
-.nav-tabs .nav-link i {
+.menu-principal .nav-tabs .nav-link i {
   margin-left: auto; /* Alinea el ícono a la derecha */
 }
-.tab-content {
+.menu-principal .tab-content {
   border: 1px solid #ccc; /* Agrega un borde alrededor de cada tab content */
   padding: 20px; /* Espaciado interno para mayor claridad */
   border-radius: 5px;

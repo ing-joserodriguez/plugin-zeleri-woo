@@ -33,19 +33,19 @@
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
-<div class="container p-5 my-5">
+<div class="container menu-principal p-5 my-5">
 	<!--<div class="container"> -->
 			<div class="row">
 				<div class="col-md-3">
 					<ul class="nav nav-tabs flex-column">
 				<li class="nav-item">
-					<a class="nav-link" data-toggle="tab" href="#inicio">Inicio <i class="ph-bold ph-caret-right"></i></a>
+					<a class="nav-link active" data-toggle="tab" href="#inicio">Inicio <i class="ph-bold ph-caret-right"></i></a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" data-toggle="tab" href="#transacciones">Transacciones <i class="ph-bold ph-caret-right"></i></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link active" data-toggle="tab" href="#configuracion">Configuración <i class="ph-bold ph-caret-right"></i></a>
+					<a class="nav-link" data-toggle="tab" href="#configuracion">Configuración <i class="ph-bold ph-caret-right"></i></a>
 				</li>
 					</ul>
 				</div>
