@@ -129,10 +129,14 @@ class Zeleri_Admin {
 	}
 		
 	public function index() {
-		include 'partials/zeleri-admin-display.php';
+		//include 'partials/zeleri-admin-display.php';
+		wp_redirect('./admin.php?page=wc-settings&tab=checkout&section=zeleri_woo_oficial_payment_gateways');
+    exit;
 	}
 
-	public function zeleri_settings_init() {
+
+
+	/*public function zeleri_settings_init() {
 
 		register_setting( 
 			'pluginZeleriPage', 
@@ -283,6 +287,6 @@ class Zeleri_Admin {
 		<textarea id="<?php echo esc_attr($args['label_for']); ?>" name='zeleri_settings[<?php echo esc_attr($args['label_for']); ?>]'><?php echo isset($options[$args['label_for']]) ? esc_attr($options[$args['label_for']]) : ''; ?></textarea>
 		<?php
 	
-	}
+	}*/
 
 }
