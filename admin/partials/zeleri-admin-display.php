@@ -62,13 +62,9 @@
 						<div id="configuracion" class="tab-pane fade">
 							<form action='options.php' method='post'>
 								<?php
-									function admin_options() {
-										esc_html_e( 'Zeleri Woo Oficial', 'zeleri' );
-										$this->generate_settings_html();
-									}
-									//settings_fields( 'pluginZeleriPage' );
-									//do_settings_sections( 'pluginZeleriPage' );
-									//submit_button();
+									settings_fields( 'pluginZeleriPage' );
+									do_settings_sections( 'pluginZeleriPage' );
+									submit_button();
 								?>
 							</form>
 						</div>
