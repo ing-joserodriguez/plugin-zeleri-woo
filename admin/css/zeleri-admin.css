@@ -32,7 +32,7 @@
   padding: 20px; /* Espaciado interno para mayor claridad */
   border-radius: 5px;
 }
-.submit:nth-child(2) {
+#wpbody-content .submit:last-child {
   display: none;
 }
 #wpbody-content .row {
