@@ -144,14 +144,14 @@ class Zeleri_Admin {
 			'zeleri_pluginPage_section', 
 			__( 'Configuracion inicial del plugin para procesar pagos', 'zeleri' ), 
 			array( $this, 'zeleri_settings_section_callback' ),
-			'pluginPage'
+			'pluginZeleriPage'
 		);
 	
 		add_settings_field( 
 			'zeleri_checkbox_field_0', 
 			__( 'Activar/Desactivar plugin:', 'zeleri' ), 
 			array( $this, 'zeleri_checkbox_field_0_render' ), 
-			'pluginPage', 
+			'pluginZeleriPage', 
 			'zeleri_pluginPage_section',
 			array(
 				'label_for'         => 'zeleri_checkbox_field_0',
@@ -163,7 +163,7 @@ class Zeleri_Admin {
 			'zeleri_text_field_1', 
 			__( 'API Key (llave secreta) Produccion:', 'zeleri' ), 
 			array( $this, 'zeleri_text_field_1_render' ), 
-			'pluginPage', 
+			'pluginZeleriPage', 
 			'zeleri_pluginPage_section',
 			array(
 				'label_for'         => 'zeleri_text_field_1',
@@ -175,7 +175,7 @@ class Zeleri_Admin {
 			'zeleri_text_field_2', 
 			__( 'Zeleri Key:', 'zeleri' ), 
 			array( $this, 'zeleri_text_field_2_render' ), 
-			'pluginPage', 
+			'pluginZeleriPage', 
 			'zeleri_pluginPage_section',
 			array(
 				'label_for' => 'zeleri_text_field_2',
@@ -187,7 +187,7 @@ class Zeleri_Admin {
 			'zeleri_select_field_3', 
 			__( 'Estado de orden:', 'zeleri' ), 
 			array( $this, 'zeleri_select_field_3_render' ), 
-			'pluginPage', 
+			'pluginZeleriPage', 
 			'zeleri_pluginPage_section',
 			array(
 				'label_for' => 'zeleri_select_field_3',
@@ -199,7 +199,7 @@ class Zeleri_Admin {
 			'zeleri_textarea_field_4', 
 			__( 'Descripcion medio de pago:', 'zeleri' ), 
 			array( $this, 'zeleri_textarea_field_4_render' ), 
-			'pluginPage', 
+			'pluginZeleriPage', 
 			'zeleri_pluginPage_section',
 			array(
 				'label_for' => 'zeleri_textarea_field_4',
