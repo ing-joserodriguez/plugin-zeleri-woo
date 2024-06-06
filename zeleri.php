@@ -82,7 +82,7 @@ if ( $woocommerce_is_present ) {
 	
  
   add_filter( 'woocommerce_payment_gateways', 'add_zeleri_woo_oficial_payment_gateways' );
-	add_action( 'woocommerce_update_options_payment_gateways', array( $this, 'process_admin_options' ) );
+	//add_action( 'woocommerce_update_options_payment_gateways', array( $this, 'process_admin_options' ) );
 }
 
 /**
