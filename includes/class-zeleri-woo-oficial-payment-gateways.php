@@ -13,7 +13,7 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
 
          // Initialize settings
          $this->init_form_fields();
-         $this->init_settings();
+         add_action( 'woocommerce_update_options_payment_gateways', array( $this, 'process_admin_options' ) );
     }
 
     public function init_form_fields() {
@@ -55,7 +55,5 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
         // Lógica para procesar el pago
         // Puedes redirigir al usuario a una página de confirmación o procesar el pago directamente
     }
-
-    add_action( 'woocommerce_update_options_payment_gateways', array( $this, 'process_admin_options' ) );
 
 }
