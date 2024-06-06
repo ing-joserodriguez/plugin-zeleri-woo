@@ -78,7 +78,7 @@ if (stripos(implode($all_plugins), 'woocommerce.php')) {
 if ( $woocommerce_is_present ) {
 	// En tu-plugin.php
 	require_once plugin_dir_path(__FILE__) . 'includes/class-zeleri-woo-oficial-payment-gateways.php';
-	require_once plugin_dir_path(__FILE__) . 'includes/class-zeleri-woo-oficial-extensions-settings.php';
+	//require_once plugin_dir_path(__FILE__) . 'includes/class-zeleri-woo-oficial-extensions-settings.php';
 	
  
   add_filter( 'woocommerce_payment_gateways', 'add_zeleri_woo_oficial_payment_gateways' );
