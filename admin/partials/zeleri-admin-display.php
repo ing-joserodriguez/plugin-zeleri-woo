@@ -62,8 +62,8 @@
 						<div id="configuracion" class="tab-pane fade show active">
 							<form action='options.php' method='post'>
 								<?php
-									settings_fields( 'pluginPage' );
-									do_settings_sections( 'pluginPage' );
+									settings_fields( 'pluginZeleriPage' );
+									do_settings_sections( 'pluginZeleriPage' );
 									submit_button();
 								?>
 							</form>

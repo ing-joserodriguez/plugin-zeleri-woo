@@ -135,7 +135,7 @@ class Zeleri_Admin {
 	public function zeleri_settings_init() {
 
 		register_setting( 
-			'pluginPage', 
+			'pluginZeleriPage', 
 			'zeleri_settings',
 			array( $this, 'zeleri_validate_plugin_settings' )
 		);
