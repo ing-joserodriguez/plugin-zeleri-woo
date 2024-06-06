@@ -70,13 +70,13 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
                                 </div>
 
                                 <div id="configuracion" class="tab-pane fade">
-                                    <form action='options.php' method='post'>
+                                    <!--<form action='options.php' method='post'> -->
                                         <?php
                                             settings_fields( 'pluginZeleriPage' );
                                             do_settings_sections( 'pluginZeleriPage' );
-                                            submit_button();
-                                        ?>
-                                    </form>
+                                            //submit_button();
+                                        ?> 
+                                    <!--</form>-->
                                 </div>
                             </div>
                         </div>
