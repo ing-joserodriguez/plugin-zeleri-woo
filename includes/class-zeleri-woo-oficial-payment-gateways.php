@@ -5,7 +5,7 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
         $this->method_title = 'Zeleri';
         $this->title = 'Zeleri';
         $this->has_fields = false;
-        $this->enabled = 'no'
+        $this->enabled = 'no';
     }
   
     public function process_payment($order_id) {
