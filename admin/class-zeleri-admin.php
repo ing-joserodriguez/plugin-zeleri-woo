@@ -180,7 +180,7 @@ class Zeleri_Admin {
 			array(
 				'label_for' => 'zeleri_text_field_2',
 				'class'     => 'zeleri-field-setting',
-				'tip'				=> esc_attr__( 'Use if plugin fields drastically changed when installing this plugin.', 'zeleri' ) 
+				'tip'				=> 'Use if plugin fields drastically changed when installing this plugin.'
 			)
     ); 
 			)
