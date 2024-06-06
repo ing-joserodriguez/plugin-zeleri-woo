@@ -123,13 +123,16 @@ class Zeleri_Admin {
 			'Zeleri', // Literal de la opción
 			'manage_options', // Dejadlo tal cual
 			'zeleri', // Slug
-			array( $this, 'index' ), // Función que llama al pulsar
+			array( $this, 'zeleri_woo_oficial_settings_view' ), // Función que llama al pulsar
 			100 // Para colocarlo en la ultima posicion del submenu
 		);
 	}
 		
 	public function index() {
-		//include 'partials/zeleri-admin-display.php';
+		include 'partials/zeleri-admin-display.php';
+	}
+
+	public function zeleri_woo_oficial_settings_view() {
 		wp_redirect('./admin.php?page=wc-settings&tab=checkout&section=zeleri_woo_oficial_payment_gateways');
     exit;
 	}
