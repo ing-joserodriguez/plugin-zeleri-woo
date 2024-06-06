@@ -36,7 +36,7 @@
 <!--<div class="container menu-principal p-5 my-5">-->
 	<!--<div class="container"> -->
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-2">
 					<ul class="nav nav-tabs flex-column">
 				<li class="nav-item">
 					<a class="nav-link active" data-toggle="tab" href="#inicio">Inicio <i class="ph-bold ph-caret-right"></i></a>
@@ -49,7 +49,7 @@
 				</li>
 					</ul>
 				</div>
-				<div class="col-md-9">
+				<div class="col-md-7">
 					<div class="tab-content">
 						<div id="inicio" class="tab-pane fade show active">
 							<p>Texto de prueba para la sección "Inicio".</p>
