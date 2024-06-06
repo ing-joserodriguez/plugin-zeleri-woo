@@ -40,20 +40,6 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
             ),
         );
     }
-
-    public function admin_options() {
-        ?>
-        <h3><?php _e('Configuración de Tu Pasarela de Pago', 'tu-textdomain'); ?></h3>
-        <p><?php _e('Personaliza los campos de tu pasarela de pago.', 'tu-textdomain'); ?></p>
-        <form action='options.php' method='post'>
-            <?php
-                settings_fields('pluginZeleriPage');
-                do_settings_sections('pluginZeleriPage');
-                submit_button();
-            ?>
-        </form>
-        <?php
-    }
   
     public function process_payment($order_id) {
         global $woocommerce;
