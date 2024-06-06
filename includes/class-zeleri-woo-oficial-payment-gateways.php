@@ -7,7 +7,7 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
 
     public function __construct() {
         $this->id = self::ID;
-        $this->icon = plugin_dir_url(dirname(dirname(__FILE__))) . 'images/webpay.png';
+        $this->icon = plugin_dir_url(dirname(dirname(__FILE__))) . 'admin/images/ze-logo-131.png';
         $this->method_title = __('Zeleri', 'zeleri');
         $this->title = 'Zeleri';
         $this->enabled = $this->get_option('zeleri_payment_gateway_enabled', self::PAYMENT_GW_ENABLED);
