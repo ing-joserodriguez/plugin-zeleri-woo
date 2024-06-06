@@ -55,4 +55,7 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
         // Lógica para procesar el pago
         // Puedes redirigir al usuario a una página de confirmación o procesar el pago directamente
     }
+
+    add_action( 'woocommerce_update_options_payment_gateways', array( $this, 'process_admin_options' ) );
+
 }
