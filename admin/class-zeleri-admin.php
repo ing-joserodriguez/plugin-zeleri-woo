@@ -160,13 +160,13 @@ class Zeleri_Admin {
 		);
 	
 		add_settings_field( 
-			'woocommerce_zeleri_woo_oficial_payment_gateways_zeleri_text_field_1', 
+			'zeleri_text_field_1', 
 			__( 'API Key (llave secreta) Produccion:', 'zeleri' ), 
-			array( $this, 'woocommerce_zeleri_woo_oficial_payment_gateways_zeleri_text_field_1_render' ), 
+			array( $this, 'zeleri_text_field_1_render' ), 
 			'pluginZeleriPage', 
 			'zeleri_pluginPage_section',
 			array(
-				'label_for'         => 'woocommerce_zeleri_woo_oficial_payment_gateways_zeleri_text_field_1',
+				'label_for'         => 'zeleri_text_field_1',
 				'class'             => 'zeleri-field-setting',
 			)
 		);
@@ -179,8 +179,7 @@ class Zeleri_Admin {
 			'zeleri_pluginPage_section',
 			array(
 				'label_for' => 'zeleri_text_field_2',
-				'class'     => 'zeleri-field-setting',
-				'tip'       => 'Esto es un prueba'
+				'class'     => 'zeleri-field-setting'
 			)
 		);
 
@@ -236,7 +235,7 @@ class Zeleri_Admin {
 		<?php
 	}
 	
-	public function woocommerce_zeleri_woo_oficial_payment_gateways_zeleri_text_field_1_render($args) { 
+	public function zeleri_text_field_1_render($args) { 
 	
 		$options = get_option( 'zeleri_settings' );
 		?>
@@ -285,6 +284,5 @@ class Zeleri_Admin {
 		<?php
 	
 	}
-	
 
 }
