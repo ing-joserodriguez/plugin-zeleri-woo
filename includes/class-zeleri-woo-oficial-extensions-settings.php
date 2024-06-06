@@ -1,12 +1,11 @@
 <?php
 
 class Zeleri_Woo_Oficial_Extensions_Settings extends WC_Settings_API {
-  public function __construct() {
+  function __construct() {
     $this->init_form_fields();
-    $this->init_settings();
   }
 
-  public function init_form_fields() {
+  function init_form_fields() {
     $this->form_fields = array(
         'enabled' => array(
             'title'   => __('Enable/Disable', 'zeleri'),
