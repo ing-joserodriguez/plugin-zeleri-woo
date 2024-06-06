@@ -7,7 +7,6 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
         $this->has_fields = false;
 
         $options = get_option( 'zeleri_settings' );
-        var_dump($options);
 
         $this->enabled = ( isset($options['zeleri_checkbox_field_0']) ) ? $options['zeleri_checkbox_field_0'] : 'no';
         $this->method_description  = ( isset($options['zeleri_textarea_field_4']) ) ? $options['zeleri_textarea_field_4'] : 'Descripcion por defecto';
