@@ -32,7 +32,7 @@
   padding: 20px; /* Espaciado interno para mayor claridad */
   border-radius: 5px;
 }
-#wpbody-content > p.submit {
+#wpbody-content .submit {
   margin-left: 390px;
 }
 /* Fin Estructura Menu */
