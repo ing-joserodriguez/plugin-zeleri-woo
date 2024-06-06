@@ -10,36 +10,7 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
 
         $this->enabled = ( isset($options['zeleri_checkbox_field_0']) ) ? $options['zeleri_checkbox_field_0'] : 'no';
         $this->method_description  = ( isset($options['zeleri_textarea_field_4']) ) ? $options['zeleri_textarea_field_4'] : '';
-
-         // Initialize settings
-         //$this->init_form_fields();
-         //$this->init_settings();
     }
-
-    /*public function init_form_fields() {
-        $this->form_fields = array(
-            'enabled' => array(
-                'title'   => __('Enable/Disable', 'textdomain'),
-                'type'    => 'checkbox',
-                'label'   => __('Enable Custom Payment Gateway', 'textdomain'),
-                'default' => 'yes',
-            ),
-            'title' => array(
-                'title'       => __('Title', 'textdomain'),
-                'type'        => 'text',
-                'description' => __('Title displayed during checkout.', 'textdomain'),
-                'default'     => __('Custom Payment', 'textdomain'),
-                'desc_tip'    => true,
-            ),
-            'description' => array(
-                'title'       => __('Description', 'textdomain'),
-                'type'        => 'textarea',
-                'description' => __('Description displayed during checkout.', 'textdomain'),
-                'default'     => __('Pay with our custom payment gateway.', 'textdomain'),
-                'desc_tip'    => true,
-            ),
-        );
-    }*/
 
     public function admin_options() {
         esc_html_e( 'Zeleri Woo Oficial', 'zeleri' );
