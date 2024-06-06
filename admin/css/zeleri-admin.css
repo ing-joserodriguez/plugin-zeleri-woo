@@ -33,6 +33,6 @@
   border-radius: 5px;
 }
 #wpbody-content .submit {
-  margin-left: 390px;
+  margin-left: 390px !important;
 }
 /* Fin Estructura Menu */
