@@ -179,8 +179,7 @@ class Zeleri_Admin {
 			'zeleri_pluginPage_section',
 			array(
 				'label_for' => 'zeleri_text_field_2',
-				'class'     => 'zeleri-field-setting',
-				'tip'				=> 'Use if plugin fields drastically changed when installing this plugin.'
+				'class'     => 'zeleri-field-setting'
 			)
     ); 
 			)
