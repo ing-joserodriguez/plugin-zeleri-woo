@@ -4,15 +4,15 @@
  */
 
 /* Inicio Estructura Menu */
-.menu-principal {
+#wpbody-content {
   padding: 20px;
 }
-.menu-principal .nav-tabs .nav-item.show .nav-link,
-.menu-principal .nav-tabs .nav-link.active {
+#wpbody-content .nav-tabs .nav-item.show .nav-link,
+#wpbody-content .nav-tabs .nav-link.active {
   background-color: #28a745;
   color: #fff;
 }
-.menu-principal .nav-tabs .nav-link {
+#wpbody-content .nav-tabs .nav-link {
   color: #000;
   display: flex;
   justify-content: space-between;
@@ -20,14 +20,14 @@
   border-bottom: 1px solid #ccc; /* Agrega un borde alrededor de cada opción del menú */
   padding: 10px; /* Espaciado interno para mayor claridad */
 }
-.menu-principal .nav-tabs {
+#wpbody-content .nav-tabs {
   border: 1px solid #ccc; /* Agrega un borde alrededor de todo el elemento <ul> */
   border-radius: 5px;
 }
-.menu-principal .nav-tabs .nav-link i {
+#wpbody-content .nav-tabs .nav-link i {
   margin-left: auto; /* Alinea el ícono a la derecha */
 }
-.menu-principal .tab-content {
+#wpbody-content .tab-content {
   border: 1px solid #ccc; /* Agrega un borde alrededor de cada tab content */
   padding: 20px; /* Espaciado interno para mayor claridad */
   border-radius: 5px;
