@@ -161,7 +161,7 @@ class Zeleri {
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu' );
 
 		// Añadimos los elementos del formulario de configuracion del plugin
-		$this->loader->add_action( 'admin_init', $plugin_admin, 'zeleri_settings_init' );
+		//$this->loader->add_action( 'admin_init', $plugin_admin, 'zeleri_settings_init' );
 
 	}
 

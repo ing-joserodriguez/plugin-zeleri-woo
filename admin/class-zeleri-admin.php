@@ -129,7 +129,7 @@ class Zeleri_Admin {
 	}
 		
 	public function index() {
-		include 'partials/zeleri-admin-display.php';
+		//include 'partials/zeleri-admin-display.php';
 	}
 
 	public function zeleri_woo_oficial_settings_view() {
@@ -139,7 +139,7 @@ class Zeleri_Admin {
 
 
 
-	public function zeleri_settings_init() {
+	/*public function zeleri_settings_init() {
 
 		register_setting( 
 			'pluginZeleriPage', 
@@ -290,6 +290,6 @@ class Zeleri_Admin {
 		<textarea id="<?php echo esc_attr($args['label_for']); ?>" name='zeleri_settings[<?php echo esc_attr($args['label_for']); ?>]'><?php echo isset($options[$args['label_for']]) ? esc_attr($options[$args['label_for']]) : ''; ?></textarea>
 		<?php
 	
-	}
+	}*/
 
 }
