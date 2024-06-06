@@ -60,13 +60,14 @@
 						</div>
 
 						<div id="configuracion" class="tab-pane fade">
-							<form action='options.php' method='post'>
+							<?php $this->generate_settings_html(); ?>
+							<!--<form action='options.php' method='post'>
 								<?php
-									settings_fields( 'pluginZeleriPage' );
-									do_settings_sections( 'pluginZeleriPage' );
-									submit_button();
+									//settings_fields( 'pluginZeleriPage' );
+									//do_settings_sections( 'pluginZeleriPage' );
+									//submit_button();
 								?>
-							</form>
+							</form>-->
 						</div>
 					</div>
 				</div>
