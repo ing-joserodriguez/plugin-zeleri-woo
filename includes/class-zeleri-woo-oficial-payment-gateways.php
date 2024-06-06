@@ -12,11 +12,11 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
         $this->method_description  = ( isset($options['zeleri_textarea_field_4']) ) ? $options['zeleri_textarea_field_4'] : '';
 
          // Initialize settings
-         $this->init_form_fields();
-         $this->init_settings();
+         //$this->init_form_fields();
+         //$this->init_settings();
     }
 
-    public function init_form_fields() {
+    /*public function init_form_fields() {
         $this->form_fields = array(
             'enabled' => array(
                 'title'   => __('Enable/Disable', 'textdomain'),
@@ -39,6 +39,53 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
                 'desc_tip'    => true,
             ),
         );
+    }*/
+
+    public function admin_options() {
+        ?>
+        <div class="container menu-principal p-5 my-5">
+            <!--<div class="container"> -->
+                    <div class="row">
+                        <div class="col-md-3">
+                            <ul class="nav nav-tabs flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#inicio">Inicio <i class="ph-bold ph-caret-right"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#transacciones">Transacciones <i class="ph-bold ph-caret-right"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#configuracion">Configuración <i class="ph-bold ph-caret-right"></i></a>
+                        </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="tab-content">
+                                <div id="inicio" class="tab-pane fade show active">
+                                    <p>Texto de prueba para la sección "Inicio".</p>
+                                </div>
+
+                                <div id="transacciones" class="tab-pane fade">
+                                    <p>Texto de prueba para la sección "Transacciones".</p>
+                                </div>
+
+                                <div id="configuracion" class="tab-pane fade">
+                                    <form action='options.php' method='post'>
+                                        <?php
+                                            settings_fields( 'pluginZeleriPage' );
+                                            do_settings_sections( 'pluginZeleriPage' );
+                                            submit_button();
+                                        ?>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <!--</div>-->
+        </div>
+<?php
     }
   
     public function process_payment($order_id) {
