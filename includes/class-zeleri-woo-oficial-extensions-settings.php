@@ -2,6 +2,7 @@
 
 class Zeleri_Woo_Oficial_Extensions_Settings extends WC_Settings_API {
   public function __construct() {
+    $this->init_form_fields();
     $this->init_settings();
   }
 
