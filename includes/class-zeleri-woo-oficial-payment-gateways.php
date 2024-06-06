@@ -40,9 +40,9 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
 
         $this->form_fields = array(
             'zeleri_payment_gateway_enabled' => array(
-                'title'     => __('Activar/Desactivar plugin:', 'zeleri'),
+                'title'     => '',
                 'type'      => 'checkbox',
-                'label'     => '',
+                'label'     =>  __('Activar/Desactivar plugin:', 'zeleri'),
                 'desc_tip'  => __('Title displayed during checkout.', 'zeleri'),
                 'default'   => 'yes',
                 'class'     => 'form-control'
