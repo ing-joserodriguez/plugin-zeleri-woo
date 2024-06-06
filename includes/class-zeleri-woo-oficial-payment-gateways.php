@@ -70,14 +70,14 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
                     'processing' => 'Processing',
                     'completed'  => 'Completed',
                 ],
-                'default'   => '',,
+                'default'   => '',
                 'class'     => 'form-control'
             ),
             'zeleri_payment_gateway_description' => array(
                 'title'     => __('Descripcion medio de pago:', 'zeleri'),
                 'type'      => 'textarea',
                 'desc_tip'  => __('Description displayed during checkout.', 'zeleri'),
-                'default'   => '',,
+                'default'   => '',
                 'class'     => 'form-control'
             ),
         );
