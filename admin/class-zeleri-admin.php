@@ -136,7 +136,7 @@ class Zeleri_Admin {
 
 
 
-	/*public function zeleri_settings_init() {
+	public function zeleri_settings_init() {
 
 		register_setting( 
 			'pluginZeleriPage', 
@@ -287,6 +287,6 @@ class Zeleri_Admin {
 		<textarea id="<?php echo esc_attr($args['label_for']); ?>" name='zeleri_settings[<?php echo esc_attr($args['label_for']); ?>]'><?php echo isset($options[$args['label_for']]) ? esc_attr($options[$args['label_for']]) : ''; ?></textarea>
 		<?php
 	
-	}*/
+	}
 
 }
