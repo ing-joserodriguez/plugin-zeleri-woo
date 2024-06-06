@@ -230,7 +230,7 @@ class Zeleri_Admin {
 		$options = get_option( 'zeleri_settings' );
 		?>
 
-		<input type="checkbox" id="<?php echo esc_attr( $args['label_for'] ); ?>" name="zeleri_settings[<?php echo esc_attr( $args['label_for'] ); ?>]" value="activated" <?php if( isset($options[ $args['label_for'] ]) && $options[ $args['label_for'] ] === 'activated' ) { echo 'checked'; } ?> />
+		<input type="checkbox" id="<?php echo esc_attr( $args['label_for'] ); ?>" name="zeleri_settings[<?php echo esc_attr( $args['label_for'] ); ?>]" value="yes" <?php if( isset($options[ $args['label_for'] ]) && $options[ $args['label_for'] ] === 'yes' ) { echo 'checked'; } ?> />
 	
 		<?php
 	}
