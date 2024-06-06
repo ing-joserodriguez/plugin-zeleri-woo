@@ -51,7 +51,7 @@
 				</div>
 				<div class="col-md-9">
 					<div class="tab-content">
-						<div id="inicio" class="tab-pane fade">
+						<div id="inicio" class="tab-pane fade show active">
 							<p>Texto de prueba para la sección "Inicio".</p>
 						</div>
 
@@ -59,7 +59,7 @@
 							<p>Texto de prueba para la sección "Transacciones".</p>
 						</div>
 
-						<div id="configuracion" class="tab-pane fade show active">
+						<div id="configuracion" class="tab-pane fade">
 							<form action='options.php' method='post'>
 								<?php
 									settings_fields( 'pluginZeleriPage' );
