@@ -3,8 +3,7 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
 
     const ID = 'zeleri_woo_oficial_payment_gateways';
     const PAYMENT_GW_ENABLED = 'No';
-    const PAYMENT_GW_DESCRIPTION = 'Permite el pago de productos y/o servicios, ' .
-        'con tarjetas de crédito, débito y prepago a través de Zeleri';
+    const PAYMENT_GW_DESCRIPTION = 'Permite el pago de productos y/o servicios, con tarjetas de crédito, débito y prepago a través de Zeleri';
 
     public function __construct() {
         $this->id = self::ID;
