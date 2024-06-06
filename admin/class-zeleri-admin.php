@@ -160,13 +160,13 @@ class Zeleri_Admin {
 		);
 	
 		add_settings_field( 
-			'zeleri_text_field_1', 
+			'woocommerce_zeleri_woo_oficial_payment_gateways_zeleri_text_field_1', 
 			__( 'API Key (llave secreta) Produccion:', 'zeleri' ), 
 			array( $this, 'zeleri_text_field_1_render' ), 
 			'pluginZeleriPage', 
 			'zeleri_pluginPage_section',
 			array(
-				'label_for'         => 'zeleri_text_field_1',
+				'label_for'         => 'woocommerce_zeleri_woo_oficial_payment_gateways_zeleri_text_field_1',
 				'class'             => 'zeleri-field-setting',
 			)
 		);
