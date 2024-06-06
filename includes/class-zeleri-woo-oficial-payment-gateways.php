@@ -13,7 +13,7 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
 
          // Initialize settings
          $this->init_form_fields();
-         add_action( 'woocommerce_update_options_payment_gateways', array( $this, 'process_admin_options' ) );
+         //add_action( 'woocommerce_update_options_payment_gateways', array( $this, 'process_admin_options' ) );
     }
 
     public function init_form_fields() {
