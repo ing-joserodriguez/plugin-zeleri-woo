@@ -45,18 +45,21 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
                 'label'     => '',
                 'desc_tip'  => __('Title displayed during checkout.', 'zeleri'),
                 'default'   => 'yes',
+                'class'     => 'form-control'
             ),
             'zeleri_payment_gateway_apikey' => array(
                 'title'     => __('API Key (llave secreta) Produccion:', 'zeleri'),
                 'type'      => 'text',
                 'desc_tip'  => __($apiKeyDescription, 'zeleri'),
-                'default'   => ''
+                'default'   => '',
+                'class'     => 'form-control'
             ),
             'zeleri_payment_gateway_key' => array(
                 'title'     => __('Zeleri Key:', 'zeleri'),
                 'type'      => 'text',
                 'desc_tip'  => __($zeleriKeyDescription, 'zeleri'),
-                'default'   => ''
+                'default'   => '',
+                'class'     => 'form-control'
             ),
             'zeleri_payment_gateway_order_status' => array(
                 'title'     => __('Estado de la orden', 'zeleri'),
@@ -67,13 +70,15 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
                     'processing' => 'Processing',
                     'completed'  => 'Completed',
                 ],
-                'default'   => '',
+                'default'   => '',,
+                'class'     => 'form-control'
             ),
             'zeleri_payment_gateway_description' => array(
                 'title'     => __('Descripcion medio de pago:', 'zeleri'),
                 'type'      => 'textarea',
                 'desc_tip'  => __('Description displayed during checkout.', 'zeleri'),
-                'default'   => '',
+                'default'   => '',,
+                'class'     => 'form-control'
             ),
         );
     }
