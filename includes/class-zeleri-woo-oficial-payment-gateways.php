@@ -12,34 +12,41 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
         $this->method_description  = ( isset($options['zeleri_textarea_field_4']) ) ? $options['zeleri_textarea_field_4'] : '';
 
          // Initialize settings
-         //$this->init_form_fields();
-         //$this->init_settings();
+         $this->init_form_fields();
+         $this->init_settings();
     }
 
-    /*public function init_form_fields() {
+    public function init_form_fields() {
         $this->form_fields = array(
-            'enabled' => array(
-                'title'   => __('Enable/Disable', 'textdomain'),
+            'zeleri_checkbox_field_0' => array(
+                'title'   => __('Activar/Desactivar plugin:', 'zeleri'),
                 'type'    => 'checkbox',
-                'label'   => __('Enable Custom Payment Gateway', 'textdomain'),
-                'default' => 'yes',
+                'label'   => __('Enable Custom Payment Gateway', 'zeleri'),
+                'default' => 'no',
             ),
-            'title' => array(
-                'title'       => __('Title', 'textdomain'),
+            'zeleri_text_field_1' => array(
+                'title'       => __('API Key (llave secreta) Produccion:', 'zeleri'),
                 'type'        => 'text',
-                'description' => __('Title displayed during checkout.', 'textdomain'),
-                'default'     => __('Custom Payment', 'textdomain'),
+                'description' => __('Title displayed during checkout.', 'zeleri'),
+                'default'     => __('Custom Payment', 'zeleri'),
                 'desc_tip'    => true,
             ),
-            'description' => array(
-                'title'       => __('Description', 'textdomain'),
+            'zeleri_text_field_2' => array(
+                'title'       => __('Zeleri Key:', 'zeleri'),
+                'type'        => 'text',
+                'description' => __('Title displayed during checkout.', 'zeleri'),
+                'default'     => __('Custom Payment', 'zeleri'),
+                'desc_tip'    => true,
+            ),
+            'zeleri_textarea_field_4' => array(
+                'title'       => __('Descripcion medio de pago:', 'zeleri'),
                 'type'        => 'textarea',
-                'description' => __('Description displayed during checkout.', 'textdomain'),
-                'default'     => __('Pay with our custom payment gateway.', 'textdomain'),
+                'description' => __('Description displayed during checkout.', 'zeleri'),
+                'default'     => __('Pay with our custom payment gateway.', 'zeleri'),
                 'desc_tip'    => true,
             ),
         );
-    }*/
+    }
     
 
     public function process_payment($order_id) {
