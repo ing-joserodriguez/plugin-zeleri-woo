@@ -33,7 +33,8 @@
   border-radius: 5px;
 }
 #wpbody-content .submit {
-  margin-left: 15.5% !important;
+  /*margin-left: 15.5% !important;
+  display: none;*/
 }
 #wpbody-content .row {
   max-width: 90%;
