@@ -42,52 +42,10 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
     }*/
 
     public function admin_options() {
-        ?>
-        <div class="container menu-principal p-5 my-5">
-            <!--<div class="container"> -->
-                    <div class="row">
-                        <div class="col-md-3">
-                            <ul class="nav nav-tabs flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#inicio">Inicio <i class="ph-bold ph-caret-right"></i></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#transacciones">Transacciones <i class="ph-bold ph-caret-right"></i></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#configuracion">Configuración <i class="ph-bold ph-caret-right"></i></a>
-                        </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-9">
-                            <div class="tab-content">
-                                <div id="inicio" class="tab-pane fade show active">
-                                    <p>Texto de prueba para la sección "Inicio".</p>
-                                </div>
-
-                                <div id="transacciones" class="tab-pane fade">
-                                    <p>Texto de prueba para la sección "Transacciones".</p>
-                                </div>
-
-                                <div id="configuracion" class="tab-pane fade">
-                                    <!--<form action='options.php' method='post'> -->
-                                        <?php
-                                            settings_fields( 'pluginZeleriPage' );
-                                            do_settings_sections( 'pluginZeleriPage' );
-                                            //submit_button();
-                                        ?> 
-                                    <!--</form>-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            <!--</div>-->
-        </div>
-<?php
+        esc_html_e( 'Zeleri Woo Oficial', 'zeleri' );
+        $this->generate_settings_html();
     }
-  
+
     public function process_payment($order_id) {
         global $woocommerce;
         $order = new WC_Order( $order_id );
