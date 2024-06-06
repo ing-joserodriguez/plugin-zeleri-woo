@@ -10,8 +10,12 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
 
         $this->enabled = ( isset($options['zeleri_checkbox_field_0']) ) ? $options['zeleri_checkbox_field_0'] : 'no';
         $this->method_description  = ( isset($options['zeleri_textarea_field_4']) ) ? $options['zeleri_textarea_field_4'] : '';
+
+         // Initialize settings
+         $this->zeleri_settings_init();
+         $this->init_settings();
     }
-  
+
     public function process_payment($order_id) {
         global $woocommerce;
         $order = new WC_Order( $order_id );
