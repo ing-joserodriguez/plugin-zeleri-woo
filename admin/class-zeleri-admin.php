@@ -132,9 +132,8 @@ class Zeleri_Admin {
 	}
 
 	public function review_notice() {
-		$screen = get_current_screen();
-		var_dump($screen);
-    if ( 'zeleri_woo_oficial_payment_gateways' === $screen->id ) {
+    
+		if ( is_page( 'zeleri_woo_oficial_payment_gateways' ) ) {
 			echo '<div class="notice notice-info is-dismissible" id="zeleri-review-notice">
 					<div class="zeleri-notice">
 							<div class="img-logo-zeleri">

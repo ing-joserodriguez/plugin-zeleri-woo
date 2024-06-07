@@ -18,9 +18,6 @@
 	if ( ! current_user_can( 'manage_options' ) ) {
 		return;
 	}
-
-	$screen = get_current_screen();
-		var_dump($screen);
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
