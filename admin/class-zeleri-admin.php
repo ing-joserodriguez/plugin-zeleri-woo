@@ -73,7 +73,7 @@ class Zeleri_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/zeleri-admin.css', array(), '1.1.0', 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/zeleri-admin.css', array(), '1.1.1', 'all' );
 
 		wp_enqueue_style( 'Bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' );
 
@@ -135,7 +135,7 @@ class Zeleri_Admin {
     echo '<div class="notice notice-info is-dismissible" id="zeleri-review-notice">
         <div class="zeleri-notice">
             <div>
-                <img src="' . esc_url( plugin_dir_url( __FILE__ ) ) . 'images/logo-zeleri.webp" height="70px" alt="Zeleri logo" />
+                <img src="' . esc_url( plugin_dir_url( __FILE__ ) ) . 'images/logo-zeleri.webp" height="30px" alt="Zeleri logo" />
             </div>
             <div class="zeleri-review-text">
                 <p class="zeleri-review-title">Tu opinión es importante para nosotros</p>
