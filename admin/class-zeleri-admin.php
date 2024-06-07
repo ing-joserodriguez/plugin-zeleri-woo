@@ -119,7 +119,7 @@ class Zeleri_Admin {
 	}
 
 	public function woocommerceZeleriInit() {
-		add_action('admin_notices', 'review_notice');
+		add_action( 'admin_notices', array($this , 'review_notice') );
 	}
 		
 	public function index() {
@@ -148,7 +148,7 @@ class Zeleri_Admin {
             >Dejar reseña</a>
         </div>
     </div>';
-}
+	}
 
 
 }
