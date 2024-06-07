@@ -124,6 +124,14 @@ class Zeleri {
 
 		$this->loader = new Zeleri_Loader();
 
+		/**
+		 * The class responsible for defining all actions that occur in the public-facing
+		 * side of the site.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-template.php';
+
+		$this->template = new Template();
+
 	}
 
 	/**
@@ -168,11 +176,11 @@ class Zeleri {
 			'admin_notices',
 			function () {
 					$zeleriLogo = sprintf('%s%s', dirname(plugin_dir_url(__FILE__)), '/admin/images/ze-logo-131.png');
-					$template = new Template();
-					$template->render('public/notices/review-notice.php', [
+					$this->template->render('public/notices/review-notice.php', [
 							'zeleriLogo' => esc_url($zeleriLogo)
 					]);
 			}
+		);
 
 	}
 
