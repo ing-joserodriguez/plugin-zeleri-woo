@@ -2,7 +2,7 @@
 class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
 
     const ID = 'zeleri_woo_oficial_payment_gateways';
-    const PAYMENT_GW_ENABLED = true;
+    const PAYMENT_GW_ENABLED = 'yes';
     const PAYMENT_GW_DESCRIPTION = 'Permite el pago de productos y/o servicios, con tarjetas de crédito, débito y prepago a través de Zeleri';
 
     public function __construct() {
@@ -37,7 +37,8 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
                 'title'     => 'Activar/Desactivar plugin:',
                 'type'      => 'checkbox',
                 'label'     =>  __('Activar/Desactivar:', 'zeleri'),
-                'desc_tip'  => __('Title displayed during checkout.', 'zeleri')
+                'desc_tip'  => __('Title displayed during checkout.', 'zeleri'),
+                'default'   => 'yes',
             ),
             'zeleri_payment_gateway_apikey' => array(
                 'title'     => __('API Key (llave secreta) Produccion:', 'zeleri'),
