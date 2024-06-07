@@ -2,7 +2,6 @@
 class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
 
     const ID = 'zeleri_woo_oficial_payment_gateways';
-    const PAYMENT_GW_ENABLED = 'yes';
     const PAYMENT_GW_DESCRIPTION = 'Permite el pago de productos y/o servicios, con tarjetas de crédito, débito y prepago a través de Zeleri';
 
     public function __construct() {
@@ -10,7 +9,8 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
         $this->icon = plugin_dir_url(dirname(dirname(__FILE__))) . 'admin/images/ze-logo-131.png';
         $this->method_title = __('Zeleri', 'zeleri');
         $this->title = 'Zeleri';
-        $this->enabled = $this->get_option('zeleri_payment_gateway_enabled', self::PAYMENT_GW_ENABLED);
+        $enabled = get_option('zeleri_payment_gateway_enabled');
+        $this->enabled = ($enabled === 'yes');
         $this->method_description  = $this->get_option('zeleri_payment_gateway_description', self::PAYMENT_GW_DESCRIPTION);
         $this->description  = $this->get_option('zeleri_payment_gateway_description', self::PAYMENT_GW_DESCRIPTION);
 
