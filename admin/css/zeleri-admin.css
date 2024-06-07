@@ -32,8 +32,11 @@
   padding: 20px; /* Espaciado interno para mayor claridad */
   border-radius: 5px;
 }
-#wpbody-content .submit:nth-of-type(2) {
+#wpbody-content .submit {
   display: none !important;
+}
+#wpbody-content .zeleri-button-submit {
+  display: block !important;
 }
 #wpbody-content .row {
   max-width: 90%;
