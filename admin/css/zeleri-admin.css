@@ -59,10 +59,12 @@
 }
 .zeleri-notice .zeleri-button-primary {
   margin-left: auto;
+  height: 20px;
+  margin-top: 25px;
 }
 .button.zeleri-button-primary {
-  background: #d5006c;
-  border-color: #d5006c;
+  background: #28a745;
+  border-color: #28a745;
   color: white;
   transition: background-color 0.3s ease;
 }
