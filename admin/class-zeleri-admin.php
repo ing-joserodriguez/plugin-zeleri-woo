@@ -132,11 +132,11 @@ class Zeleri_Admin {
 	}
 
 	public function review_notice() { 
-		echo'?>
-		<div class="notice notice-info is-dismissible" id="zeleri-review-notice">
+
+		echo'<div class="notice notice-info is-dismissible" id="zeleri-review-notice">
 			<div class="zeleri-notice">
 					<div>
-							<img src="'.<?php sprintf('%s%s', dirname(plugin_dir_url(__FILE__)), '/admin/images/ze-logo-131.png'); ?>.'" height="70px" alt="Zeleri logo" />
+							<img src="'.<?= sprintf('%s%s', dirname(plugin_dir_url(__FILE__)), '/admin/images/ze-logo-131.png'); ?>.'" height="70px" alt="Zeleri logo" />
 					</div>
 					<div class="zeleri-review-text">
 							<p class="zeleri-review-title">Tu opinión es importante para nosotros</p>
@@ -149,10 +149,7 @@ class Zeleri_Admin {
 							target="_blank" rel="noopener"
 					>Dejar reseña</a>
 			</div>
-		</div>'
-		<?php
-		';
-	
+		</div>';
 	}
 
 }
