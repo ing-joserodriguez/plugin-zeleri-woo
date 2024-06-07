@@ -161,7 +161,18 @@ class Zeleri {
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu' );
 
 		// Añadimos los elementos del formulario de configuracion del plugin
-		//$this->loader->add_action( 'admin_init', $plugin_admin, 'zeleri_settings_init' );
+		//$this->loader->add_action( 'admin_init', $plugin_admin, 'woocommerceZeleriInit' );
+
+		// Añadimos la notificacion de review en la parte top de la pagina de configuracion
+		$this->loader->add_action(
+			'admin_notices',
+			function () {
+					$zeleriLogo = sprintf('%s%s', dirname(plugin_dir_url(__FILE__)), '/admin/images/ze-logo-131.png');
+					$template = new Template();
+					$template->render('public/notices/review-notice.php', [
+							'zeleriLogo' => esc_url($zeleriLogo)
+					]);
+			}
 
 	}
 
