@@ -132,22 +132,25 @@ class Zeleri_Admin {
 	}
 
 	public function review_notice() {
-    echo '<div class="notice notice-info is-dismissible" id="zeleri-review-notice">
-        <div class="zeleri-notice">
-            <div class="img-logo-zeleri">
-                <img src="' . esc_url( plugin_dir_url( __FILE__ ) ) . 'images/logo-zeleri.webp" height="30px" alt="Zeleri logo" />
-            </div>
-            <div class="zeleri-review-text">
-                <p class="zeleri-review-title">Tu opinión es importante para nosotros</p>
-                <p>¿Podrías tomarte un momento para dejarnos una reseña en el repositorio de WordPress?
-                    Solo te tomará un par de minutos y nos ayudará a seguir mejorando y llegar a más personas como tú.</p>
-            </div>
-            <a class="button button-primary zeleri-button-primary"
-                href="https://wordpress.org/support/plugin/transbank-webpay-plus-rest/reviews/#new-post"
-                target="_blank" rel="noopener"
-            >Dejar reseña</a>
-        </div>
-    </div>';
+		$screen = get_current_screen();
+    if ( 'zeleri_woo_oficial_payment_gateways' === $screen->id ) {
+			echo '<div class="notice notice-info is-dismissible" id="zeleri-review-notice">
+					<div class="zeleri-notice">
+							<div class="img-logo-zeleri">
+									<img src="' . esc_url( plugin_dir_url( __FILE__ ) ) . 'images/logo-zeleri.webp" height="30px" alt="Zeleri logo" />
+							</div>
+							<div class="zeleri-review-text">
+									<p class="zeleri-review-title">Tu opinión es importante para nosotros</p>
+									<p>¿Podrías tomarte un momento para dejarnos una reseña en el repositorio de WordPress?
+											Solo te tomará un par de minutos y nos ayudará a seguir mejorando y llegar a más personas como tú.</p>
+							</div>
+							<a class="button button-primary zeleri-button-primary"
+									href="https://wordpress.org/support/plugin/transbank-webpay-plus-rest/reviews/#new-post"
+									target="_blank" rel="noopener"
+							>Dejar reseña</a>
+					</div>
+			</div>';
+		}
 	}
 
 
