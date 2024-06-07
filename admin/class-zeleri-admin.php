@@ -127,6 +127,19 @@ class Zeleri_Admin {
 			100 // Para colocarlo en la ultima posicion del submenu
 		);
 	}
+
+	public function woocommerceTransbankInit() {
+		add_action(
+			'admin_notices',
+			$plugin_admin,
+			function () {
+					$zeleriLogo = sprintf('%s%s', dirname(plugin_dir_url(__FILE__)), '/admin/images/ze-logo-131.png');
+					$this->template->render('public/notices/review-notice.php', [
+							'zeleriLogo' => esc_url($zeleriLogo)
+					]);
+			}
+		);
+	}
 		
 	public function index() {
 		//include 'partials/zeleri-admin-display.php';
