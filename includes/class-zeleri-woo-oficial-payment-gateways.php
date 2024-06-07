@@ -9,8 +9,6 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
         $this->icon = plugin_dir_url(dirname(dirname(__FILE__))) . 'admin/images/ze-logo-131.png';
         $this->method_title = __('Zeleri', 'zeleri');
         $this->title = 'Zeleri';
-        $enabled = get_option('zeleri_payment_gateway_enabled');
-        $this->enabled = ($enabled === 'yes');
         $this->method_description  = $this->get_option('zeleri_payment_gateway_description', self::PAYMENT_GW_DESCRIPTION);
         $this->description  = $this->get_option('zeleri_payment_gateway_description', self::PAYMENT_GW_DESCRIPTION);
 
@@ -21,6 +19,10 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
         $this->init_settings();
 
         add_action('woocommerce_update_options_payment_gateways_' . $this->id, [$this, 'process_admin_options']);
+
+        if (!$this->is_valid_for_use()) {
+            $this->enabled = false;
+        }
     }
 
     public function init_form_fields() {
@@ -33,7 +35,7 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
             'de validación (link más abajo).<br/><br/>No la compartas con nadie una vez que la tengas. ';
 
         $this->form_fields = array(
-            'zeleri_payment_gateway_enabled' => array(
+            'enabled' => array(
                 'title'     => 'Activar/Desactivar plugin:',
                 'type'      => 'checkbox',
                 'label'     =>  __('Activar/Desactivar:', 'zeleri'),
