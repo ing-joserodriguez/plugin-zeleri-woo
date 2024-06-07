@@ -19,8 +19,12 @@
 		return;
 	}
 
-	// show error/update messages
-	settings_errors( 'wporg_messages' );
+	if ( isset( $_GET['tab_active'] ) ) {
+		$tab = 'settings';
+	}
+	else{
+			$tab = 'home';
+	}
 
 	function zeleri_is_nav_active($tab, $val, $sec = '') {
 			if ($tab === $val && $sec === '') {
@@ -66,7 +70,7 @@
 							<p class="submit zeleri-button-submit">
 								<button name="save" class="button-primary woocommerce-save-button" type="submit" value="Guardar los cambios">Guardar los cambios</button>
 								<input type="hidden" id="_wpnonce" name="_wpnonce" value="3e1ecd8a35">
-								<input type="hidden" name="_wp_http_referer" value="/wp-admin/admin.php?page=wc-settings&amp;tab=checkout&amp;section=zeleri_woo_oficial_payment_gateways">		
+								<input type="hidden" name="_wp_http_referer" value="/wp-admin/admin.php?page=wc-settings&amp;tab=checkout&amp;section=zeleri_woo_oficial_payment_gateways&amp;tab_active=settings">		
 							</p>
 						</div>
 					</div>

@@ -91,13 +91,6 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
      **/
     public function admin_options()
     {
-        if ( isset( $_GET['settings-updated'] ) ) {
-            $tab = 'settings';
-        }
-        else{
-            $tab = 'home';
-        }
-        
         include_once __DIR__ . '/../admin/partials/zeleri-admin-display.php';
     }
 
