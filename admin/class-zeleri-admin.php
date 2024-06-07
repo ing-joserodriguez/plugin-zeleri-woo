@@ -128,7 +128,7 @@ class Zeleri_Admin {
 		);
 	}
 
-	public function woocommerceTransbankInit() {
+	public function woocommerceZeleriInit() {
 		add_action(
 			'admin_notices',
 			$plugin_admin,
