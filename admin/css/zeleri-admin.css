@@ -50,6 +50,9 @@
 .zeleri-notice .zeleri-review-text {
   max-width: 65%;
 }
+.zeleri-notice .img-logo-zeleri img {
+  margin: 20px;
+}
 .zeleri-notice .zeleri-review-title {
   font-size: 18px;
   font-weight: 500;
