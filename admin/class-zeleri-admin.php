@@ -133,7 +133,7 @@ class Zeleri_Admin {
 
 	public function review_notice() {
     
-		if ( is_page( 'zeleri_woo_oficial_payment_gateways' ) ) {
+		if ( isset( $_GET['section'] ) && $_GET['section'] === 'zeleri_woo_oficial_payment_gateways' ) {
 			echo '<div class="notice notice-info is-dismissible" id="zeleri-review-notice">
 					<div class="zeleri-notice">
 							<div class="img-logo-zeleri">
