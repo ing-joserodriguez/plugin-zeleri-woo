@@ -112,13 +112,6 @@ class Zeleri {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-zeleri-i18n.php';
 
 		/**
-		 * Clase usada para renderizar contenido html
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-template.php';
-
-		$this->template = new Template();
-
-		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-zeleri-admin.php';
@@ -166,9 +159,6 @@ class Zeleri {
 
 		// Añadimos plugin menú principal
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu' );
-
-		// Añadimos los elementos del formulario de configuracion del plugin
-		//$this->loader->add_action( 'admin_init', $plugin_admin, 'zeleri_settings_init' );
 
 		// Añadimos la notificacion de review en la parte top de la pagina de configuracion
 		$this->loader->add_action( 'admin_notices', $plugin_admin, 'woocommerceZeleriInit' );
