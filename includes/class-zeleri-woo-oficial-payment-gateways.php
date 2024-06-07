@@ -91,10 +91,14 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
      **/
     public function admin_options()
     {
-        //$showedWelcome = get_site_option('transbank_webpay_rest_showed_welcome_message');
-        //update_site_option('transbank_webpay_rest_showed_welcome_message', true);
-        $tab = 'home';
-        //$environment = $this->config['MODO'];
+
+        if ( isset( $_GET['settings-updated'] ) ) {
+            $tab = 'settings';
+        }
+        else{
+            $tab = 'home';
+        }
+        
         include_once __DIR__ . '/../admin/partials/zeleri-admin-display.php';
     }
 
