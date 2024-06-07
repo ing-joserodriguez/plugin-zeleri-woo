@@ -42,3 +42,25 @@
   max-width: 90%;
 }
 /* Fin Estructura Menu */
+
+/* Inicio notice resena */
+.zeleri-notice {
+  display: flex;
+}
+.zeleri-notice .zeleri-review-text {
+  max-width: 65%;
+}
+.zeleri-notice .zeleri-review-title {
+  font-size: 18px;
+  font-weight: 500;
+}
+.zeleri-notice .zeleri-button-primary {
+  margin-left: auto;
+}
+.button.zeleri-button-primary {
+  background: #d5006c;
+  border-color: #d5006c;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+/* Final notice resena */
