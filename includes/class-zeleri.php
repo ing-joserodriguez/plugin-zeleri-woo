@@ -161,7 +161,7 @@ class Zeleri {
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu' );
 
 		// Añadimos la notificacion de review en la parte top de la pagina de configuracion
-		$this->loader->add_action( 'wp_loaded', 'woocommerceZeleriInit' );
+		$this->loader->add_action( 'wp_loaded', $plugin_admin, 'woocommerceZeleriInit' );
 
 	}
 
