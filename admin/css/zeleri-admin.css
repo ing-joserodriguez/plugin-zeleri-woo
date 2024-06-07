@@ -69,13 +69,3 @@
   transition: background-color 0.3s ease;
 }
 /* Final notice resena */
-
-#configuracion label {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-#configuracion .woocommerce-help-tip {
-  margin-left: 10px; /* Ajusta el margen según tus preferencias */
-}
