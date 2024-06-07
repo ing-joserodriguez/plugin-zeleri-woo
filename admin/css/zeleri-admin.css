@@ -71,19 +71,11 @@
 /* Final notice resena */
 
 #configuracion label {
-  font-weight: bold;
-  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-#configuracion input[type="checkbox"] {
-  margin-right: 10px;
-}
-#configuracion fieldset {
-  border: 1px solid #ccc;
-  padding: 10px;
-  background-color: #f9f9f9;
-}
-#configuracion
-  label[for="woocommerce_zeleri_woo_oficial_payment_gateways_zeleri_payment_gateway_enabled"] {
-  font-size: 14px;
-  color: #555;
+
+#configuracion .woocommerce-help-tip {
+  margin-left: 10px; /* Ajusta el margen según tus preferencias */
 }
