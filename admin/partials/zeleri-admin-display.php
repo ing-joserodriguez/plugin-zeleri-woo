@@ -18,7 +18,7 @@
 	if ( ! current_user_can( 'manage_options' ) ) {
 		return;
 	}
-
+	var_dump($_GET);
 	if ( isset( $_GET['tab_active'] ) ) {
 		$tab = 'settings';
 	}
