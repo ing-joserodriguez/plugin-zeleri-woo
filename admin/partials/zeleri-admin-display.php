@@ -26,6 +26,7 @@
 	if ( isset( $_GET['settings-updated'] ) ) {
 		// add settings saved message with the class of "updated"
 		add_settings_error( 'wporg_messages', 'wporg_message', __( 'Configuracion guardada', 'wporg' ), 'updated' );
+		$tab = 'settings';
 	}
 
 	// show error/update messages
