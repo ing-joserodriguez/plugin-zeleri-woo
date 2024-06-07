@@ -135,7 +135,7 @@ class Zeleri_Admin {
     echo '<div class="notice notice-info is-dismissible" id="zeleri-review-notice">
         <div class="zeleri-notice">
             <div>
-                <img src="' . esc_url( plugin_dir_url( __FILE__ ) ) . '/admin/images/ze-logo-131.png" height="70px" alt="Zeleri logo" />
+                <img src="' . esc_url( plugin_dir_url( __FILE__ ) ) . 'images/ze-logo-131.png" height="70px" alt="Zeleri logo" />
             </div>
             <div class="zeleri-review-text">
                 <p class="zeleri-review-title">Tu opinión es importante para nosotros</p>
