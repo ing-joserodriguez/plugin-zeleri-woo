@@ -19,16 +19,6 @@
 		return;
 	}
 
-	// add error/update messages
-
-	// check if the user have submitted the settings
-	// WordPress will add the "settings-updated" $_GET parameter to the url
-	var_dump($_GET);
-	if ( isset( $_GET['settings-updated'] ) ) {
-		// add settings saved message with the class of "updated"
-		add_settings_error( 'wporg_messages', 'wporg_message', __( 'Configuracion guardada', 'wporg' ), 'updated' );
-	}
-
 	// show error/update messages
 	settings_errors( 'wporg_messages' );
 
