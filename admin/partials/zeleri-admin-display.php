@@ -61,13 +61,7 @@
 
 						<div id="configuracion" class="tab-pane fade">
 							<?php $this->generate_settings_html(); ?>
-							<!--<form action='options.php' method='post'>
-								<?php
-									//settings_fields( 'pluginZeleriPage' );
-									//do_settings_sections( 'pluginZeleriPage' );
-									//submit_button();
-								?>
-							</form>-->
+							
 							<p class="submit zeleri-button-submit">
 								<button name="save" class="button-primary woocommerce-save-button" type="submit" value="Guardar los cambios">Guardar los cambios</button>
 								<input type="hidden" id="_wpnonce" name="_wpnonce" value="3e1ecd8a35">
