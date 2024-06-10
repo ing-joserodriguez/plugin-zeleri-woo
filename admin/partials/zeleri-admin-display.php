@@ -100,7 +100,7 @@
 														<p>Configuracion del plugin Zeleri</p>
 													</div>
 													<div class="col">
-														<a href="#">Ir a Configuracion</a>
+														<a data-toggle="tab" href="#configuracion">Ir a Configuracion</a>
 													</div>
 												</div>
 											</li>
