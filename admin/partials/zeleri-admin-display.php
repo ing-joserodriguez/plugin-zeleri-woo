@@ -39,6 +39,7 @@
 				</div>
 				<div class="col-md-7">
 					<div class="tab-content">
+						<!--INICIO-->
 						<div id="inicio" class="tab-pane fade show active">
 							<div class="container">
 								<div class="row">
@@ -100,7 +101,7 @@
 														<p>Configuracion del plugin Zeleri</p>
 													</div>
 													<div class="col">
-														<a data-toggle="tab" href="#configuracion">Ir a Configuracion</a>
+														<a class="nav-link" data-toggle="tab" href="#configuracion">Ir a Configuracion</a>
 													</div>
 												</div>
 											</li>
@@ -133,11 +134,11 @@
 								</div>
 							</div>
 						</div>
-
+						<!--TRANSACCIONES-->
 						<div id="transacciones" class="tab-pane fade">
 							<p>Texto de prueba para la sección "Transacciones".</p>
 						</div>
-
+						<!--CONFIGURACION-->
 						<div id="configuracion" class="tab-pane fade">
 							<?php $this->generate_settings_html(); ?>
 
