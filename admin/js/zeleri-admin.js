@@ -29,16 +29,11 @@
    * practising this, we should strive to set a better example in our own work.
    */
 
-  $(".zeleri-verificacion-plugin #goSetting").on("click", function () {
-    $('.nav-tabs a[href="#configuracion"]').addClass("active");
-    $(this).removeClass("active");
+  $(function () {
+    $(".zeleri-verificacion-plugin #goSetting").on("click", function () {
+      alert("ENTREEEEEE");
+      $('.nav-tabs a[href="#configuracion"]').addClass("active");
+      $(this).removeClass("active");
+    });
   });
 })(jQuery);
-
-$(document).ready(function () {
-  $(".zeleri-verificacion-plugin #goSetting").on("click", function () {
-    alert("ENTREEEEEE");
-    $('.nav-tabs a[href="#configuracion"]').addClass("active");
-    $(this).removeClass("active");
-  });
-});
