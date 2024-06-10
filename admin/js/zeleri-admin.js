@@ -31,10 +31,10 @@
 
   $(function () {
     $("#irZeleriConfiguracion").on("click", function () {
-      $(".nav-tabs a").removeClass("active");
-      $('.nav-tabs a[href="#tabZeleriConfiguracion"]').addClass("active");
-      $("#tabZeleriConfiguracion").addClass("active show");
-      $(".tab-pane").show();
+      //$(".nav-tabs a").removeClass("active");
+      //$('.nav-tabs a[href="#tabZeleriConfiguracion"]').addClass("active");
+      //$("#tabZeleriConfiguracion").addClass("show active");
+      $('.nav-tabs a[href="#tabZeleriConfiguracion"]').trigger("click");
     });
   });
 })(jQuery);
