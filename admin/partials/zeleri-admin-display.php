@@ -152,17 +152,6 @@
 				</div>
 			</div>
 		</div>
-
-		<script>
-			const goSetting = document.getElementById('goSetting');
-			const navSetting = document.querySelector('a[href="#configuracion"]');
-
-			goSetting.addEventListener('click', function() {
-				navSetting.classList.add('active');
-				goSetting.classList.remove('active');
-			});
-		</script>
-
 	<!--</div>-->
 <!--</div>-->
 
