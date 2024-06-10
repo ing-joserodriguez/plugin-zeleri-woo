@@ -32,7 +32,7 @@
   $(function () {
     $("#irZeleriConfiguracion").on("click", function () {
       $(".nav-tabs a").removeClass("active");
-      $('.nav-tabs a[href="#configuracion"]').addClass("active");
+      $('.nav-tabs a[href="#tabZeleriConfiguracion"]').addClass("active");
       $("#tabZeleriConfiguracion").addClass("active show");
     });
   });
