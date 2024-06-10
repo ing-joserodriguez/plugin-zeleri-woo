@@ -40,7 +40,98 @@
 				<div class="col-md-7">
 					<div class="tab-content">
 						<div id="inicio" class="tab-pane fade show active">
-							<p>Texto de prueba para la sección "Inicio".</p>
+							<div class="container">
+								<div class="row">
+									<div class="col">
+										<img src="#" alt="Logo Zeleri" height="30px" />
+									</div>
+								</div>
+								<div class="row zeleri-row-header">
+									<div class="col zeleri-header-verification-plugin">
+										<h3>¡Te damos la bienvenida a Zeleri!</h3>
+										<p>Asegúrate de completar todos los pasos para comenzar a operar con el plugin de Zeleri en tu comercio.</p>
+									</div>
+								</div> 
+								<div class="row">
+									<div class="col">
+										<ul class="zeleri-verificacion-plugin">
+											
+											<li>
+												<div class="row">
+													<div class="col">
+														<i class="ph-bold ph-number-circle-one"></i>
+														<p>Plugin de Zeleri instalado</p>
+													</div>
+												</div>
+											</li>
+											
+											<li>
+												<div class="row">
+													<div class="col">
+														<i class="ph-bold ph-number-circle-two"></i>
+														<p>Mi comercio está activo en Zeleri </br>
+															<span class="xs">Puedes verificar el estado de tu comercio en el portal Zeleri.</span>
+														</p>
+													</div>
+													<div class="col">
+														<a href="#">Verificar</a>
+													</div>
+												</div>
+											</li>
+											
+											<li>
+												<div class="row">
+													<div class="col">
+														<i class="ph-bold ph-number-circle-three"></i>
+														<p>Mis llaves de API y Zeleri están activas para operar </br> 
+															<span class="xs">Solicita tus llaves en soporte@zeleri.com</span>
+														</p>
+													</div>
+													<div class="col">
+														<a href="#">Verificar</a>
+													</div>
+												</div>
+											</li>
+											
+											<li>
+												<div class="row">
+													<div class="col">
+														<i class="ph-bold ph-number-circle-four"></i>
+														<p>Configuracion del plugin Zeleri</p>
+													</div>
+													<div class="col">
+														<a href="#">Ir a Configuracion</a>
+													</div>
+												</div>
+											</li>
+
+											<li>
+												<div class="row">
+													<div class="col">
+														<i class="ph-bold ph-number-circle-five"></i>
+														<p>Haz una compra real para validar que el plugin de Zeleri funciona perfectamente</p>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<p>Si necesitas ayuda contáctanos o <a href="#">revisa la documentación</a> del plugin</p>
+									</div>
+								</div>
+								<div class="row zeleri-verificacion-plugin">
+									<div class="col">
+										<i class="ph-bold ph-envelope"></i>
+										<p>soporte@zeleri.com</p>
+									</div>
+									<div class="col">
+										<i class="ph-bold ph-phone"></i>
+										<p>+023323222312</p>
+									</div>
+								</div>
+							</div>
 						</div>
 
 						<div id="transacciones" class="tab-pane fade">
