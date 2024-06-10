@@ -30,10 +30,8 @@
    */
 
   $(function () {
+    //Hace que el enlace de la seccion de inicio despliegue la seccion de las configuraciones
     $("#irZeleriConfiguracion").on("click", function () {
-      //$(".nav-tabs a").removeClass("active");
-      //$('.nav-tabs a[href="#tabZeleriConfiguracion"]').addClass("active");
-      //$("#tabZeleriConfiguracion").addClass("show active");
       $('.nav-tabs a[href="#tabZeleriConfiguracion"]').trigger("click");
     });
   });
