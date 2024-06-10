@@ -33,8 +33,8 @@
     $("#irZeleriConfiguracion").on("click", function () {
       $(".nav-tabs a").removeClass("active");
       $('.nav-tabs a[href="#tabZeleriConfiguracion"]').addClass("active");
-      //$("#tabZeleriConfiguracion").addClass("active show");
-      $("#tabZeleriConfiguracion").show();
+      $("#tabZeleriConfiguracion").addClass("active show");
+      $(".tab-pane").show();
     });
   });
 })(jQuery);
