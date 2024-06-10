@@ -101,7 +101,7 @@
 														<p>Configuracion del plugin Zeleri</p>
 													</div>
 													<div class="col">
-														<a id="irZeleriConfiguracion">Ir a Configuracion</a>
+														<a id="irZeleriConfiguracion" href="#">Ir a Configuracion</a>
 													</div>
 												</div>
 											</li>
