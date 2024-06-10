@@ -75,7 +75,7 @@ ul {
   list-style: none; /* Elimina las viñetas */
 }
 
-i {
+.tab-content i {
   margin-right: 0.5rem; /* Espacio entre ícono y texto */
   font-size: 52px;
 }

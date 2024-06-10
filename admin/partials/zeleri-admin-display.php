@@ -116,7 +116,7 @@
 										</ul>
 									</div>
 								</div>
-								<div class="row">
+								<div class="row zeleri-verificacion-plugin">
 									<div class="col">
 										<p>Si necesitas ayuda contáctanos o <a href="#">revisa la documentación</a> del plugin</p>
 									</div>
