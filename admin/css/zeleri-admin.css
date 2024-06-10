@@ -77,11 +77,11 @@ ul {
 
 i {
   margin-right: 0.5rem; /* Espacio entre ícono y texto */
-  font-size: 32px;
+  font-size: 52px;
 }
 
 .xs {
-  font-size: 12px;
+  font-size: 20px;
   color: gray;
 }
 
@@ -112,5 +112,10 @@ i {
 .zeleri-header-verification-plugin {
   padding-left: 5%;
   margin-bottom: 50px;
+}
+
+.zeleri-header-verification-plugin p,
+.zeleri-verificacion-plugin p {
+  font-size: 25px;
 }
 /*Final home plugin*/
