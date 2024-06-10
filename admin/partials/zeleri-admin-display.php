@@ -26,15 +26,15 @@
 			<div class="row">
 				<div class="col-md-2">
 					<ul class="nav nav-tabs flex-column">
-				<li class="nav-item">
-					<a class="nav-link active" data-toggle="tab" href="#inicio">Inicio <i class="ph-bold ph-caret-right"></i></a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" data-toggle="tab" href="#transacciones">Transacciones <i class="ph-bold ph-caret-right"></i></a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" data-toggle="tab" href="#configuracion">Configuración <i class="ph-bold ph-caret-right"></i></a>
-				</li>
+						<li class="nav-item">
+							<a class="nav-link active" data-toggle="tab" href="#inicio">Inicio <i class="ph-bold ph-caret-right"></i></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#transacciones">Transacciones <i class="ph-bold ph-caret-right"></i></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#configuracion">Configuración <i class="ph-bold ph-caret-right"></i></a>
+						</li>
 					</ul>
 				</div>
 				<div class="col-md-7">
@@ -94,14 +94,14 @@
 												</div>
 											</li>
 											
-											<li class="nav nav-tabs">
+											<li>
 												<div class="row">
 													<div class="col">
 														<i class="ph-bold ph-number-circle-four"></i>
 														<p>Configuracion del plugin Zeleri</p>
 													</div>
-													<div class="col nav-item">
-														<a class="nav-link" data-toggle="tab" href="#configuracion">Ir a Configuracion</a>
+													<div class="col">
+														<a id="goSetting" href="#configuracion">Ir a Configuracion</a>
 													</div>
 												</div>
 											</li>
@@ -152,6 +152,16 @@
 				</div>
 			</div>
 		</div>
+
+		<script>
+			const goSetting = document.getElementById('goSetting');
+			const navSetting = document.querySelector('a[href="#configuracion"]');
+
+			goSetting.addEventListener('click', function() {
+				navSetting.classList.add('active');
+				goSetting.classList.remove('active');
+			});
+		</script>
 
 	<!--</div>-->
 <!--</div>-->
