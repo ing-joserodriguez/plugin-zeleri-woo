@@ -94,13 +94,13 @@
 												</div>
 											</li>
 											
-											<li>
+											<li class="nav nav-tabs">
 												<div class="row">
 													<div class="col">
 														<i class="ph-bold ph-number-circle-four"></i>
 														<p>Configuracion del plugin Zeleri</p>
 													</div>
-													<div class="col">
+													<div class="col nav-item">
 														<a class="nav-link" data-toggle="tab" href="#configuracion">Ir a Configuracion</a>
 													</div>
 												</div>
