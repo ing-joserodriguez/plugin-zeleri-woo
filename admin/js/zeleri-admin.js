@@ -31,9 +31,8 @@
 
   $(function () {
     $(".zeleri-verificacion-plugin #goSetting").on("click", function () {
-      alert("ENTREEEEEE");
+      $(".nav-tabs a").removeClass("active");
       $('.nav-tabs a[href="#configuracion"]').addClass("active");
-      $(this).removeClass("active");
     });
   });
 })(jQuery);
