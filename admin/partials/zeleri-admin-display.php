@@ -43,7 +43,7 @@
 							<div class="container">
 								<div class="row">
 									<div class="col">
-										<img src="<?php echo plugin_dir_url(dirname(dirname(__FILE__))) . 'admin/images/ze-logo-131.png'; ?>" alt="Logo Zeleri" height="30px" />
+										<img src="<?php echo plugin_dir_url(dirname(dirname(__FILE__))) . 'admin/images/logo-zeleri.webp'; ?>" alt="Logo Zeleri" height="30px" />
 									</div>
 								</div>
 								<div class="row zeleri-row-header">
