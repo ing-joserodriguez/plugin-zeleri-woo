@@ -30,9 +30,10 @@
    */
 
   $(function () {
-    $(".zeleri-verificacion-plugin #goSetting").on("click", function () {
+    $("#irZeleriConfiguracion").on("click", function () {
       $(".nav-tabs a").removeClass("active");
       $('.nav-tabs a[href="#configuracion"]').addClass("active");
+      $("#tabZeleriConfiguracion").addClass("active show");
     });
   });
 })(jQuery);

@@ -27,20 +27,20 @@
 				<div class="col-md-2">
 					<ul class="nav nav-tabs flex-column">
 						<li class="nav-item">
-							<a class="nav-link active" data-toggle="tab" href="#inicio">Inicio <i class="ph-bold ph-caret-right"></i></a>
+							<a class="nav-link active" data-toggle="tab" href="#tabZeleriInicio">Inicio <i class="ph-bold ph-caret-right"></i></a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" data-toggle="tab" href="#transacciones">Transacciones <i class="ph-bold ph-caret-right"></i></a>
+							<a class="nav-link" data-toggle="tab" href="#tabZeleriTransacciones">Transacciones <i class="ph-bold ph-caret-right"></i></a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" data-toggle="tab" href="#configuracion">Configuración <i class="ph-bold ph-caret-right"></i></a>
+							<a class="nav-link" data-toggle="tab" href="#tabZeleriConfiguracion">Configuración <i class="ph-bold ph-caret-right"></i></a>
 						</li>
 					</ul>
 				</div>
 				<div class="col-md-7">
 					<div class="tab-content">
 						<!--INICIO-->
-						<div id="inicio" class="tab-pane fade show active">
+						<div id="tabZeleriInicio" class="tab-pane fade show active">
 							<div class="container">
 								<div class="row">
 									<div class="col" style="padding: 0px; margin-bottom: 20px;">
@@ -101,7 +101,7 @@
 														<p>Configuracion del plugin Zeleri</p>
 													</div>
 													<div class="col">
-														<a id="goSetting" href="#configuracion">Ir a Configuracion</a>
+														<a id="irZeleriConfiguracion">Ir a Configuracion</a>
 													</div>
 												</div>
 											</li>
@@ -135,11 +135,11 @@
 							</div>
 						</div>
 						<!--TRANSACCIONES-->
-						<div id="transacciones" class="tab-pane fade">
+						<div id="tabZeleriTransacciones" class="tab-pane fade">
 							<p>Texto de prueba para la sección "Transacciones".</p>
 						</div>
 						<!--CONFIGURACION-->
-						<div id="configuracion" class="tab-pane fade">
+						<div id="tabZeleriConfiguracion" class="tab-pane fade">
 							<?php $this->generate_settings_html(); ?>
 
 							<p class="submit zeleri-button-submit">
