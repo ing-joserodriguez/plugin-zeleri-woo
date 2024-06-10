@@ -81,7 +81,7 @@ ul {
 }
 
 .xs {
-  font-size: 20px;
+  font-size: 16px;
   color: gray;
 }
 
@@ -116,6 +116,6 @@ ul {
 
 .zeleri-header-verification-plugin p,
 .zeleri-verificacion-plugin p {
-  font-size: 25px;
+  font-size: 22px;
 }
 /*Final home plugin*/
