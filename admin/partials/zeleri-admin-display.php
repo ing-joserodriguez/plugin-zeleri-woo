@@ -42,8 +42,8 @@
 						<div id="inicio" class="tab-pane fade show active">
 							<div class="container">
 								<div class="row">
-									<div class="col">
-										<img src="<?php echo plugin_dir_url(dirname(dirname(__FILE__))) . 'admin/images/logo-zeleri.webp'; ?>" alt="Logo Zeleri" height="30px" />
+									<div class="col" style="padding: 0px; margin-bottom: 20px;">
+										<img src="<?php echo plugin_dir_url(dirname(dirname(__FILE__))) . 'admin/images/logo-zeleri.webp'; ?>" alt="Logo Zeleri" height="70px" />
 									</div>
 								</div>
 								<div class="row zeleri-row-header">
