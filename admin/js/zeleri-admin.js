@@ -29,8 +29,8 @@
    * practising this, we should strive to set a better example in our own work.
    */
 
-  $("#goSetting").on("click", function () {
-    $('a[href="#configuracion"]').addClass("active");
-    $("#goSetting").removeClass("active");
+  $(".zeleri-verificacion-plugin #goSetting").on("click", function () {
+    $('.nav-tabs a[href="#configuracion"]').addClass("active");
+    $(this).removeClass("active");
   });
 })(jQuery);
