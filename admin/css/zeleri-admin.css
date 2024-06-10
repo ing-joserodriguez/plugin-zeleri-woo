@@ -119,7 +119,7 @@ ul {
   font-size: 22px;
 }
 
-.zeleri-verificacion-plugin a {
+.zeleri-verificacion-plugin li a {
   border: 1px solid green;
   padding: 5px;
   border-radius: 5px;
