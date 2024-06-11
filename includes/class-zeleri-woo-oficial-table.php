@@ -179,8 +179,9 @@
 
           $fecha = new DateTime();
 
-          for ($i=0; $i <= 50 ; $i++) { 
-            $date_future = strtotime('+'.$i.' day', strtotime($fecha));
+          for ($i=0; $i <= 50 ; $i++) {
+            $dias_sumados = '+'.$i.' day';
+            $date_future = strtotime($dias_sumados, strtotime($fecha));
             $data[] = array(
               'trx_id'         => ($i+1),
               'producto'       => 'Producto_'.($i+1),
