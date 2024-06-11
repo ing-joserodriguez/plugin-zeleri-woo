@@ -30,6 +30,14 @@
    */
 
   $(function () {
+    const URLactual = jQuery(location).attr("href");
+    const url = new URL(URLactual);
+    const params = url.searchParams;
+
+    if (params.get("section") == "zeleri_woo_oficial_payment_gateways") {
+      console.log("ESTOY EN EL PLUGIN DE ZELERI");
+    }
+
     //Hace que el enlace de la seccion de inicio despliegue la seccion de las configuraciones
     $("#irZeleriConfiguracion").on("click", function () {
       $('.nav-tabs a[href="#tabZeleriConfiguracion"]').trigger("click");
