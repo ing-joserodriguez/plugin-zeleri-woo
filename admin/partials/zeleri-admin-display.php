@@ -17,7 +17,7 @@
 		require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 	}
 
-	require_once( ABSPATH . 'wp-content/plugins/zeleri/admin/class-zeleri-woo-oficial-table.php' );
+	require_once( ABSPATH . 'wp-content/plugins/zeleri/includes/class-zeleri-woo-oficial-table.php' );
 ?>
 
 <?php 
