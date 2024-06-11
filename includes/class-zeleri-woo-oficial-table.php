@@ -196,13 +196,6 @@
             );
           }
 
-          $array_filtrado = array_filter($data, function($valor) {
-            var_dump($_GET['s']);
-            return true;
-          });
-        
-      
-
 	        return $data;
 	    }
 
