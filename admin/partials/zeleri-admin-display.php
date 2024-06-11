@@ -148,10 +148,7 @@
 								$tablaTransaccionesZeleri->prepare_items();
 							?>
 							<form method="get">
-								<input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
-								<input type="hidden" name="tab" value="<?php echo $_REQUEST['tab'] ?>" />
-								<input type="hidden" name="section" value="<?php echo $_REQUEST['section'] ?>" />
-								<input type="hidden" name="tab_pane" value="<?php echo $_REQUEST['tab_pane'] ?>" />
+								<input type="hidden" name="page" value="<?php echo admin_url('admin.php?page=wc-settings&tab=checkout&section=zeleri_woo_oficial_payment_gateways&tab_pane=tabZeleriTransacciones'); ?>" />
 								<?php $tablaTransaccionesZeleri->search_box( 'Buscar' , 'search_id' ); ?>
 							</form>
 							
