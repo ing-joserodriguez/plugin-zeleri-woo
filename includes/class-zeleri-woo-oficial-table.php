@@ -196,7 +196,17 @@
             );
           }
 
-          $array_filtrado = array_filter($data, $this->array('encontrar'));
+          $array_filtrado = array_filter($data, function encontrar($data) {
+            if( isset($_GET['s']) ) {
+              $str = $_GET['s'];
+              foreach ($data as $key => $value) {
+                return $key['order_woo'] == $str;
+              }
+            }
+            else{
+              return true;
+            }
+          });
       
 
 	        return $data;
@@ -296,20 +306,5 @@
 		    	'<input type="checkbox" name="pedidos[]" value="%s" />', $item['ID']
 		    );    
 		}*/
-
-    public function encontrar($data) {
-      if( isset($_GET['s']) ) {
-        $str = $_GET['s'];
-        foreach ($data as $key => $value) {
-          return $key['order_woo'] == $str;
-        }
-      }
-      else{
-        return true;
-      }
-
-      
-      return $valor > 5;
-    }
 
 	}
