@@ -152,7 +152,7 @@
 								<?php $tablaTransaccionesZeleri->search_box( 'Buscar' , 'search_id' ); ?>
 							</form>
 							
-							<a href="<?php echo admin_url('admin.php?page=wc-settings&tab=checkout&section=zeleri_woo_oficial_payment_gateways?tab_pane=tabZeleriTransacciones'); ?>">Mostrar Todo</a>
+							<a href="<?php echo esc_url( admin_url('admin.php?page=wc-settings&tab=checkout&section=zeleri_woo_oficial_payment_gateways&tab_pane=tabZeleriTransacciones') ); ?>">Mostrar Todo</a>
 
 							<form method="post">
                 	<?php $tablaTransaccionesZeleri->display(); ?>
