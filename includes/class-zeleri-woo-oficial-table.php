@@ -191,8 +191,8 @@
               'orden_zeleri'   => rand(1000, 9999),
               'token'          => bin2hex(random_bytes(20 / 2)),
               'monto'          => wc_price(rand(1000, 10000) / 100),
-              'fecha'          => $date_future->format('d-m-Y'),
-              'fecha_zeleri'   => $date_future->format('d-m-Y'),
+              'fecha'          => $date_future,
+              'fecha_zeleri'   => $date_future,
               'error'          => '',
               'detalle_error'  => ''
             );
