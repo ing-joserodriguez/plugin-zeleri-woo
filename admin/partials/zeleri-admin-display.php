@@ -148,7 +148,7 @@
 								$tablaTransaccionesZeleri->prepare_items();
 							?>
 							<form method="get">
-								<input type="hidden" name="page" value="wc-settings" />
+								<input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
 								<?php $tablaTransaccionesZeleri->search_box( 'Buscar' , 'search_id' ); ?>
 							</form>
 							
