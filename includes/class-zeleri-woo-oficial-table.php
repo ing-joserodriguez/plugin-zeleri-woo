@@ -196,17 +196,20 @@
             );
           }
 
-          $array_filtrado = array_filter($data, function encontrar($data) {
-            if( isset($_GET['s']) ) {
-              $str = $_GET['s'];
-              foreach ($data as $key => $value) {
-                return $key['order_woo'] == $str;
-              }
-            }
-            else{
-              return true;
+          $array_filtrado = array_filter($data, function($valor) {
+            if (isset($_GET['s'])) {
+                $str = $_GET['s'];
+                foreach ($valor as $key => $value) {
+                    if ($key === 'order_woo' && $value === $str) {
+                        return true;
+                    }
+                }
+                return false;
+          } else {
+                return true;
             }
           });
+        
       
 
 	        return $data;
