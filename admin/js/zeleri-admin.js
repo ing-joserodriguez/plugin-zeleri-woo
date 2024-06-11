@@ -34,9 +34,17 @@
     const url = new URL(URLactual);
     const params = url.searchParams;
 
+    //Valido que estoy dentro de la seccion del plugin de zeleri
     if (params.get("section") == "zeleri_woo_oficial_payment_gateways") {
+      //Oculto el boton de "Guardar cambios" por defecto y muestro el del formulario de configuracion
       $("#wpbody-content .submit").hide();
       $("#wpbody-content .zeleri-button-submit").show();
+
+      //Valido si la variable "tab_pane" viene en la url
+      if (params.get("tab_pane") == "tabZeleriTransacciones") {
+        //Si existe, se simulamuestra la seccion en donde se estaba anteriormente
+        $('.nav-tabs a[href="#tabZeleriTransacciones"]').trigger("click");
+      }
     }
 
     //Hace que el enlace de la seccion de inicio despliegue la seccion de las configuraciones
