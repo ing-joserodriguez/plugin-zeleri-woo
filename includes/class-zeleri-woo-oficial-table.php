@@ -198,14 +198,15 @@
 
           $array_filtrado = array_filter($data, function($valor) {
             if (isset($_GET['s'])) {
-                $str = $_GET['s'];
+                var_dump("ENTRE AQUI");
                 foreach ($valor as $key => $value) {
-                    if ($key === 'order_woo' && $value === $str) {
+                    if ($key === 'order_woo' && $value == $_GET['s']) {
                         return true;
                     }
                 }
                 return false;
           } else {
+            var_dump("NO ENTRE");
                 return true;
             }
           });
