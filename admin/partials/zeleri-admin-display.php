@@ -149,6 +149,9 @@
 							?>
 							<form method="get">
 								<input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
+								<input type="hidden" name="tab" value="<?php echo $_REQUEST['tab'] ?>" />
+								<input type="hidden" name="section" value="<?php echo $_REQUEST['section'] ?>" />
+								<input type="hidden" name="tab_pane" value="<?php echo $_REQUEST['tab_pane'] ?>" />
 								<?php $tablaTransaccionesZeleri->search_box( 'Buscar' , 'search_id' ); ?>
 							</form>
 							
