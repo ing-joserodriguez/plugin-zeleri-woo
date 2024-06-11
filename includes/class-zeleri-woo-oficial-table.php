@@ -196,7 +196,7 @@
             );
           }
 
-          $array_filtrado = array_filter($data, 'encontrar');
+          $array_filtrado = array_filter($data, $this->array('encontrar'));
       
 
 	        return $data;
