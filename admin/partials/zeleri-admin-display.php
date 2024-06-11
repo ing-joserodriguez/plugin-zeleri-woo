@@ -11,6 +11,13 @@
  * @package    Zeleri
  * @subpackage Zeleri/admin/partials
  */
+
+  // WP_List_Table is not loaded automatically so we need to load it in our application
+	if( ! class_exists( 'WP_List_Table' ) ) {
+		require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
+	}
+
+	require_once( ABSPATH . 'wp-content/plugins/zeleri/admin/class-zeleri-woo-oficial-table.php' );
 ?>
 
 <?php 
@@ -136,7 +143,20 @@
 						</div>
 						<!--TRANSACCIONES-->
 						<div id="tabZeleriTransacciones" class="tab-pane fade">
-							<p>Texto de prueba para la sección "Transacciones".</p>
+							<?php 
+								$tablaTransaccionesZeleri = new Tabla_Transacciones_Zeleri();
+								$tablaTransaccionesZeleri->prepare_items();
+							?>
+							<form method="get">
+								<input type="hidden" name="page" value="chilexpress_woo_oficial_listado_pedidos" />
+								<?php $tablaTransaccionesZeleri->search_box( 'Buscar' , 'search_id' ); ?>
+							</form>
+							
+							<a href="<?php echo admin_url('admin.php?page=chilexpress_woo_oficial_listado_pedidos'); ?>">Mostrar Todo</a>
+
+							<form method="post">
+                	<?php $tablaTransaccionesZeleri->display(); ?>
+            	</form>
 						</div>
 						<!--CONFIGURACION-->
 						<div id="tabZeleriConfiguracion" class="tab-pane fade">

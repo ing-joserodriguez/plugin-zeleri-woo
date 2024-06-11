@@ -20,6 +20,7 @@
  * @subpackage Zeleri/admin
  * @author     Zeleri <jose.rodriguez.externo@ionix.cl>
  */
+
 class Zeleri_Admin {
 
 	/**
