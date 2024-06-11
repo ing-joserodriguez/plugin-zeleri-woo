@@ -195,6 +195,10 @@
               'detalle_error'  => ''
             );
           }
+
+          $array_filtrado = array_filter($data, 'encontrar');
+      
+
 	        return $data;
 	    }
 
@@ -206,8 +210,7 @@
 	     *
 	     * @return Mixed
 	     */
-	    public function column_default( $item, $column_name )
-	    {
+	    public function column_default( $item, $column_name ) {
 	        switch( $column_name ) {
 	            case 'trx_id':
 	            case 'producto':
@@ -233,8 +236,7 @@
 	     *
 	     * @return Mixed
 	     */
-	    private function sort_data( $a, $b )
-	    {
+	    private function sort_data( $a, $b ) {
 	        // Set defaults
 	        $orderby = 'trx_id';
 	        $order = 'desc';
@@ -281,7 +283,7 @@
 		  	return $actions;
 		}*/
 
-		public function get_order_id( $str ){
+		public function get_order_id( $str ) {
 			$_str = strip_tags($str);
 			$_str = trim($_str);
 			$order_id = substr($_str, 1);
@@ -294,5 +296,20 @@
 		    	'<input type="checkbox" name="pedidos[]" value="%s" />', $item['ID']
 		    );    
 		}*/
+
+    public function encontrar($data) {
+      if( isset($_GET['s']) ) {
+        $str = $_GET['s'];
+        foreach ($data as $key => $value) {
+          return $key['order_woo'] == $str;
+        }
+      }
+      else{
+        return true;
+      }
+
+      
+      return $valor > 5;
+    }
 
 	}
