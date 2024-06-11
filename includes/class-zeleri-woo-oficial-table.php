@@ -181,7 +181,7 @@
 
           for ($i=0; $i <= 50 ; $i++) { 
             $data[] = array(
-              'trx_id'         => .($i+1),
+              'trx_id'         => ($i+1),
               'producto'       => 'Producto_'.($i+1),
               'order_woo'      => rand(1000, 9999),
               'estado_woo'     => 'Completed',
