@@ -180,8 +180,6 @@
           $fecha = new DateTime();
 
           for ($i=0; $i <= 50 ; $i++) {
-            $dias_sumados = '+'.$i.' day';
-            $date_future = strtotime($dias_sumados, strtotime($fecha->format('d-m-Y')));
             $data[] = array(
               'trx_id'         => ($i+1),
               'producto'       => 'Producto_'.($i+1),
@@ -191,8 +189,8 @@
               'orden_zeleri'   => rand(1000, 9999),
               'token'          => bin2hex(random_bytes(20 / 2)),
               'monto'          => wc_price(rand(1000, 10000) / 100),
-              'fecha'          => $date_future,
-              'fecha_zeleri'   => $date_future,
+              'fecha'          => $fecha->format('d-m-Y'),
+              'fecha_zeleri'   => $fecha->format('d-m-Y'),
               'error'          => '',
               'detalle_error'  => ''
             );
@@ -242,34 +240,33 @@
 	        $order = 'desc';
 
 	        // If orderby is set, use this as the sort column
-	        if(!empty($_GET['orderby']))
-	        {
+	        if(!empty($_GET['orderby'])) {
 	            $orderby = $_GET['orderby'];
 	        }
 
 	        // If order is set use this as the order
-	        if(!empty($_GET['order']))
-	        {
+	        if(!empty($_GET['order'])) {
 	            $order = $_GET['order'];
 	        }
 
-	        if($orderby == 'trx_id')
-	        {
+	        if($orderby == 'trx_id') {
 	        	$_orderID1 = $this->get_order_id( $a[$orderby] );
 	        	$_orderID2 = $this->get_order_id( $b[$orderby] );
 	        	$result = ($_orderID1 > $_orderID2) ? +1 : -1;
 	        }
 
-	        if($orderby == 'fecha')
-	        {
+	        if($orderby == 'fecha') {
 	        	$_fecha1 = strtotime( $a[$orderby] );
 	        	$_fecha2 = strtotime( $b[$orderby] );
 	        	$result = ($_fecha1 > $_fecha2) ? +1 : -1;
 	        }
 
+          if($orderby == 'producto') {
+            $result = strcmp($a[$orderby], $b[$orderby]);
+          }
+
 	        
-	        if($order === 'asc')
-	        {
+	        if($order === 'asc') {
 	            return $result;
 	        }
 
