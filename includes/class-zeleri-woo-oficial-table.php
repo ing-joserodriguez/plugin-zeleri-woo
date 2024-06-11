@@ -187,7 +187,7 @@
               'estado_woo'     => 'Completed',
               'estado_zeleri'  => 'Success',
               'orden_zeleri'   => rand(1000, 9999),
-              'token'          => rand(10000000000000000000, 99999999999999999999),
+              'token'          => bin2hex(random_bytes($length / 2)),
               'monto'          => wc_price(rand(1000, 10000) / 100),
               'fecha'          => $fecha->format('d-m-Y'),
               'fecha_zeleri'   => $fecha->format('d-m-Y'),
