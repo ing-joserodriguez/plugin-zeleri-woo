@@ -6,8 +6,7 @@
 	     *
 	     * @return Void
 	     */
-	    public function prepare_items()
-	    {
+	    public function prepare_items() {
 	        $columns = $this->get_columns();
 	        $hidden = $this->get_hidden_columns();
 	        $sortable = $this->get_sortable_columns();
@@ -16,12 +15,12 @@
 	        usort( $data, array( &$this, 'sort_data' ) );
 
 	        $i = 0;
-		    foreach ($data AS $key) {
-		        if (isset($key['fecha'])) {
-		            $data[$i]['fecha'] = date("d M, Y", strtotime($key['fecha']));
-		        }
-		        $i++;
-		    }
+          foreach ($data AS $key) {
+              if (isset($key['fecha'])) {
+                  $data[$i]['fecha'] = date("d M, Y", strtotime($key['fecha']));
+              }
+              $i++;
+          }
 
 	        $perPage = 10;
 	        $currentPage = $this->get_pagenum();
@@ -43,18 +42,20 @@
 	     *
 	     * @return Array
 	     */
-	    public function get_columns()
-	    {
+	    public function get_columns() {
 	        $columns = array(
-	        	//'cb'           => '<input type="checkbox" />',
-	            'pedido_id'    => 'Nro Pedido',
-	            'destinatario' => 'Destinatario',
-	            'fecha'        => 'Fecha Pedido',
-	            'numero_ot'    => 'Orden Transporte',
-	            'numero_ce'    => 'N° Certificado',
-	            'servicio'     => 'Servicio',
-	            'costo'        => 'Costo del Envío',
-	            'etiqueta'     => 'Etiqueta'
+	            'trx_id'         => 'ID trx',
+	            'producto'       => 'Producto',
+	            'order_woo'      => 'Orden WooCommerce',
+	            'estado_woo'     => 'Estado interno',
+	            'estado_zeleri'  => 'Estado Transaccion',
+	            'orden_zeleri'   => 'Orden Compra Zeleri',
+              'token'          => 'Token',
+	            'monto'          => 'Monto',
+              'fecha'          => 'Fecha creación',
+              'fecha_zeleri'   => 'Fecha Transacción Zeleri',
+              'error'          => 'Error',
+              'detalle_error'  => 'Detalle de Error'
 	        );
 
 	        return $columns;
@@ -65,8 +66,7 @@
 	     *
 	     * @return Array
 	     */
-	    public function get_hidden_columns()
-	    {
+	    public function get_hidden_columns() {
 	        return array("ID");
 	    }
 
@@ -75,11 +75,15 @@
 	     *
 	     * @return Array
 	     */
-	    public function get_sortable_columns()
-	    {
+	    public function get_sortable_columns() {
 	    	$columns = array(
-	    		'pedido_id' => array('pedido_id', true),
-	    		'fecha'     => array('fecha', false),
+	    		'trx_id'       => array('trx_id', true),
+	    		'producto'     => array('producto', false),
+          'order_woo'    => array('order_woo', false),
+          'estado_woo'   => array('estado_woo', false),
+          'orden_zeleri' => array('orden_zeleri', false),
+          'monto'        => array('monto', false),
+          'fecha'        => array('fecha', false)
 	    	);
 	        return $columns;
 	    }
@@ -89,11 +93,10 @@
 	     *
 	     * @return Array
 	     */
-	    private function table_data()
-	    {
-	        global $wpdb;
+	    private function table_data() {
+	      /*global $wpdb;
 
-	        $query = "
+	      $query = "
 	        	SELECT
 	        		post.ID AS orden_id,
 				  	DATE_FORMAT(post.post_date, '%d-%m-%Y') AS fecha,
@@ -128,55 +131,70 @@
                 -- AND post.post_status = 'wc-completed'
 	        ";
 
-	        if( isset($_GET['s']) )
-			{
-				$str = $_GET['s'];
-				$query = $query." 
-					AND (
-						post.ID LIKE '%".$str."%' OR 
-						DATE_FORMAT(post.post_date, '%d-%m-%Y') LIKE '%".$str."%' OR 
-						metaOTNumber.meta_value LIKE '%".$str."%' OR 
-						metaCNumber.meta_value LIKE '%".$str."%'
-					)
-				";
-	    	}
+	        if( isset($_GET['s']) ) {
+            $str = $_GET['s'];
+            $query = $query." 
+              AND (
+                post.ID LIKE '%".$str."%' OR 
+                DATE_FORMAT(post.post_date, '%d-%m-%Y') LIKE '%".$str."%' OR 
+                metaOTNumber.meta_value LIKE '%".$str."%' OR 
+                metaCNumber.meta_value LIKE '%".$str."%'
+              )";
+	    	  }
 
 	    	$query = $query." ORDER BY post.ID DESC";
 
-			$results = $wpdb->get_results( $query , OBJECT );
+			  $results = $wpdb->get_results( $query , OBJECT );
 
-			$data = array();
+			  $data = array();
 
-			foreach ($results as $key => $item) 
-			{
-				$order = new WC_Order( intval($item->orden_id) );
+			  foreach ($results as $key => $item) {
 
-				$existe = strpos($order->get_shipping_method(), 'Chilexpress');
+				  $order = new WC_Order( intval($item->orden_id) );
 
-				if( ($key = $existe) !== false )
-				{
-					$actions = $this->order_status_actions_button( $order );
-					$tracking = $this->get_tracking( $order->get_id() );
-					$certificate = $this->get_certificate( $order->get_id() );
-					$user_order = $order->get_user();
-					$pedido_id = '<a href="'.admin_url('post.php?post='.$order->get_id().'&action=edit').'"> #'.$order->get_id().'</a>';
+				  $existe = strpos($order->get_shipping_method(), 'Chilexpress');
 
-					$fecha = new DateTime($order->get_date_created());
+				  if( ($key = $existe) !== false ) {
+					  $actions = $this->order_status_actions_button( $order );
+					  $tracking = $this->get_tracking( $order->get_id() );
+					  $certificate = $this->get_certificate( $order->get_id() );
+					  $user_order = $order->get_user();
+					  $pedido_id = '<a href="'.admin_url('post.php?post='.$order->get_id().'&action=edit').'"> #'.$order->get_id().'</a>';
 
-					$data[] = array(
-						//'ID'           => $order->get_id(),
-			            'pedido_id'    => $pedido_id,
-			            'destinatario' => $item->destinatario,
-			            'fecha'        => $fecha->format('d-m-Y'), //$fecha->format('d M, Y'),
-			            'numero_ot'    => $tracking,
-			            'numero_ce'    => $certificate,
-			            'servicio'     => '<small>'.$order->get_shipping_method().'</small>',
-			            'costo'        => wc_price( $order->get_shipping_total() ),
-			            'etiqueta'     => '<a class="button wc-action-button wc-action-button-'.$actions["action"].' '.$actions["action"].' " href="'.$actions["url"].'" aria-label="'.$actions["name"].'"></a>'
-			        );
-				}
-			}
+					  $fecha = new DateTime($order->get_date_created());
 
+					  $data[] = array(
+			        'pedido_id'    => $pedido_id,
+			        'destinatario' => $item->destinatario,
+			        'fecha'        => $fecha->format('d-m-Y'), //$fecha->format('d M, Y'),
+			        'numero_ot'    => $tracking,
+			        'numero_ce'    => $certificate,
+			        'servicio'     => '<small>'.$order->get_shipping_method().'</small>',
+			        'costo'        => wc_price( $order->get_shipping_total() ),
+			        'etiqueta'     => '<a class="button wc-action-button wc-action-button-'.$actions["action"].' '.$actions["action"].' " href="'.$actions["url"].'" aria-label="'.$actions["name"].'"></a>'
+			      );
+				  }
+			  }*/
+
+
+          $fecha = new DateTime();
+
+          for ($i=0; $i <= 50 ; $i++) { 
+            $data[] = array(
+              'trx_id'         => .($i+1),
+              'producto'       => 'Producto_'.($i+1),
+              'order_woo'      => rand(1000, 9999),
+              'estado_woo'     => 'Completed',
+              'estado_zeleri'  => 'Success',
+              'orden_zeleri'   => rand(1000, 9999),
+              'token'          => rand(10000000000000000000, 99999999999999999999),
+              'monto'          => wc_price(rand(1000, 10000) / 100),
+              'fecha'          => $fecha->format('d-m-Y'),
+              'fecha_zeleri'   => $fecha->format('d-m-Y'),
+              'error'          => '',
+              'detalle_error'  => ''
+            );
+          }
 	        return $data;
 	    }
 
@@ -191,14 +209,18 @@
 	    public function column_default( $item, $column_name )
 	    {
 	        switch( $column_name ) {
-	            case 'pedido_id':
-	            case 'destinatario':
-	            case 'fecha':
-	            case 'numero_ot':
-	            case 'numero_ce':
-	            case 'servicio':
-	            case 'costo':
-	            case 'etiqueta':
+	            case 'trx_id':
+	            case 'producto':
+	            case 'order_woo':
+	            case 'estado_woo':
+	            case 'estado_zeleri':
+	            case 'orden_zeleri':
+	            case 'token':
+	            case 'monto':
+              case 'fecha':
+              case 'fecha_zeleri':
+              case 'error':
+              case 'detalle_error':
 	                return $item[ $column_name ];
 
 	            default:
@@ -214,7 +236,7 @@
 	    private function sort_data( $a, $b )
 	    {
 	        // Set defaults
-	        $orderby = 'pedido_id';
+	        $orderby = 'trx_id';
 	        $order = 'desc';
 
 	        // If orderby is set, use this as the sort column
@@ -229,7 +251,7 @@
 	            $order = $_GET['order'];
 	        }
 
-	        if($orderby == 'pedido_id')
+	        if($orderby == 'trx_id')
 	        {
 	        	$_orderID1 = $this->get_order_id( $a[$orderby] );
 	        	$_orderID2 = $this->get_order_id( $b[$orderby] );
