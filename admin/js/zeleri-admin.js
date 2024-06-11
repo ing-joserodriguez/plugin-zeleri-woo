@@ -35,7 +35,8 @@
     const params = url.searchParams;
 
     if (params.get("section") == "zeleri_woo_oficial_payment_gateways") {
-      console.log("ESTOY EN EL PLUGIN DE ZELERI");
+      $("#wpbody-content .submit").hide();
+      $("#wpbody-content .zeleri-button-submit").show();
     }
 
     //Hace que el enlace de la seccion de inicio despliegue la seccion de las configuraciones
