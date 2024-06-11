@@ -197,7 +197,7 @@
           }
 
           $array_filtrado = array_filter($data, function($valor) {
-            var_dump($_GET);
+            var_dump($_GET['s']);
             if (isset($_GET['s'])) {
                 var_dump("ENTRE AQUI");
                 foreach ($valor as $key => $value) {
