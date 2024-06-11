@@ -181,8 +181,7 @@
 
           for ($i=0; $i <= 50 ; $i++) {
             $dias_sumados = '+'.$i.' day';
-            var_dump($dias_sumados);
-            $date_future = strtotime($dias_sumados, strtotime($fecha));
+            $date_future = strtotime($dias_sumados, strtotime($fecha->format('d-m-Y')));
             $data[] = array(
               'trx_id'         => ($i+1),
               'producto'       => 'Producto_'.($i+1),
