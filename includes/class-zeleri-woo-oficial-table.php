@@ -197,6 +197,7 @@
           }
 
           $array_filtrado = array_filter($data, function($valor) {
+            var_dump($_GET);
             if (isset($_GET['s'])) {
                 var_dump("ENTRE AQUI");
                 foreach ($valor as $key => $value) {
@@ -208,7 +209,6 @@
                 }
                 return false;
           } else {
-            var_dump("NO ENTRE");
                 return true;
             }
           });
