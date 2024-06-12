@@ -161,7 +161,7 @@
 						<!--CONFIGURACION-->
 						<div id="tabZeleriConfiguracion" class="tab-pane fade">
 							<?php $this->generate_settings_html(); ?>
-							<p class="submit .zeleri-button-submit">
+							<p class="submit zeleri-button-submit">
 								<button name="save" class="button-primary woocommerce-save-button" type="submit" value="Guardar los cambios">Guardar los cambios</button>
 								<input type="hidden" id="_wpnonce" name="_wpnonce" value="52818129b0"/>
 								<input type="hidden" name="_wp_http_referer" value="/wp-admin/admin.php?page=wc-settings&tab=checkout&section=zeleri_woo_oficial_payment_gateways"/>
