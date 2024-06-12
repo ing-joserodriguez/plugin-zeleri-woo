@@ -164,8 +164,7 @@
 
 							<p class="submit zeleri-button-submit">
 								<?php 
-									$nonce = wp_create_nonce( 'save_changes_zeleri_plugin' );
-									var_dump($nonce);
+									$nonce = wp_create_nonce( 'zeleri' );
 								?>
 								<button name="save" class="button-primary woocommerce-save-button" type="submit" value="Guardar los cambios">Guardar los cambios</button>
 								<input type="hidden" id="_wpnonce" name="_wpnonce" value="<?php echo esc_attr( $nonce ); ?>" />
