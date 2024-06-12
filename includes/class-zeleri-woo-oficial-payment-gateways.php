@@ -101,13 +101,13 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
 
             $secret = $this->get_option('zeleri_payment_gateway_apikey');
             $signedPayload = getSignedObject($payload, $secret);
-            //$createResponse = $apiZeleri->crear_orden_zeleri($signedPayload);
+            $createResponse = $apiZeleri->crear_orden_zeleri($signedPayload);
             var_dump($signedPayload);
 
-            //return [
-                //'result'   => 'success',
-                //'redirect' => 'www.google.com',
-            //];
+            return [
+                'result'   => 'success',
+                'redirect' => 'www.google.com',
+            ];
 
         } catch (Throwable $e) {
             throw new EcommerceException($e->getMessage(), $e);
