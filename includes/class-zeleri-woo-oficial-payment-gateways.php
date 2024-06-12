@@ -1,7 +1,4 @@
 <?php
-
-require_once( ABSPATH . 'wp-content/plugins/zeleri/includes/class-zeleri-woo-oficial-api.php' );
-
 class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
 
     const ID = 'zeleri_woo_oficial_payment_gateways';
@@ -26,20 +23,23 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
         if (!$this->is_valid_for_use()) {
             $this->enabled = false;
         }
-
-        $this->zeleriAPI = new Zeleri_Woo_Oficial_API();
     }
 
     public function init_form_fields() {
         
-        $zeleriKeyDescription = 'Puedes solicitar la Zeleri Key en soporte@zeleri.com.';
-        $apiKeyDescription = 'Puedes solicitar la API Key en soporte@zeleri.com.';
+        $zeleriKeyDescription = 'Indica tu código de comercio para el ambiente de producción. <br/><br/>' .
+            'Este se te entregará al completar el proceso de afiliación comercial. <br /><br />' .
+            'Siempre comienza con 5970 y debe tener 12 dígitos. Si el tuyo tiene 8, antepone 5970.';
+
+        $apiKeyDescription = 'Esta llave privada te la entregará Transbank luego de que completes el proceso ' .
+            'de validación (link más abajo).<br/><br/>No la compartas con nadie una vez que la tengas. ';
 
         $this->form_fields = array(
             'enabled' => array(
                 'title'     => 'Activar/Desactivar plugin:',
                 'type'      => 'checkbox',
                 'label'     =>  __('Activar/Desactivar:', 'zeleri'),
+                'desc_tip'  => __('Title displayed during checkout.', 'zeleri'),
                 'default'   => 'yes',
             ),
             'zeleri_payment_gateway_apikey' => array(
@@ -57,7 +57,7 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
             'zeleri_payment_gateway_order_status' => array(
                 'title'     => __('Estado de la orden', 'zeleri'),
                 'type'      => 'select',
-                'desc_tip'  => __('Selecciona el estado que tendrá la orden por defecto al finalizar una compra.', 'zeleri'),
+                'desc_tip'  => __('Define el estado de la orden luego del pago exitoso.', 'zeleri'),
                 'options'   => [
                     ''           => 'Default',
                     'processing' => 'Processing',
@@ -68,37 +68,10 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
             'zeleri_payment_gateway_description' => array(
                 'title'     => __('Descripcion medio de pago:', 'zeleri'),
                 'type'      => 'textarea',
-                'desc_tip'  => __('Describe el medio de pago que verá el usuario en la pantalla de pago.', 'zeleri'),
+                'desc_tip'  => __('Description displayed during checkout.', 'zeleri'),
                 'default'   => '',
             ),
-            'btn_save_changes' => array(
-                'title'   => '',
-                'type'    => 'submit',
-                'default' => __( 'Guardar Cambios', 'zeleri' ),
-                'class'   => 'button-primary woocommerce-save-button'
-            )
         );
-    }
-
-    public function process_admin_options() {
-        parent::process_admin_options();
-
-        var_dump($_POST);
-    
-        if ( isset( $_POST['btn_save_changes'] ) ) {
-
-            $options = array(
-                'enabled'                             => sanitize_text_field( $_POST['enabled'] ),
-                'zeleri_payment_gateway_apikey'       => sanitize_text_field( $_POST['enabled'] ),
-                'zeleri_payment_gateway_key'          => sanitize_text_field( $_POST['enabled'] ),
-                'zeleri_payment_gateway_order_status' => sanitize_text_field( $_POST['enabled'] ),
-                'zeleri_payment_gateway_description'  => sanitize_text_field( $_POST['enabled'] )
-            );
-
-            foreach ($options as $option => $value) {
-                update_option( $option, $value ); // Guardar el nombre en la opción personalizada
-            }
-        }
     }
     
 
@@ -112,14 +85,16 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
     /**
      * Opciones panel de administración.
      **/
-    public function admin_options() {
+    public function admin_options()
+    {
         include_once __DIR__ . '/../admin/partials/zeleri-admin-display.php';
     }
 
     /**
      * Comprueba configuración de moneda (Peso Chileno).
      **/
-    public static function is_valid_for_use() {
+    public static function is_valid_for_use()
+    {
         return in_array(get_woocommerce_currency(), ['CLP']);
     }
 
