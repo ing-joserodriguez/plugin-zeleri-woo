@@ -102,10 +102,10 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
             );
     
             $secret = $this->get_option('zeleri_payment_gateway_apikey');
-            $signedPayload = json_encode($signatureZeleri->getSignedObject($payload, $secret));
+            $signedPayload = $signatureZeleri->getSignedObject($payload, $secret);
     
             // Add logging for debugging
-            wc_add_notice("Zeleri Signed Payload: " . $signedPayload, 'notice');
+            wc_add_notice("Zeleri Signed Payload: " . json_encode($signedPayload), 'notice');
     
             $createResponse = $apiZeleri->crear_orden_zeleri($signedPayload);
             wc_add_notice("Create Response Zeleri: " . $createResponse, 'notice');

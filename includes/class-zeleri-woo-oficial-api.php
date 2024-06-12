@@ -57,24 +57,6 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 			return $result;
 		}
 
-		private function do_remote_put($url, $api_key, $key, $payload){
-			return wp_remote_post( $url, array(
-				'method' => 'PUT',
-				'timeout' => 90,
-				'redirection' => 5,
-				'httpversion' => '1.0',
-				'blocking' => true,
-				'headers' => array(
-					'Content-Type' => 'application/json',
-	    			'Ocp-Apim-Subscription-Key' => $api_key
-				),
-				'body' => json_encode($payload),
-				'cookies' => array(),
-				'sslverify' => FALSE
-			    )
-			);
-		}
-
 		private function do_remote_post($url, $api_key, $key, $payload){
 			return wp_remote_post( $url, array(
 				'method' => 'POST',
@@ -87,25 +69,6 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 	    			'Authorization: Bearer ' => $api_key
 				),
 				'body' => json_encode($payload),
-				'cookies' => array(),
-				'sslverify' => FALSE
-			    )
-			);
-		}
-
-		private function do_remote_get($url, $api_key)
-		{
-			return wp_remote_post( $url, array(
-				'method' => 'GET',
-				'timeout' => 90,
-				'redirection' => 5,
-				'httpversion' => '1.0',
-				'blocking' => true,
-				'headers' => array(
-					'Content-Type' => 'application/json',
-	    			'Ocp-Apim-Subscription-Key' => $api_key
-				),
-				'body' => '',
 				'cookies' => array(),
 				'sslverify' => FALSE
 			    )
