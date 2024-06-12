@@ -27,7 +27,7 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_Signature' ) ) {
         throw new Exception('Invalid input type. Expected array or string.');
       }
     
-      $object = sortObjectKeys($object);
+      $object = $this->sortObjectKeys($object);
       $message = '';
       foreach ($object as $property => $value) {
         if ($property === 'signature') continue;
