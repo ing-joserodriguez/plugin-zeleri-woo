@@ -116,6 +116,10 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
             ];
     
         } catch (Throwable $e) {
+            if ( is_wp_error( $e ) ) {
+                
+                wc_add_notice('Error processing payment WP-ERROR: ' . print_r($result->get_error_message()), 'error');
+            }
             wc_add_notice('Error processing payment: ' . print_r($e->getMessage(), true), 'error');
             throw new Exception('Payment processing failed.', 0, $e); // Re-throw exception with more context
         }
