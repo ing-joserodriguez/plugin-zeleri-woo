@@ -73,7 +73,7 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
             ),
             'btn_save_changes' => array(
                 'title'   => '',
-                'type'    => 'button',
+                'type'    => 'submit',
                 'default' => __( 'Guardar Cambios', 'zeleri' ),
                 'class'   => 'button-primary woocommerce-save-button'
             )
