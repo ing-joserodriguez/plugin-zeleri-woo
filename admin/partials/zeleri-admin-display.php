@@ -163,8 +163,13 @@
 							<?php $this->generate_settings_html(); ?>
 
 							<p class="submit zeleri-button-submit">
+								<?php 
+									$nonce = wp_create_nonce('save_post');
+									$isVerify = wp_verify_nonce($nonce);
+									var_dump($isVerify);
+								?>
 								<button name="save" class="button-primary woocommerce-save-button" type="submit" value="Guardar los cambios">Guardar los cambios</button>
-								<input type="hidden" id="_wpnonce" name="_wpnonce" value="<?php echo esc_attr( wp_create_nonce('save_post') ); ?>" />
+								<input type="hidden" id="_wpnonce" name="_wpnonce" value="<?php echo esc_attr( $nonce ); ?>" />
 								<input type="hidden" name="_wp_http_referer" value="/wp-admin/admin.php?page=wc-settings&amp;tab=checkout&amp;section=zeleri_woo_oficial_payment_gateways">		
 							</p>
 						</div>
