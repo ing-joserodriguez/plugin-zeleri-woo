@@ -81,36 +81,41 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
     public function process_payment($order_id) {
         try {
             global $woocommerce;
-            $order = new WC_Order( $order_id );
-
+            $order = new WC_Order($order_id);
+    
             $apiZeleri = new Zeleri_Woo_Oficial_API();
-
+    
             $payload = array(
-                "amount"      => (int) number_format($order->get_total(), 0, ',', ''),
-                "gateway_id"  => 1,
-                "title"       => "prueba checkout order",
+                "amount" => (int) number_format($order->get_total(), 0, ',', ''),
+                "gateway_id" => 1, // Replace with appropriate value
+                "title" => "prueba checkout order",
                 "description" => "pago por checkout",
-                "currency_id" => 1,
-                "customer"    => [
-                    "email" => "correo@correo.com",
-                    "name"  => "customer prueba"
+                "currency_id" => get_woocommerce_currency(), // Use WooCommerce currency
+                "customer" => [
+                    "email" => $order->get_billing_email(), // Use order billing email
+                    "name" => $order->get_billing_first_name() . ' ' . $order->get_billing_last_name(), // Use order billing name
                 ],
                 "success_url" => "http://localhost:8080/success",
                 "failure_url" => "http://localhost:8080/failure",
             );
-
+    
             $secret = $this->get_option('zeleri_payment_gateway_apikey');
             $signedPayload = getSignedObject($payload, $secret);
+    
+            // Add logging for debugging
+            wc_add_notice("Zeleri Payload: " . json_encode($payload), 'notice');
+            wc_add_notice("Zeleri Signed Payload: " . json_encode($signedPayload), 'notice');
+    
             $createResponse = $apiZeleri->crear_orden_zeleri($signedPayload);
-            var_dump($signedPayload);
-
+    
             return [
-                'result'   => 'success',
-                'redirect' => 'www.google.com',
+                'result' => 'success',
+                'redirect' => $createResponse['redirect_url'], // Assuming successful response has a redirect URL
             ];
-
+    
         } catch (Throwable $e) {
-            throw new EcommerceException($e->getMessage(), $e);
+            wc_add_notice('Error processing payment: ' . $e->getMessage(), 'error');
+            throw new Exception('Payment processing failed.', 0, $e); // Re-throw exception with more context
         }
     }
 
