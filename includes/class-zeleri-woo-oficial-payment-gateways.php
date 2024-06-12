@@ -76,7 +76,8 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
                 'type'  => 'submit',
                 'desc'  => __( 'Haz clic para guardar los cambios.', 'zeleri' ),
                 'default' => __( 'Guardar', 'zeleri' ),
-            );
+            )
+        );
     }
     
 
