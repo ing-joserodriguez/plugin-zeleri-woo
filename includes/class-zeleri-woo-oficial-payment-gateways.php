@@ -71,7 +71,17 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
                 'desc_tip'  => __('Describe el medio de pago que verá el usuario en la pantalla de pago.', 'zeleri'),
                 'default'   => '',
             ),
-            'save_changes_button' => array(
+            '_wpnonce' => array(
+                'title'     => '',
+                'type'      => 'hidden',
+                'default'   => '52818129b0',
+            ),
+            '_wp_http_referer' => array(
+                'title'     => '',
+                'type'      => 'hidden',
+                'default'   => '/wp-admin/admin.php?page=wc-settings&tab=checkout&section=zeleri_woo_oficial_payment_gateways',
+            ),
+            'save' => array(
                 'title'   => '',
                 'type'    => 'submit',
                 'default' => __( 'Guardar Cambios', 'zeleri' ),
