@@ -40,17 +40,17 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 
 				if ($response[self::RESPONSE_KEY][self::CODE_KEY] == 200) {
 			   		
-			   		$result = json_decode($response['body']);
+			   	$result = json_decode($response['body']);
 					return $result;
 
 				} else if ($response[self::RESPONSE_KEY][self::CODE_KEY] == 400) {
 					
 					$json_response = json_decode($response['body']);
-					$result = new WP_Error("chilexpress-woo-oficial","$json_response->statusDescription");
+					$result = new WP_Error("zeleri-woo-oficial","$json_response->statusDescription");
 
 			    } else {
 
-					$result = new WP_Error("chilexpress-woo-oficial","Invalid Request");
+					$result = new WP_Error("zeleri-woo-oficial","Invalid Request");
 
 				}
 			}
