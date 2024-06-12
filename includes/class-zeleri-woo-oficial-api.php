@@ -16,8 +16,12 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 			$this->init();
 
 			$this->api_production_base_url = 'https://zeleri-v2.dev.ionix.cl/';
-			$this->zeleri_payment_gateway_apikey = isset( $this->get_option( 'zeleri_payment_gateway_apikey' ) )? $this->get_option( 'zeleri_payment_gateway_apikey' ) : '';
-			$this->zeleri_payment_gateway_key = isset( $this->get_option( 'zeleri_payment_gateway_key' ) )? $this->get_option( 'zeleri_payment_gateway_key' ) : '';
+      
+      $zeleri_payment_gateway_apikey = get_option( 'zeleri_payment_gateway_apikey' );
+      $zeleri_payment_gateway_key = get_option( 'zeleri_payment_gateway_key' );
+
+			$this->_gateway_apikey = isset( $zeleri_payment_gateway_apikey ) ? $zeleri_payment_gateway_apikey : '';
+			$this->_gateway_key = isset( $zeleri_payment_gateway_key ) ? $zeleri_payment_gateway_key : '';
 		}
 
 		public function init(){
