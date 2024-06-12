@@ -1,6 +1,7 @@
 <?php
 
 require_once( ABSPATH . 'wp-content/plugins/zeleri/includes/class-zeleri-woo-oficial-api.php' );
+require_once( ABSPATH . 'wp-content/plugins/zeleri/includes/class-zeleri-woo-oficial-signature.php' );
 
 class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
 
@@ -84,6 +85,7 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
             $order = new WC_Order($order_id);
     
             $apiZeleri = new Zeleri_Woo_Oficial_API();
+            $signatureZeleri = new Zeleri_Woo_Oficial_Signature();
     
             $payload = array(
                 "amount" => (int) number_format($order->get_total(), 0, ',', ''),
@@ -100,7 +102,7 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
             );
     
             $secret = $this->get_option('zeleri_payment_gateway_apikey');
-            $signedPayload = getSignedObject($payload, $secret);
+            $signedPayload = $signatureZeleri->getSignedObject($payload, $secret);
     
             // Add logging for debugging
             wc_add_notice("Zeleri Payload: " . json_encode($payload), 'notice');
