@@ -84,19 +84,19 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
 
         $apiZeleri = new Zeleri_Woo_Oficial_API();
 
-        $payload = {
-            "amount": 1000,
-            "gateway_id": 1,
-            "title": "prueba checkout order",
-            "description": "pago por checkout",
-            "currency_id": 1,
-            "customer": {
-                "email": "correo@correo.com",
-                "name": "customer prueba"
+        $payload = array(
+            "amount" => 1000,
+            "gateway_id"=> 1,
+            "title"       => "prueba checkout order",
+            "description" => "pago por checkout",
+            "currency_id" => 1,
+            "customer"    => {
+                "email" => "correo@correo.com",
+                "name"  => "customer prueba"
             },
-            "success_url": "http://localhost:8080/success",
-            "failure_url": "http://localhost:8080/failure",
-        };
+            "success_url" => "http://localhost:8080/success",
+            "failure_url" => "http://localhost:8080/failure",
+        );
 
         $secret = $this->get_option('zeleri_payment_gateway_apikey');
         $signedPayload = getSignedObject($object, $payload);
