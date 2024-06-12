@@ -1,4 +1,7 @@
 <?php
+
+require_once( ABSPATH . 'wp-content/plugins/zeleri/includes/class-zeleri-woo-oficial-api.php' );
+
 class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
 
     const ID = 'zeleri_woo_oficial_payment_gateways';
@@ -78,6 +81,31 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
     public function process_payment($order_id) {
         global $woocommerce;
         $order = new WC_Order( $order_id );
+
+        $apiZeleri = new Zeleri_Woo_Oficial_API();
+
+        $payload = {
+            "amount": 1000,
+            "gateway_id": 1,
+            "title": "prueba checkout order",
+            "description": "pago por checkout",
+            "currency_id": 1,
+            "customer": {
+                "email": "correo@correo.com",
+                "name": "customer prueba"
+            },
+            "success_url": "http://localhost:8080/success",
+            "failure_url": "http://localhost:8080/failure",
+        }
+
+        $secret = $this->get_option('zeleri_payment_gateway_apikey');
+        $signedPayload = getSignedObject($object, $payload);
+
+        var_dump($signedPayload);
+
+        //$createZeleriOrder = $apiZeleri->crear_orden_zeleri($signedPayload);
+        
+        
         // Lógica para procesar el pago
         // Puedes redirigir al usuario a una página de confirmación o procesar el pago directamente
     }

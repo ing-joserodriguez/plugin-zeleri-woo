@@ -28,7 +28,37 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 			// Init is required by wordpress
 		}
 
-		private function do_remote_put($url, $api_key, $payload){
+		public function crear_orden_zeleri($payload) {
+
+			$url = $this->api_production_base_url."/v1/checkout/orders";
+			$response = $this->do_remote_post($url, $this->_gateway_apikey, $this->_gateway_key, $payload );
+
+			if ( is_wp_error( $response ) ) {
+
+				$result = $response;
+
+			} else {
+
+				if ($response[self::RESPONSE_KEY][self::CODE_KEY] == 200) {
+			   		
+			   		$result = json_decode($response['body']);
+					return $result;
+
+				} else if ($response[self::RESPONSE_KEY][self::CODE_KEY] == 400) {
+					
+					$json_response = json_decode($response['body']);
+					$result = new WP_Error("chilexpress-woo-oficial","$json_response->statusDescription");
+
+			    } else {
+
+					$result = new WP_Error("chilexpress-woo-oficial","Invalid Request");
+
+				}
+			}
+			return $result;
+		}
+
+		private function do_remote_put($url, $api_key, $key, $payload){
 			return wp_remote_post( $url, array(
 				'method' => 'PUT',
 				'timeout' => 90,
@@ -46,7 +76,7 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 			);
 		}
 
-		private function do_remote_post($url, $api_key, $payload){
+		private function do_remote_post($url, $api_key, $key, $payload){
 			return wp_remote_post( $url, array(
 				'method' => 'POST',
 				'timeout' => 90,
@@ -55,7 +85,7 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 				'blocking' => true,
 				'headers' => array(
 					'Content-Type' => 'application/json',
-	    			'Ocp-Apim-Subscription-Key' => $api_key
+	    			'Authorization:' => $api_key
 				),
 				'body' => json_encode($payload),
 				'cookies' => array(),
