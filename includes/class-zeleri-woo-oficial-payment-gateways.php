@@ -96,7 +96,7 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
             },
             "success_url": "http://localhost:8080/success",
             "failure_url": "http://localhost:8080/failure",
-        }
+        };
 
         $secret = $this->get_option('zeleri_payment_gateway_apikey');
         $signedPayload = getSignedObject($object, $payload);
