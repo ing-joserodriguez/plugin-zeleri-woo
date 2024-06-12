@@ -82,6 +82,8 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
 
     public function process_admin_options() {
         parent::process_admin_options();
+
+        var_dump($_POST);
     
         if ( isset( $_POST['btn_save_changes'] ) ) {
 
