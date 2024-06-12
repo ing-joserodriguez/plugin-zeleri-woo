@@ -32,12 +32,8 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
 
     public function init_form_fields() {
         
-        $zeleriKeyDescription = 'Indica tu código de comercio para el ambiente de producción. <br/><br/>' .
-            'Este se te entregará al completar el proceso de afiliación comercial. <br /><br />' .
-            'Siempre comienza con 5970 y debe tener 12 dígitos. Si el tuyo tiene 8, antepone 5970.';
-
-        $apiKeyDescription = 'Esta llave privada te la entregará Transbank luego de que completes el proceso ' .
-            'de validación (link más abajo).<br/><br/>No la compartas con nadie una vez que la tengas. ';
+        $zeleriKeyDescription = 'Puedes solicitar la Zeleri Key en soporte@zeleri.com.';
+        $apiKeyDescription = 'Puedes solicitar la API Key en soporte@zeleri.com.';
 
         $this->form_fields = array(
             'enabled' => array(
@@ -62,7 +58,7 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
             'zeleri_payment_gateway_order_status' => array(
                 'title'     => __('Estado de la orden', 'zeleri'),
                 'type'      => 'select',
-                'desc_tip'  => __('Define el estado de la orden luego del pago exitoso.', 'zeleri'),
+                'desc_tip'  => __('Selecciona el estado que tendrá la orden por defecto al finalizar una compra.', 'zeleri'),
                 'options'   => [
                     ''           => 'Default',
                     'processing' => 'Processing',
@@ -73,7 +69,7 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
             'zeleri_payment_gateway_description' => array(
                 'title'     => __('Descripcion medio de pago:', 'zeleri'),
                 'type'      => 'textarea',
-                'desc_tip'  => __('Description displayed during checkout.', 'zeleri'),
+                'desc_tip'  => __('Describe el medio de pago que verá el usuario en la pantalla de pago.', 'zeleri'),
                 'default'   => '',
             ),
         );
