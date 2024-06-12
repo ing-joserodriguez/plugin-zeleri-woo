@@ -165,9 +165,10 @@
 							<p class="submit zeleri-button-submit">
 								<?php 
 									$nonce = wp_create_nonce( 'save_changes_zeleri_plugin' );
+									var_dump($nonce);
 								?>
 								<button name="save" class="button-primary woocommerce-save-button" type="submit" value="Guardar los cambios">Guardar los cambios</button>
-								<input type="hidden" id="_wpnonce" name="_wpnonce" value="<?php esc_attr( $nonce ) ?>">
+								<input type="hidden" id="_wpnonce" name="_wpnonce" value="<?php echo esc_attr( $nonce ); ?>" />
 								<input type="hidden" name="_wp_http_referer" value="/wp-admin/admin.php?page=wc-settings&amp;tab=checkout&amp;section=zeleri_woo_oficial_payment_gateways">		
 							</p>
 						</div>
