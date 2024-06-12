@@ -37,8 +37,8 @@
     //Valido que estoy dentro de la seccion del plugin de zeleri
     if (params.get("section") == "zeleri_woo_oficial_payment_gateways") {
       //Oculto el boton de "Guardar cambios" por defecto y muestro el del formulario de configuracion
-      //$("#wpbody-content .submit").hide();
-      //$("#wpbody-content .zeleri-button-submit").show();
+      $("#wpbody-content .submit").hide();
+      $("#wpbody-content .zeleri-button-submit").show();
 
       //Valido si la variable "tab_pane" viene en la url
       if (params.get("tab_pane") == "tabZeleriTransacciones") {
