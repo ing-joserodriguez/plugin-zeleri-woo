@@ -40,7 +40,6 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
                 'title'     => 'Activar/Desactivar plugin:',
                 'type'      => 'checkbox',
                 'label'     =>  __('Activar/Desactivar:', 'zeleri'),
-                'desc_tip'  => __('Title displayed during checkout.', 'zeleri'),
                 'default'   => 'yes',
             ),
             'zeleri_payment_gateway_apikey' => array(
