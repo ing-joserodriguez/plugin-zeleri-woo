@@ -49,7 +49,7 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_Signature' ) ) {
         throw new Exception('Invalid input type. Expected array or string.');
       }
     
-      return array_merge($object, array('signature' => generateSignature($object, $secret)));
+      return array_merge($object, array('signature' => $this->generateSignature($object, $secret)));
     }
     
     public function parseQueryString($queryString) {
