@@ -45,6 +45,12 @@
         //Si existe, se simulamuestra la seccion en donde se estaba anteriormente
         $('.nav-tabs a[href="#tabZeleriTransacciones"]').trigger("click");
       }
+
+      //Valido si la variable "tab_pane" viene en la url
+      if (params.get("tab_pane") == "tabZeleriConfiguracion") {
+        //Si existe, se simulamuestra la seccion en donde se estaba anteriormente
+        $('.nav-tabs a[href="#tabZeleriConfiguracion"]').trigger("click");
+      }
     }
 
     //Hace que el enlace de la seccion de inicio despliegue la seccion de las configuraciones
