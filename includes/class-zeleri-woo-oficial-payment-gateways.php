@@ -79,35 +79,39 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
     
 
     public function process_payment($order_id) {
-        global $woocommerce;
-        $order = new WC_Order( $order_id );
+        try {
+            global $woocommerce;
+            $order = new WC_Order( $order_id );
 
-        $apiZeleri = new Zeleri_Woo_Oficial_API();
+            $apiZeleri = new Zeleri_Woo_Oficial_API();
 
-        $payload = array(
-            "amount"      => 1000,
-            "gateway_id"  => 1,
-            "title"       => "prueba checkout order",
-            "description" => "pago por checkout",
-            "currency_id" => 1,
-            "customer"    => [
-                "email" => "correo@correo.com",
-                "name"  => "customer prueba"
-            ],
-            "success_url" => "http://localhost:8080/success",
-            "failure_url" => "http://localhost:8080/failure",
-        );
+            $payload = array(
+                "amount"      => (int) number_format($order->get_total(), 0, ',', ''),
+                "gateway_id"  => 1,
+                "title"       => "prueba checkout order",
+                "description" => "pago por checkout",
+                "currency_id" => 1,
+                "customer"    => [
+                    "email" => "correo@correo.com",
+                    "name"  => "customer prueba"
+                ],
+                "success_url" => "http://localhost:8080/success",
+                "failure_url" => "http://localhost:8080/failure",
+            );
 
-        $secret = $this->get_option('zeleri_payment_gateway_apikey');
-        $signedPayload = getSignedObject($object, $payload);
+            $secret = $this->get_option('zeleri_payment_gateway_apikey');
+            $signedPayload = getSignedObject($payload, $secret);
+            //$createResponse = $apiZeleri->crear_orden_zeleri($signedPayload);
+            var_dump($signedPayload);
 
-        return var_dump($signedPayload);
+            //return [
+                //'result'   => 'success',
+                //'redirect' => 'www.google.com',
+            //];
 
-        //$createZeleriOrder = $apiZeleri->crear_orden_zeleri($signedPayload);
-        
-        
-        // Lógica para procesar el pago
-        // Puedes redirigir al usuario a una página de confirmación o procesar el pago directamente
+        } catch (Throwable $e) {
+            throw new EcommerceException($e->getMessage(), $e);
+        }
     }
 
     /**
