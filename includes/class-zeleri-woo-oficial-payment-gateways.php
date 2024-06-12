@@ -101,7 +101,7 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
         $secret = $this->get_option('zeleri_payment_gateway_apikey');
         $signedPayload = getSignedObject($object, $payload);
 
-        var_dump($signedPayload);
+        return var_dump($signedPayload);
 
         //$createZeleriOrder = $apiZeleri->crear_orden_zeleri($signedPayload);
         
