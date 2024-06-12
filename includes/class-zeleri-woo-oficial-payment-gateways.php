@@ -1,4 +1,7 @@
 <?php
+
+require_once( ABSPATH . 'wp-content/plugins/zeleri/includes/class-zeleri-woo-oficial-api.php' );
+
 class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
 
     const ID = 'zeleri_woo_oficial_payment_gateways';
@@ -23,6 +26,8 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
         if (!$this->is_valid_for_use()) {
             $this->enabled = false;
         }
+
+        $this->zeleriAPI = new Zeleri_Woo_Oficial_API();
     }
 
     public function init_form_fields() {
