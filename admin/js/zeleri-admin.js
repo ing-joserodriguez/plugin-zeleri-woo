@@ -41,16 +41,23 @@
       $("#wpbody-content .zeleri-button-submit").show();
 
       //Valido si la variable "tab_pane" viene en la url
-      if (params.get("tab_pane") == "tabZeleriTransacciones") {
+      if (params.get("tab_pane")) {
         //Si existe, se simulamuestra la seccion en donde se estaba anteriormente
-        $('.nav-tabs a[href="#tabZeleriTransacciones"]').trigger("click");
+        const IDTabActive = "#" + params.get("tab_pane");
+        $('.nav-tabs a[href="' + IDTabActive + '"]').trigger("click");
       }
 
       //Valido si la variable "tab_pane" viene en la url
-      if (params.get("tab_pane") == "tabZeleriConfiguracion") {
-        //Si existe, se simulamuestra la seccion en donde se estaba anteriormente
-        $('.nav-tabs a[href="#tabZeleriConfiguracion"]').trigger("click");
-      }
+      //if (params.get("tab_pane") == "tabZeleriTransacciones") {
+      //Si existe, se simulamuestra la seccion en donde se estaba anteriormente
+      //$('.nav-tabs a[href="#tabZeleriTransacciones"]').trigger("click");
+      //}
+
+      //Valido si la variable "tab_pane" viene en la url
+      //if (params.get("tab_pane") == "tabZeleriConfiguracion") {
+      //Si existe, se simulamuestra la seccion en donde se estaba anteriormente
+      //$('.nav-tabs a[href="#tabZeleriConfiguracion"]').trigger("click");
+      //}
     }
 
     //Hace que el enlace de la seccion de inicio despliegue la seccion de las configuraciones
