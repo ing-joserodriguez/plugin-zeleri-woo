@@ -33,9 +33,9 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 			$response = $this->do_remote_post($url, $this->_token_customer, $payload );
 
 			if ( is_wp_error( $response ) ) {
-
+				
 				$result = $response;
-
+				echo 'Error: ' . $result->get_error_message();
 			} else {
 
 				if ($response[self::RESPONSE_KEY][self::CODE_KEY] == 200) {
