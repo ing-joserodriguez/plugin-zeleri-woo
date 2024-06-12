@@ -165,7 +165,7 @@
 								<button name="save" class="button-primary woocommerce-save-button" type="submit" value="Guardar los cambios">Guardar los cambios</button>
 								<?php 
 									$nonce = wp_create_nonce('save_option');
-									$isVerify wp_verify_nonce( $nonce, "save_option" );
+									$isVerify = wp_verify_nonce( $nonce, "save_option" );
 									var_dump($isVerify);
 								?>
 								<input type="hidden" id="_wpnonce" name="_wpnonce" value="52818129b0"/>
