@@ -164,7 +164,7 @@
 
 							<p class="submit zeleri-button-submit">
 								<?php 
-									$nonce = wp_create_nonce('save_post');
+									$nonce = wp_create_nonce('save');
 									$isVerify = wp_verify_nonce($nonce);
 									var_dump($isVerify);
 								?>
