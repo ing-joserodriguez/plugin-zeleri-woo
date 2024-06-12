@@ -71,23 +71,32 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
                 'desc_tip'  => __('Describe el medio de pago que verá el usuario en la pantalla de pago.', 'zeleri'),
                 'default'   => '',
             ),
-            '_wpnonce' => array(
-                'title'     => '',
-                'type'      => 'hidden',
-                'default'   => '52818129b0',
-            ),
-            '_wp_http_referer' => array(
-                'title'     => '',
-                'type'      => 'hidden',
-                'default'   => '/wp-admin/admin.php?page=wc-settings&tab=checkout&section=zeleri_woo_oficial_payment_gateways',
-            ),
-            'save' => array(
+            'btn_save_changes' => array(
                 'title'   => '',
-                'type'    => 'submit',
+                'type'    => 'button',
                 'default' => __( 'Guardar Cambios', 'zeleri' ),
                 'class'   => 'button-primary woocommerce-save-button'
             )
         );
+    }
+
+    public function process_admin_options() {
+        parent::process_admin_options();
+    
+        if ( isset( $_POST['btn_save_changes'] ) ) {
+
+            $options = array(
+                'enabled'                             => sanitize_text_field( $_POST['enabled'] ),
+                'zeleri_payment_gateway_apikey'       => sanitize_text_field( $_POST['enabled'] ),
+                'zeleri_payment_gateway_key'          => sanitize_text_field( $_POST['enabled'] ),
+                'zeleri_payment_gateway_order_status' => sanitize_text_field( $_POST['enabled'] ),
+                'zeleri_payment_gateway_description'  => sanitize_text_field( $_POST['enabled'] )
+            );
+
+            foreach ($options as $option => $value) {
+                update_option( $option, $value ); // Guardar el nombre en la opción personalizada
+            }
+        }
     }
     
 
@@ -101,16 +110,14 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
     /**
      * Opciones panel de administración.
      **/
-    public function admin_options()
-    {
+    public function admin_options() {
         include_once __DIR__ . '/../admin/partials/zeleri-admin-display.php';
     }
 
     /**
      * Comprueba configuración de moneda (Peso Chileno).
      **/
-    public static function is_valid_for_use()
-    {
+    public static function is_valid_for_use() {
         return in_array(get_woocommerce_currency(), ['CLP']);
     }
 
