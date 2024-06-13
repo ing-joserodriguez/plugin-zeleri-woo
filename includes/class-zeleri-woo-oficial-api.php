@@ -59,31 +59,7 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 		}
 
 		private function do_remote_post($url, $_token_customer, $payload){
-
-
-			// Inicializar la sesión cURL
-			$ch = curl_init('https://zeleri.dev.ionix.cl/integration-kit/v1/checkout/orders');
-
-			// Configurar opciones para la petición
-			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-			curl_setopt($ch, CURLOPT_HTTPHEADER, [
-					'Content-Type: application/json',
-					'Authorization: Bearer '.$_token_customer,
-					'Content-Length: ' . strlen($payload)
-			]);
-
-			// Ejecutar la petición
-			$resultado = curl_exec($ch);
-			
-			curl_close($ch);
-
-			return $resultado;
-
-
-
-
-			/*return wp_remote_post( 'https://zeleri.dev.ionix.cl/integration-kit/v1/checkout/orders', array(
+			return wp_remote_post( 'https://zeleri.dev.ionix.cl/integration-kit/v1/checkout/orders', array(
 					'method' => 'POST',
 					'headers' => array(
 						'Content-Type' => 'application/json',
@@ -91,7 +67,7 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 					),
 					'body' => json_encode($payload)
 			  )
-			);*/
+			);
 		}
 		
 	}
