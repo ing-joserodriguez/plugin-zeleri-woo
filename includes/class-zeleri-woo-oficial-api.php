@@ -31,7 +31,7 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 
 			$url = $this->api_production_base_url."/checkout/orders";
 			$response = $this->do_remote_post($url, $this->_token_customer, $payload );
-			/*if ( is_wp_error( $response ) ) {
+			if ( is_wp_error( $response ) ) {
 				
 				$result = $response;
 				//$result = 'Error en respuesta de la API';
@@ -53,8 +53,8 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 					$result = new WP_Error("zeleri-woo-oficial","Invalid Request");
 
 				}
-			}*/
-			return $response;
+			}
+			return $result;
 		}
 
 		private function do_remote_post($url, $token, $payload){
