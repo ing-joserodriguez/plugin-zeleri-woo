@@ -32,7 +32,7 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 			$url = $this->api_production_base_url."/checkout/orders";
 			$response = $this->do_remote_post($url, $this->_token_customer, $payload );
 			var_dump($response);
-			if ( is_wp_error( $response ) ) {
+			/*if ( is_wp_error( $response ) ) {
 				
 				$result = $response;
 				//$result = 'Error en respuesta de la API';
@@ -54,12 +54,12 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 					$result = new WP_Error("zeleri-woo-oficial","Invalid Request");
 
 				}
-			}
+			}*/
 			return $result;
 		}
 
 		private function do_remote_post($url, $token, $payload){
-			return wp_remote_post( 'https://pokeapi.co/api/v2/evolution-chain?offset=20&limit=20', array(
+			return wp_remote_post( 'https://jsonplaceholder.typicode.com/users/1', array(
 				'method' 			=> 'GET',
 				'headers'     => array(
 					'Content-Type' 					 => 'application/json'
