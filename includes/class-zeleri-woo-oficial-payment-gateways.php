@@ -111,18 +111,16 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
             if( is_wp_error($createResponse) ) {
                 throw new Exception($createResponse->get_error_code().' - '.$createResponse->get_error_message());
             }
-            var_dump($createResponse);
+
             wc_add_notice("Create Response Zeleri: " . json_encode($createResponse), 'notice');
 
-            return;
-    
-            //return [
-                //'result' => 'success',
+            return [
+                'result' => 'success',
                 //'redirect' => $createResponse['redirect_url'], // Assuming successful response has a redirect URL
-            //];
+            ];
     
         } catch (Exception  $ex) {
-            wc_add_notice('Response Error: '.$ex, 'notice');
+            wc_add_notice('Response Error: '.$ex, 'error');
             throw new Exception('Payment processing failed.', 0, $ex); // Re-throw exception with more context
         }
     }
