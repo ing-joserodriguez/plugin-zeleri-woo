@@ -108,6 +108,7 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
             wc_add_notice("Zeleri Signed Payload: " . json_encode($signedPayload), 'notice');
     
             $createResponse = $apiZeleri->crear_orden_zeleri($signedPayload);
+            var_dump($createResponse);
             wc_add_notice("Create Response Zeleri: " . json_encode($createResponse), 'notice');
     
             return [
