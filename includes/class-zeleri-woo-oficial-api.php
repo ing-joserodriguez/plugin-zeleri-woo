@@ -15,7 +15,7 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 			$this->id = 'zeleri_woo_oficial_payment_gateways';
 			$this->init();
 
-			$this->api_production_base_url = 'https://zeleri-v2.dev.ionix.cl/';
+			$this->api_production_base_url = 'https://zeleri.dev.ionix.cl/integration-kit/v1';
       
       $zeleri_payment_gateway_apikey = get_option( 'zeleri_payment_gateway_apikey' );
       $zeleri_payment_gateway_key = get_option( 'zeleri_payment_gateway_key' );
@@ -29,7 +29,7 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 
 		public function crear_orden_zeleri($payload) {
 
-			$url = $this->api_production_base_url."/v1/checkout/orders";
+			$url = $this->api_production_base_url."/checkout/orders";
 			$response = $this->do_remote_post($url, $this->_token_customer, $payload );
 
 			if ( is_wp_error( $response ) ) {
