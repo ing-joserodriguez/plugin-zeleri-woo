@@ -55,7 +55,7 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 
 				}
 			}*/
-			return $result;
+			return $response;
 		}
 
 		private function do_remote_post($url, $token, $payload){
