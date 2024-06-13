@@ -59,7 +59,15 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 		}
 
 		private function do_remote_post($url, $token, $payload){
-			return wp_remote_post( 'https://zeleri.dev.ionix.cl/integration-kit/v1/checkout/orders', array(
+			return wp_remote_post( 'https://pokeapi.co/api/v2/evolution-chain?offset=20&limit=20', array(
+				'method' 			=> 'GET',
+				'headers'     => array(
+					'Content-Type' 					 => 'application/json'
+				),
+				'body' 				=> json_encode($payload)
+			)
+		);
+			/*return wp_remote_post( 'https://zeleri.dev.ionix.cl/integration-kit/v1/checkout/orders', array(
 					'method' 			=> 'POST',
 					'timeout' 		=> 90,
 					'redirection' => 5,
@@ -73,7 +81,7 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 					'cookies' 		=> array(),
 					'sslverify' 	=> FALSE
 			  )
-			);
+			);*/
 		}
 		
 	}
