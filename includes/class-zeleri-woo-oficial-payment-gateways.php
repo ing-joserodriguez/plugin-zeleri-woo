@@ -119,8 +119,6 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
             wc_add_notice('ERROR EN RESPUESTA DE LA API', 'error');
             wc_add_notice( $e->get_error_message(), 'error' );
             wc_add_notice( $e->get_error_codes(), 'error' );
-
-            get_error_codes()
             throw new Exception('Payment processing failed.', 0, $e); // Re-throw exception with more context
         }
     }
