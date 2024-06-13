@@ -111,7 +111,7 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
             if( is_wp_error($createResponse) ) {
                 throw new Exception($createResponse->get_error_code().' - '.$createResponse->get_error_message());
             }
-
+            var_dump($createResponse);
             wc_add_notice("Create Response Zeleri: " . json_encode($createResponse), 'notice');
 
             return;

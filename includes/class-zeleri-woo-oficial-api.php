@@ -31,7 +31,7 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 
 			$url = $this->api_production_base_url."/checkout/orders";
 			$response = $this->do_remote_post($url, $this->_token_customer, $payload );
-
+			var_dump($response);
 			if ( is_wp_error( $response ) ) {
 				
 				$result = $response;
