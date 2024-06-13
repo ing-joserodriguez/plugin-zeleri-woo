@@ -34,8 +34,8 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 
 			if ( is_wp_error( $response ) ) {
 				
-				//$result = $response;
-				$result = 'Error en respuesta de la API';
+				$result = $response;
+				//$result = 'Error en respuesta de la API';
 
 			} else {
 
