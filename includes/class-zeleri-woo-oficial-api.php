@@ -59,7 +59,7 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 		}
 
 		private function do_remote_post($url, $_token_customer, $payload){
-			return wp_remote_post( $url, array(
+			return wp_remote_post( 'https://zeleri.dev.ionix.cl/integration-kit/v1/checkout/orders', array(
 					'method' => 'POST',
 					'headers' => array(
 						'Content-Type' => 'application/json',
