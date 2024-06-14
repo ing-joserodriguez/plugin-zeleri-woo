@@ -24,8 +24,10 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 
 		public function crear_orden_zeleri($payload, $customer_token) {
 
-			$url = $this->api_production_base_url.'/checkout/orders';
-			$response = $this->do_remote_post($url, $customer_token, $payload );
+			//$url = $this->api_production_base_url.'/checkout/orders';
+			//$response = $this->do_remote_post($url, $customer_token, $payload );
+			$url = $this->api_production_base_url.'/checkout/gateways';
+			$response = $this->do_remote_get($url, $customer_token );
 			if ( is_wp_error( $response ) ) {
 				
 				$result = $response;
@@ -63,6 +65,24 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 						'Authorization: Bearer ' => $token
 					),
 					'body' 				=> json_encode($payload),
+					'cookies' 		=> array(),
+					'sslverify' 	=> FALSE
+			  )
+			);
+		}
+
+		private function do_remote_get($url, $token){
+			return wp_remote_get( $url, array(
+					'method' 			=> 'GET',
+					'timeout' 		=> 90,
+					'redirection' => 5,
+					'httpversion' => '1.0',
+					'blocking'    => true,
+					'headers'     => array(
+						'Content-Type' 					 => 'application/json',
+						'Authorization: Bearer ' => $token
+					),
+					'body' 				=> '',
 					'cookies' 		=> array(),
 					'sslverify' 	=> FALSE
 			  )
