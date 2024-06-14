@@ -53,7 +53,7 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 
 		private function do_remote_post($url, $token, $payload){
 
-			$prueba = array(
+			/*$prueba = array(
 				'url'=> $url,
 				'request'=> [
 					'method' 			=> 'POST',
@@ -71,12 +71,9 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 				]
 			);
 
-			return $prueba;
+			return $prueba;*/
 
-
-
-
-			/*return wp_remote_post( $url, array(
+			return wp_remote_post( $url, array(
 					'method' 			=> 'POST',
 					'timeout' 		=> 90,
 					'redirection' => 5,
@@ -90,7 +87,7 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 					'cookies' 		=> array(),
 					'sslverify' 	=> FALSE
 			  )
-			);*/
+			);
 		}
 		
 	}
