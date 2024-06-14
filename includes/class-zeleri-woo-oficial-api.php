@@ -48,8 +48,8 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 					$result = new WP_Error("zeleri-woo-oficial","$json_response->statusDescription");
 
 			    } else {
-
-					$result = new WP_Error("zeleri-woo-oficial","Invalid Request");
+						$result = $response;
+					//$result = new WP_Error("zeleri-woo-oficial","Invalid Request");
 
 				}
 			}
