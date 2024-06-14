@@ -107,6 +107,24 @@ class Zeleri_Admin {
 
 	}
 
+	public function index() {
+		// CODE HERE
+	}
+
+	public function woocommerce_zeleri_payment_gateway_init() {
+		if ( $this->woocommerce_is_active() ) {
+			require_once( plugin_dir_path(dirname( __FILE__ )) . 'includes/class-zeleri-woo-oficial-payment-gateways.php' );
+		}
+	}
+
+	public function add_zeleri_woo_oficial_payment_gateways( $methods ) {
+		var_dump($methods);
+		if ( $this->woocommerce_is_active() ) {
+			$methods[] = 'Zeleri_Woo_Oficial_Payment_Gateways';
+			return $methods;
+		}
+	}
+
 	public function add_menu() {
 		add_submenu_page(
 			'woocommerce',
@@ -119,19 +137,15 @@ class Zeleri_Admin {
 		);
 	}
 
-	public function woocommerceZeleriInit() {
-		add_action( 'admin_notices', array($this , 'review_notice') );
-	}
-		
-	public function index() {
-		// CODE HERE
-	}
-
 	public function zeleri_woo_oficial_settings_view() {
 		wp_redirect('./admin.php?page=wc-settings&tab=checkout&section=zeleri_woo_oficial_payment_gateways');
     exit;
 	}
 
+	public function woocommerce_zeleri_admin_notices() {
+		add_action( 'admin_notices', array($this , 'review_notice') );
+	}
+		
 	public function review_notice() {
 		if ( isset( $_GET['section'] ) && $_GET['section'] === 'zeleri_woo_oficial_payment_gateways' ) {
 			echo '<div class="notice notice-info is-dismissible" id="zeleri-review-notice">
@@ -151,6 +165,16 @@ class Zeleri_Admin {
 					</div>
 			</div>';
 		}
+	}
+
+	public function woocommerce_is_active() {
+		$woocommerce_is_present = false;
+
+		$all_plugins = apply_filters('active_plugins', get_option('active_plugins'));
+		if (stripos(implode($all_plugins), 'woocommerce.php')) {
+				$woocommerce_is_present = true;
+		}
+		return $woocommerce_is_present;
 	}
 
 

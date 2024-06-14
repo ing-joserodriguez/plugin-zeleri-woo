@@ -1,8 +1,4 @@
 <?php
-
-//require_once( ABSPATH . 'wp-content/plugins/zeleri/includes/class-zeleri-woo-oficial-api.php' );
-//require_once( ABSPATH . 'wp-content/plugins/zeleri/includes/class-zeleri-woo-oficial-signature.php' );
-
 class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
 
     const ID = 'zeleri_woo_oficial_payment_gateways';
@@ -10,7 +6,7 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
 
     public function __construct() {
         $this->id = self::ID;
-        $this->icon = plugin_dir_url(dirname(dirname(__FILE__))) . 'zeleri/admin/images/logo-zeleri.webp';
+        //$this->icon = plugin_dir_url(dirname(dirname(__FILE__))) . 'zeleri/admin/images/logo-zeleri.webp';
         $this->method_title = __('Zeleri', 'zeleri');
         $this->title = 'Zeleri';
         $this->method_description  = $this->get_option('zeleri_payment_gateway_description', self::PAYMENT_GW_DESCRIPTION);
@@ -129,16 +125,14 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
     /**
      * Opciones panel de administración.
      **/
-    public function admin_options()
-    {
+    public function admin_options() {
         include_once __DIR__ . '/../admin/partials/zeleri-admin-display.php';
     }
 
     /**
      * Comprueba configuración de moneda (Peso Chileno).
      **/
-    public static function is_valid_for_use()
-    {
+    public static function is_valid_for_use() {
         return in_array(get_woocommerce_currency(), ['CLP']);
     }
 

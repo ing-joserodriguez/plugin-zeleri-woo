@@ -160,8 +160,14 @@ class Zeleri {
 		// Añadimos plugin menú principal
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu' );
 
+		// Añadimos el nuevo medio de pago a woocommerce
+		$this->loader->add_action( 'plugins_loaded', $plugin_admin, 'woocommerce_zeleri_payment_gateway_init' );
+
 		// Añadimos la notificacion de review en la parte top de la pagina de configuracion
-		$this->loader->add_action( 'wp_loaded', $plugin_admin, 'woocommerceZeleriInit' );
+		$this->loader->add_action( 'wp_loaded', $plugin_admin, 'woocommerce_zeleri_admin_notices' );
+
+		// Añadimos el medio de pago a la lista de woocommerce
+		$this->loader->add_filter( 'woocommerce_payment_gateways', $plugin_admin, 'add_zeleri_woo_oficial_payment_gateways' );
 
 	}
 
