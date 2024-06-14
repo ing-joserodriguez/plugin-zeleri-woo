@@ -1,7 +1,7 @@
 <?php
 
-require_once( ABSPATH . 'wp-content/plugins/zeleri/includes/class-zeleri-woo-oficial-api.php' );
-require_once( ABSPATH . 'wp-content/plugins/zeleri/includes/class-zeleri-woo-oficial-signature.php' );
+//require_once( ABSPATH . 'wp-content/plugins/zeleri/includes/class-zeleri-woo-oficial-api.php' );
+//require_once( ABSPATH . 'wp-content/plugins/zeleri/includes/class-zeleri-woo-oficial-signature.php' );
 
 class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
 
@@ -80,7 +80,7 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
     
 
     public function process_payment($order_id) {
-        try {
+        /*try {
             global $woocommerce;
             $order = new WC_Order($order_id);
     
@@ -123,7 +123,7 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
         } catch (Exception  $ex) {
             wc_add_notice('Response Error: '.$ex, 'error');
             throw new Exception('Payment processing failed.', 0, $ex); // Re-throw exception with more context
-        }
+        }*/
     }
 
     /**
