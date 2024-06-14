@@ -118,7 +118,6 @@ class Zeleri_Admin {
 	}
 
 	public function add_zeleri_woo_oficial_payment_gateways( $methods ) {
-		var_dump($methods);
 		if ( $this->woocommerce_is_active() ) {
 			$methods[] = 'Zeleri_Woo_Oficial_Payment_Gateways';
 			return $methods;
