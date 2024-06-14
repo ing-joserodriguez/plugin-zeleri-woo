@@ -42,8 +42,8 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 					$json_response = json_decode($response['body']);
 					$result = new WP_Error("zeleri-woo-oficial","$json_response->statusDescription");
 
-			    } else {
-						
+			  } else {
+
 						$result = new WP_Error("zeleri-woo-oficial","Invalid Request");
 
 				}
