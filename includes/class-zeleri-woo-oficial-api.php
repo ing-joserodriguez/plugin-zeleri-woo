@@ -59,8 +59,8 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 		private function do_remote_post($url, $token, $payload){
 
 			$prueba = array(
-				'url': $url,
-				'request': [
+				'url'=> $url,
+				'request'=> [
 					'method' 			=> 'POST',
 					'timeout' 		=> 90,
 					'redirection' => 5,
