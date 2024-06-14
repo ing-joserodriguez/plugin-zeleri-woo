@@ -43,8 +43,8 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 					$result = new WP_Error("zeleri-woo-oficial","$json_response->statusDescription");
 
 			    } else {
-						$result = $response;
-					//$result = new WP_Error("zeleri-woo-oficial","Invalid Request");
+						
+						$result = new WP_Error("zeleri-woo-oficial","Invalid Request");
 
 				}
 			}
@@ -52,27 +52,6 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 		}
 
 		private function do_remote_post($url, $token, $payload){
-
-			/*$prueba = array(
-				'url'=> $url,
-				'request'=> [
-					'method' 			=> 'POST',
-					'timeout' 		=> 90,
-					'redirection' => 5,
-					'httpversion' => '1.0',
-					'blocking'    => true,
-					'headers'     => [
-						'Content-Type' 					 => 'application/json',
-						'Authorization: Bearer ' => $token
-					],
-					'body' 				=> json_encode($payload),
-					'cookies' 		=> array(),
-					'sslverify' 	=> FALSE
-				]
-			);
-
-			return $prueba;*/
-
 			return wp_remote_post( $url, array(
 					'method' 			=> 'POST',
 					'timeout' 		=> 90,
