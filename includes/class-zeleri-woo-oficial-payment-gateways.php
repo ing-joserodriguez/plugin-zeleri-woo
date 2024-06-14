@@ -102,12 +102,13 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
             );
     
             $secret = $this->get_option('zeleri_payment_gateway_apikey');
+            $customer_token = $this->get_option('zeleri_payment_gateway_key');
             $signedPayload = $signatureZeleri->getSignedObject($payload, $secret);
     
             // Add logging for debugging
             wc_add_notice("Zeleri Signed Payload: " . json_encode($signedPayload), 'notice');
     
-            $createResponse = $apiZeleri->crear_orden_zeleri($signedPayload);
+            $createResponse = $apiZeleri->crear_orden_zeleri($signedPayload, $customer_token);
             var_dump($createResponse);
             if( is_wp_error($createResponse) ) {
                 throw new Exception($createResponse->get_error_code().' - '.$createResponse->get_error_message());
