@@ -6,7 +6,7 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
 
     public function __construct() {
         $this->id = self::ID;
-        //$this->icon = plugin_dir_url(dirname(dirname(__FILE__))) . 'zeleri/admin/images/logo-zeleri.webp';
+        $this->icon = plugin_dir_url(dirname(dirname(__FILE__))) . 'zeleri/admin/images/logo-zeleri.webp';
         $this->method_title = __('Zeleri', 'zeleri');
         $this->title = 'Zeleri';
         $this->method_description  = $this->get_option('zeleri_payment_gateway_description', self::PAYMENT_GW_DESCRIPTION);
@@ -73,14 +73,13 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
             ),
         );
     }
-    
 
     public function process_payment($order_id) {
-        /*try {
+        try {
             global $woocommerce;
             $order = new WC_Order($order_id);
     
-            $apiZeleri = new Zeleri_Woo_Oficial_API();
+            /*$apiZeleri = new Zeleri_Woo_Oficial_API();
             $signatureZeleri = new Zeleri_Woo_Oficial_Signature();
     
             $payload = array(
@@ -109,19 +108,19 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
                 throw new Exception($createResponse->get_error_code().' - '.$createResponse->get_error_message());
             }
 
-            wc_add_notice("Create Response Zeleri: " . json_encode($createResponse), 'notice');
+            wc_add_notice("Create Response Zeleri: " . json_encode($createResponse), 'notice');*/
 
             return [
                 'result' => 'success',
-                //'redirect' => $createResponse['redirect_url'], // Assuming successful response has a redirect URL
+                'redirect' => '', // Assuming successful response has a redirect URL
             ];
     
         } catch (Exception  $ex) {
             wc_add_notice('Response Error: '.$ex, 'error');
             throw new Exception('Payment processing failed.', 0, $ex); // Re-throw exception with more context
-        }*/
+        }
     }
-
+    
     /**
      * Opciones panel de administración.
      **/

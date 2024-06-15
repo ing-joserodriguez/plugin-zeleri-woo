@@ -111,29 +111,49 @@ class Zeleri_Admin {
 		// CODE HERE
 	}
 
-	public function woocommerce_zeleri_payment_gateway_init() {
+	public function woocommerceZeleriInit() {
+		$this->registerAdminMenu();
+		$this->handleReviewNotice();
+		$this->registerPluginActionLinks();
+	}
+
+	public function registerPaymentGateways() {
 		if ( $this->woocommerce_is_active() ) {
 			require_once( plugin_dir_path(dirname( __FILE__ )) . 'includes/class-zeleri-woo-oficial-payment-gateways.php' );
+			add_filter('woocommerce_payment_gateways', function($methods) {
+        $methods[] = Zeleri_Woo_Oficial_Payment_Gateways::class;
+        return $methods;
+    	});
 		}
 	}
 
-	public function add_zeleri_woo_oficial_payment_gateways( $methods ) {
-		if ( $this->woocommerce_is_active() ) {
-			$methods[] = 'Zeleri_Woo_Oficial_Payment_Gateways';
-			return $methods;
-		}
+	public function registerAdminMenu() {
+		add_action('admin_menu', function () {
+			add_submenu_page(
+				'woocommerce',
+				'Zeleri', // Título de la página
+				'Zeleri', // Literal de la opción
+				'manage_options', // Dejadlo tal cual
+				'zeleri', // Slug
+				array( $this, 'zeleri_woo_oficial_settings_view' ), // Función que llama al pulsar
+				100 // Para colocarlo en la ultima posicion del submenu
+			);
+		});
 	}
 
-	public function add_menu() {
-		add_submenu_page(
-			'woocommerce',
-			'Zeleri', // Título de la página
-			'Zeleri', // Literal de la opción
-			'manage_options', // Dejadlo tal cual
-			'zeleri', // Slug
-			array( $this, 'zeleri_woo_oficial_settings_view' ), // Función que llama al pulsar
-			100 // Para colocarlo en la ultima posicion del submenu
-		);
+	public function registerPluginActionLinks() {
+    add_filter('plugin_action_links', function ($actionLinks) {
+        $zeleriSettingsLink = sprintf(
+            '<a href="%s">%s</a>',
+            admin_url('admin.php?page=wc-settings&tab=checkout&section=zeleri_woo_oficial_payment_gateways'),
+            'Configurar Zeleri'
+        );
+        $newLinks = [
+            $zeleriSettingsLink,
+        ];
+
+        return array_merge($actionLinks, $newLinks);
+    });
 	}
 
 	public function zeleri_woo_oficial_settings_view() {
@@ -141,11 +161,11 @@ class Zeleri_Admin {
     exit;
 	}
 
-	public function woocommerce_zeleri_admin_notices() {
-		add_action( 'admin_notices', array($this , 'review_notice') );
+	public function handleReviewNotice() {
+		add_action( 'admin_notices', array($this , 'reviewNotice') );
 	}
 		
-	public function review_notice() {
+	public function reviewNotice() {
 		if ( isset( $_GET['section'] ) && $_GET['section'] === 'zeleri_woo_oficial_payment_gateways' ) {
 			echo '<div class="notice notice-info is-dismissible" id="zeleri-review-notice">
 					<div class="zeleri-notice">
@@ -169,12 +189,11 @@ class Zeleri_Admin {
 	public function woocommerce_is_active() {
 		$woocommerce_is_present = false;
 
-		$all_plugins = apply_filters('active_plugins', get_option('active_plugins'));
-		if (stripos(implode($all_plugins), 'woocommerce.php')) {
-				$woocommerce_is_present = true;
+		if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins'))) ) {
+			$woocommerce_is_present = true;
 		}
+
 		return $woocommerce_is_present;
 	}
-
 
 }
