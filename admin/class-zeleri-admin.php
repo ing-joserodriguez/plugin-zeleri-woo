@@ -142,7 +142,11 @@ class Zeleri_Admin {
 	}
 
 	public function registerPluginActionLinks() {
-    add_filter('plugin_action_links', function ($actionLinks) {
+		
+		$plugin_root = plugin_dir_path(dirname( __FILE__ ));
+		$plugin_basename = plugin_basename($plugin_root).'/zeleri.php';
+
+    add_filter('plugin_action_links_'.$plugin_basename, function ($actionLinks) {
         $zeleriSettingsLink = sprintf(
             '<a href="%s">%s</a>',
             admin_url('admin.php?page=wc-settings&tab=checkout&section=zeleri_woo_oficial_payment_gateways'),
