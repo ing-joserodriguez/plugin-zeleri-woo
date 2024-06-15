@@ -121,7 +121,7 @@ class Zeleri_Admin {
 		if ( $this->woocommerce_is_active() ) {
 			require_once( plugin_dir_path(dirname( __FILE__ )) . 'includes/class-zeleri-woo-oficial-payment-gateways.php' );
 			add_filter('woocommerce_payment_gateways', function($methods) {
-        $methods[] = Zeleri_Woo_Oficial_Payment_Gateways::class;
+        $methods[] = 'Zeleri_Woo_Oficial_Payment_Gateways';
         return $methods;
     	});
 		}
