@@ -1,5 +1,5 @@
 <?php
-
+require __DIR__ . '/autoload.php';
 /**
  * The plugin bootstrap file
  *
@@ -14,11 +14,14 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Zeleri
- * Plugin URI:        https://https://zeleri.com/
- * Description:       Description plugin zeleri
+ * Plugin URI:        https://zeleri.com/
+ * Description:       Permite el pago de productos y/o servicios, con tarjetas de crédito, débito, prepago y transferencias electrónicas.
  * Version:           1.0.0
+ * Requires Plugins:  woocommerce
  * Author:            Zeleri
- * Author URI:        https://https://zeleri.com//
+ * Author URI:        https://www.zeleri.com//
+ * WC requires at least: 7.0
+ * WC tested up to: 8.9.3
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       zeleri

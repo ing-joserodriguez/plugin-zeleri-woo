@@ -7,7 +7,7 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
     public function __construct() {
         $this->id = self::ID;
         $this->icon = plugin_dir_url(dirname(dirname(__FILE__))) . 'zeleri/admin/images/logo-zeleri-80x22.webp';
-        $this->method_title = __('Zeleri', 'zeleri');
+        $this->method_title = __('Zeleri', 'zeleri_woo_oficial_payment_gateways');
         $this->title = 'Zeleri';
         $this->method_description  = $this->get_option('zeleri_payment_gateway_description', self::PAYMENT_GW_DESCRIPTION);
         $this->description  = $this->get_option('zeleri_payment_gateway_description', self::PAYMENT_GW_DESCRIPTION);
@@ -36,28 +36,28 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
 
         $this->form_fields = array(
             'enabled' => array(
-                'title'     => 'Activar/Desactivar plugin:',
+                'title'     => __('Activar/Desactivar plugin:', 'zeleri_woo_oficial_payment_gateways'),
                 'type'      => 'checkbox',
-                'label'     =>  __('Activar/Desactivar:', 'zeleri'),
-                'desc_tip'  => __('Title displayed during checkout.', 'zeleri'),
+                'label'     =>  __('Activar/Desactivar:', 'zeleri_woo_oficial_payment_gateways'),
+                'desc_tip'  => __('Title displayed during checkout.', 'zeleri_woo_oficial_payment_gateways'),
                 'default'   => 'yes',
             ),
             'zeleri_payment_gateway_apikey' => array(
-                'title'     => __('API Key (llave secreta) Produccion:', 'zeleri'),
+                'title'     => __('API Key (llave secreta) Produccion:', 'zeleri_woo_oficial_payment_gateways'),
                 'type'      => 'text',
-                'desc_tip'  => __($apiKeyDescription, 'zeleri'),
+                'desc_tip'  => __($apiKeyDescription, 'zeleri_woo_oficial_payment_gateways'),
                 'default'   => '',
             ),
             'zeleri_payment_gateway_key' => array(
-                'title'     => __('Zeleri Key:', 'zeleri'),
+                'title'     => __('Zeleri Key:', 'zeleri_woo_oficial_payment_gateways'),
                 'type'      => 'text',
-                'desc_tip'  => __($zeleriKeyDescription, 'zeleri'),
+                'desc_tip'  => __($zeleriKeyDescription, 'zeleri_woo_oficial_payment_gateways'),
                 'default'   => '',
             ),
             'zeleri_payment_gateway_order_status' => array(
                 'title'     => __('Estado de la orden', 'zeleri'),
                 'type'      => 'select',
-                'desc_tip'  => __('Define el estado de la orden luego del pago exitoso.', 'zeleri'),
+                'desc_tip'  => __('Define el estado de la orden luego del pago exitoso.', 'zeleri_woo_oficial_payment_gateways'),
                 'options'   => [
                     ''           => 'Default',
                     'processing' => 'Processing',
@@ -66,9 +66,9 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
                 'default'   => '',
             ),
             'zeleri_payment_gateway_description' => array(
-                'title'     => __('Descripcion medio de pago:', 'zeleri'),
+                'title'     => __('Descripcion medio de pago:', 'zeleri_woo_oficial_payment_gateways'),
                 'type'      => 'textarea',
-                'desc_tip'  => __('Description displayed during checkout.', 'zeleri'),
+                'desc_tip'  => __('Description displayed during checkout.', 'zeleri_woo_oficial_payment_gateways'),
                 'default'   => '',
             ),
         );
@@ -76,8 +76,10 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
 
     public function process_payment($order_id) {
         try {
-            global $woocommerce;
-            $order = new WC_Order($order_id);
+            //global $woocommerce;
+            //$order = new WC_Order($order_id);
+            $order = wc_get_order( $order_id );
+            var_dump($order);
     
             /*$apiZeleri = new Zeleri_Woo_Oficial_API();
             $signatureZeleri = new Zeleri_Woo_Oficial_Signature();

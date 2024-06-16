@@ -21,6 +21,8 @@
  * @author     Zeleri <jose.rodriguez.externo@ionix.cl>
  */
 
+ use Zeleri\WooCommerce\Zeleripay\Blocks\WCGatewayZeleriWebpayBlocks;
+
 class Zeleri_Admin {
 
 	/**
@@ -52,6 +54,7 @@ class Zeleri_Admin {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+		$this->wc_version_since_hpos = '8.2';
 
 	}
 
@@ -112,18 +115,47 @@ class Zeleri_Admin {
 	}
 
 	public function woocommerceZeleriInit() {
-		$this->registerAdminMenu();
-		$this->handleReviewNotice();
-		$this->registerPluginActionLinks();
+		if ( $this->woocommerceIsActive() ) {
+			$this->registerAdminMenu();
+			$this->handleReviewNotice();
+			$this->registerPluginActionLinks();
+		}
 	}
 
 	public function registerPaymentGateways() {
-		if ( $this->woocommerce_is_active() ) {
+		if ( $this->woocommerceIsActive() ) {
 			require_once( plugin_dir_path(dirname( __FILE__ )) . 'includes/class-zeleri-woo-oficial-payment-gateways.php' );
 			add_filter('woocommerce_payment_gateways', function($methods) {
         $methods[] = 'Zeleri_Woo_Oficial_Payment_Gateways';
         return $methods;
     	});
+		}
+	}
+
+	public function registerBlockPaymentGateway() {
+		if ( $this->woocommerceIsActive() ) {
+			add_action('woocommerce_blocks_loaded', function() {
+				if ( class_exists( 'Automattic\WooCommerce\Blocks\Payments\Integrations\AbstractPaymentMethodType' ) ){
+						require_once( plugin_dir_path(dirname( __FILE__ )) . 'includes/blocks/WC_Gateway_Zeleri_Webpay_Blocks.php' );
+						add_action(
+								'woocommerce_blocks_payment_method_type_registration',
+								function( Automattic\WooCommerce\Blocks\Payments\PaymentMethodRegistry $payment_method_registry ) {
+										$payment_method_registry->register( new WCGatewayZeleriWebpayBlocks() );
+								}
+						);
+				}
+			});
+		}
+	}
+
+	public function declareHpos(){
+		$hPosExists = $this->checkIfHposExists();
+		if ($hPosExists) {
+			add_action('before_woocommerce_init', function () {
+				if (class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class)) {
+					\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility('custom_order_tables', dirname(plugins_url('/', __FILE__)), true);
+				}
+			});
 		}
 	}
 
@@ -135,7 +167,7 @@ class Zeleri_Admin {
 				'Zeleri', // Literal de la opción
 				'manage_options', // Dejadlo tal cual
 				'zeleri', // Slug
-				array( $this, 'zeleri_woo_oficial_settings_view' ), // Función que llama al pulsar
+				array( $this, 'zeleriSettingsView' ), // Función que llama al pulsar
 				100 // Para colocarlo en la ultima posicion del submenu
 			);
 		});
@@ -160,7 +192,7 @@ class Zeleri_Admin {
     });
 	}
 
-	public function zeleri_woo_oficial_settings_view() {
+	public function zeleriSettingsView() {
 		wp_redirect('./admin.php?page=wc-settings&tab=checkout&section=zeleri_woo_oficial_payment_gateways');
     exit;
 	}
@@ -190,7 +222,7 @@ class Zeleri_Admin {
 		}
 	}
 
-	public function woocommerce_is_active() {
+	public function woocommerceIsActive() {
 		$woocommerce_is_present = false;
 
 		if ( in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins'))) ) {
@@ -199,5 +231,10 @@ class Zeleri_Admin {
 
 		return $woocommerce_is_present;
 	}
+
+	public function checkIfHposExists(){
+		$woocommerce_version = get_option( 'woocommerce_version' );
+    return version_compare( $woocommerce_version, $this->wc_version_since_hpos, '>=');
+  }
 
 }

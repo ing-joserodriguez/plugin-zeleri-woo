@@ -158,10 +158,19 @@ class Zeleri {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
 		// Registramos el nuevo medio de pago a woocommerce
-		$this->loader->add_action( 'plugins_loaded', $plugin_admin, 'registerPaymentGateways', 0 );
+		$this->loader->add_action( 'plugins_loaded', $plugin_admin, 'registerPaymentGateways' );
+
+		// Registramos el bloque del medio de pago
+		$this->loader->add_action( 'plugins_loaded', $plugin_admin, 'registerBlockPaymentGateway', 0 );
+
+		// Declaramos que el plugin es compatible con HPOS
+		$this->loader->add_action( 'plugins_loaded', $plugin_admin, 'declareHpos' );
 
 		// Añadimos la notificacion de review en la parte top de la pagina de configuracion
-		$this->loader->add_action( 'wp_loaded', $plugin_admin, 'woocommerceZeleriInit', 0 );
+		$this->loader->add_action( 'wp_loaded', $plugin_admin, 'woocommerceZeleriInit' );
+
+		
+		
 
 	}
 
