@@ -1,8 +1,13 @@
 <?php
+
+require_once( ABSPATH . 'wp-content/plugins/zeleri/includes/class-zeleri-woo-oficial-api.php' );
+require_once( ABSPATH . 'wp-content/plugins/zeleri/includes/class-zeleri-woo-oficial-signature.php' );
+
 class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
 
     const ID = 'zeleri_woo_oficial_payment_gateways';
     const PAYMENT_GW_DESCRIPTION = 'Permite el pago de productos y/o servicios, con tarjetas de crédito, débito y prepago a través de Zeleri';
+    const WOOCOMMERCE_API_SLUG = 'zeleri_woo_oficial_payment_gateways';
 
     public function __construct() {
         $this->id = self::ID;
@@ -42,13 +47,13 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
                 'desc_tip'  => __('Title displayed during checkout.', 'zeleri_woo_oficial_payment_gateways'),
                 'default'   => 'yes',
             ),
-            'zeleri_payment_gateway_apikey' => array(
+            'zeleri_payment_gateway_secret' => array(
                 'title'     => __('API Key (llave secreta) Produccion:', 'zeleri_woo_oficial_payment_gateways'),
                 'type'      => 'text',
                 'desc_tip'  => __($apiKeyDescription, 'zeleri_woo_oficial_payment_gateways'),
                 'default'   => '',
             ),
-            'zeleri_payment_gateway_key' => array(
+            'zeleri_payment_gateway_token' => array(
                 'title'     => __('Zeleri Key:', 'zeleri_woo_oficial_payment_gateways'),
                 'type'      => 'text',
                 'desc_tip'  => __($zeleriKeyDescription, 'zeleri_woo_oficial_payment_gateways'),
@@ -76,45 +81,45 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
 
     public function process_payment($order_id) {
         try {
-            //global $woocommerce;
-            //$order = new WC_Order($order_id);
+            $secret = $this->get_option('zeleri_payment_gateway_secret');
+            $token = $this->get_option('zeleri_payment_gateway_token');
             $order = wc_get_order( $order_id );
-            var_dump($order);
-    
-            /*$apiZeleri = new Zeleri_Woo_Oficial_API();
-            $signatureZeleri = new Zeleri_Woo_Oficial_Signature();
-    
+            $apiZeleri = new Zeleri_Woo_Oficial_API();
+            $signatureZeleri = new Zeleri_Woo_Oficial_Signature($secret);
+            $argsSuccess = array(
+                'wc-api' => static::WOOCOMMERCE_API_SLUG,
+                'status' => 'success'
+            );
+            $argsFailure = array(
+                'wc-api' => static::WOOCOMMERCE_API_SLUG,
+                'status' => 'failure'
+            );
             $payload = array(
                 "amount" => (int) number_format($order->get_total(), 0, ',', ''),
-                "gateway_id" => 1, // Replace with appropriate value
+                "gateway_id" => 1,
                 "title" => "prueba checkout order",
                 "description" => "pago por checkout",
-                "currency_id" => get_woocommerce_currency(), // Use WooCommerce currency
+                "currency_id" => 1,
                 "customer" => [
                     "email" => $order->get_billing_email(), // Use order billing email
                     "name" => $order->get_billing_first_name() . ' ' . $order->get_billing_last_name(), // Use order billing name
                 ],
-                "success_url" => "http://localhost:8080/success",
-                "failure_url" => "http://localhost:8080/failure",
+                "success_url" => esc_url('http://localhost:8080/success'),
+                "failure_url" => esc_url('http://localhost:8080/failure')
             );
+            
+            $signature = $signatureZeleri->generate($payload);
+            $payload["signature"] = $signature;
+
     
-            $secret = $this->get_option('zeleri_payment_gateway_apikey');
-            $customer_token = $this->get_option('zeleri_payment_gateway_key');
-            $signedPayload = $signatureZeleri->getSignedObject($payload, $secret);
-    
-            // Add logging for debugging
-            wc_add_notice("Zeleri Signed Payload: " . json_encode($signedPayload), 'notice');
-    
-            $createResponse = $apiZeleri->crear_orden_zeleri($signedPayload, $customer_token);
+            $createResponse = $apiZeleri->crear_orden_zeleri($payload, $token);
             if( is_wp_error($createResponse) ) {
                 throw new Exception($createResponse->get_error_code().' - '.$createResponse->get_error_message());
             }
 
-            wc_add_notice("Create Response Zeleri: " . json_encode($createResponse), 'notice');*/
-
             return [
                 'result' => 'success',
-                'redirect' => '', // Assuming successful response has a redirect URL
+                'redirect' => $createResponse->data->url, // Assuming successful response has a redirect URL
             ];
     
         } catch (Exception  $ex) {
