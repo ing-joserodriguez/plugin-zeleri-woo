@@ -1,6 +1,9 @@
 <?php 
 	class Tabla_Transacciones_Zeleri extends WP_List_Table
 	{
+		
+		//use Automattic\WooCommerce\Utilities\OrderUtil;
+
 	    /**
 	     * Prepare the items for the table to process
 	     *
@@ -94,6 +97,20 @@
 	     * @return Array
 	     */
 	    private function table_data() {
+
+				$str = ( isset($_GET['s']) ) ? $_GET['s'] : '';
+
+				$args = array(
+					'payment_method' => 'zeleri_woo_oficial_payment_gateways',
+					'order' 		     => 'DESC', 
+					'orderby' 			 => 'date',
+					'search'      	 => $str,
+    			'search_columns' => array('id', 'status', 'transaction_id', 'date_updated_gmt')
+				);
+				
+				$orders = wc_get_orders( $args );
+
+				//var_dump($orders);
 	      /*global $wpdb;
 
 	      $query = "
@@ -144,57 +161,32 @@
 
 	    	$query = $query." ORDER BY post.ID DESC";
 
-			  $results = $wpdb->get_results( $query , OBJECT );
+			  $results = $wpdb->get_results( $query , OBJECT );*/
 
 			  $data = array();
 
-			  foreach ($results as $key => $item) {
+			  foreach ($orders as $key => $order) {
 
-				  $order = new WC_Order( intval($item->orden_id) );
+					$fecha = new DateTime( $order->get_date_created() );
+					$fecha_zeleri = new DateTime( $order->get_meta('zeleri_payment_date') );
 
-				  $existe = strpos($order->get_shipping_method(), 'Chilexpress');
-
-				  if( ($key = $existe) !== false ) {
-					  $actions = $this->order_status_actions_button( $order );
-					  $tracking = $this->get_tracking( $order->get_id() );
-					  $certificate = $this->get_certificate( $order->get_id() );
-					  $user_order = $order->get_user();
-					  $pedido_id = '<a href="'.admin_url('post.php?post='.$order->get_id().'&action=edit').'"> #'.$order->get_id().'</a>';
-
-					  $fecha = new DateTime($order->get_date_created());
-
-					  $data[] = array(
-			        'pedido_id'    => $pedido_id,
-			        'destinatario' => $item->destinatario,
-			        'fecha'        => $fecha->format('d-m-Y'), //$fecha->format('d M, Y'),
-			        'numero_ot'    => $tracking,
-			        'numero_ce'    => $certificate,
-			        'servicio'     => '<small>'.$order->get_shipping_method().'</small>',
-			        'costo'        => wc_price( $order->get_shipping_total() ),
-			        'etiqueta'     => '<a class="button wc-action-button wc-action-button-'.$actions["action"].' '.$actions["action"].' " href="'.$actions["url"].'" aria-label="'.$actions["name"].'"></a>'
-			      );
-				  }
-			  }*/
+					$data[] = array(
+            'trx_id'         => $order->get_order_number(),
+            'producto'       => 'Producto_'.$key,
+            'order_woo'      => $order->get_id(),
+            'estado_woo'     => $order->get_status(),
+            'estado_zeleri'  => $order->get_meta('zeleri_status'),
+            'orden_zeleri'   => $order->get_transaction_id(),
+            'token'          => '',
+            'monto'          => wc_price($order->get_total()),
+            'fecha'          => $fecha->format('d-m-Y'),
+            'fecha_zeleri'   => $fecha_zeleri->format('d-m-Y'),
+            'error'          => $order->get_meta('zeleri_error'),
+            'detalle_error'  => $order->get_meta('zeleri_details_error')
+          );
+			  }
 
 
-          $fecha = new DateTime();
-
-          for ($i=0; $i <= 50 ; $i++) {
-            $data[] = array(
-              'trx_id'         => ($i+1),
-              'producto'       => 'Producto_'.($i+1),
-              'order_woo'      => rand(1000, 9999),
-              'estado_woo'     => 'Completed',
-              'estado_zeleri'  => 'Success',
-              'orden_zeleri'   => rand(1000, 9999),
-              'token'          => bin2hex(random_bytes(20 / 2)),
-              'monto'          => wc_price(rand(1000, 10000) / 100),
-              'fecha'          => $fecha->format('d-m-Y'),
-              'fecha_zeleri'   => $fecha->format('d-m-Y'),
-              'error'          => '',
-              'detalle_error'  => ''
-            );
-          }
 
 	        return $data;
 	    }

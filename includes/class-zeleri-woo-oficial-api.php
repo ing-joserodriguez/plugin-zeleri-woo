@@ -41,11 +41,11 @@ if ( ! class_exists( 'Zeleri_Woo_Oficial_API' ) ) {
 				} else if ($response[self::RESPONSE_KEY][self::CODE_KEY] == 400) {
 
 					$json_response = json_decode($response['body']);
-					$result = new WP_Error('Zeleri API Error: ', $json_response->code . '-' . $json_response->message);
+					$result = new WP_Error('Zeleri API Error: [' . $json_response->code . '] ' . $json_response->message);
 
 			  } else {
 
-						$result = new WP_Error('Zeleri API Error: ', $response[self::RESPONSE_KEY][self::CODE_KEY] . '-' . $response[self::RESPONSE_KEY]['message']);
+						$result = new WP_Error('Zeleri API Error: [' . $response[self::RESPONSE_KEY][self::CODE_KEY] . '] ' . $response[self::RESPONSE_KEY]['message']);
 				}
 			}
 			return $result;

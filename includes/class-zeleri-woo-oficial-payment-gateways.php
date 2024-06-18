@@ -85,46 +85,62 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
     public function check_ipn_response() {
         ob_clean();
         global $woocommerce;
-        var_dump($_GET);
+
         if (isset($_POST)) {
             header('HTTP/1.1 200 OK');
             $data = ($_SERVER['REQUEST_METHOD'] === 'GET') ? $_GET : $_POST;
             $title_split = explode(':', $data['title']);
             $order_id = intval(trim($title_split[1]));
             $order = wc_get_order( $order_id );
-            $setting_order_status = $this->get_option('zeleri_payment_gateway_order_status');
+            $setting_order_status = $this->get_option('zeleri_payment_gateway_order_status', 'on-hold');
 
             if( !isset($data['msg']) ) {
-                $order->add_meta_data( 'zeleri_description', $data['description'] );
-                $order->add_meta_data( 'zeleri_payment_date', $data['payment_date'] );
-                $order->add_meta_data( 'zeleri_order', $data['order'] );
-                $order->add_meta_data( 'zeleri_authorization_code', $data['authorization_code'] );
-                $order->add_meta_data( 'zeleri_card_number', $data['card_number'] );
-                $order->add_meta_data( 'zeleri_commerce_name', $data['commerce_name'] );
-                $order->add_meta_data( 'zeleri_commerce_id', $data['commerce_id'] );
+                $order->update_meta_data( 'zeleri_description', $data['description'] );
+                $order->update_meta_data( 'zeleri_payment_date', $data['payment_date'] );
+                $order->update_meta_data( 'zeleri_order', $data['order'] );
+                $order->update_meta_data( 'zeleri_authorization_code', $data['authorization_code'] );
+                $order->update_meta_data( 'zeleri_card_number', $data['card_number'] );
+                $order->update_meta_data( 'zeleri_commerce_name', $data['commerce_name'] );
+                $order->update_meta_data( 'zeleri_commerce_id', $data['commerce_id'] );
+                $order->update_meta_data( 'zeleri_status', 'success' );
 
-                if( $setting_order_status != 'completed' ){
-                    $order->update_status($setting_order_status, __( 'En espera de validacion de pago.', 'zeleri_woo_oficial_payment_gateways' ));  
+                $order->set_transaction_id( $data['order'] );
+                $order->update_status($setting_order_status); 
+
+                if( $setting_order_status == 'completed' ){
+                    /* 
+                        Se debe usar el metodo "payment_complete()" ya que desencadena 
+                        las acciones necesarias para completar el pedido 
+                        (notificar al cliente, reducir stock etc,)".
+                    */
+                    $order->payment_complete(); 
                 }
 
-                $order->save();
-                $redirect_url = $order->get_checkout_order_received_url();
                 $woocommerce->cart->empty_cart();
-                $order->payment_complete();
+                $redirect_url = $order->get_checkout_order_received_url(); 
             }
             else{
+                $data['code'] = ( isset($data['code']) ) ? $data['code'] : '1999999999';
+                $order->update_meta_data( 'zeleri_status', 'failture' );
+                $order->update_meta_data( 'zeleri_error', $data['code'] );
+                $order->update_meta_data( 'zeleri_details_error', $data['msg'] );
+                $order->update_status( 'failed', __( $data['msg'], 'zeleri_woo_oficial_payment_gateways' ));
+
                 wc_add_notice( __('Zeleri Payment Error: ', 'zeleri_woo_oficial_payment_gateways') . $data['msg'], 'error' );
-                $params = ['zeleri_cancelled_order' => 1, 'msg' => $data['msg']];
-                $redirect_url = add_query_arg($params, wc_get_checkout_url());
+                //$params = ['zeleri_cancelled_order' => 1, 'msg' => $data['msg']];
+                //$redirect_url = add_query_arg($params, wc_get_checkout_url());
+                $redirect_url = wc_get_checkout_url();
             }
-            
-          return wp_safe_redirect($redirect_url);
+
+            //$order->add_order_note( \_\_('IPN payment completed', 'woothemes') );
+            $order->save();
 
         } else {
-            wc_add_notice('Zeleri Payment Error: '.$e->getMessage(), 'error');
-            $params = ['zeleri_cancelled_order' => 1, 'msg' => 'Payment processing failed'];
-            $redirect_url = add_query_arg($params, wc_get_checkout_url());
+            wc_add_notice( __('Zeleri Payment Error: ', 'zeleri_woo_oficial_payment_gateways') . 'No response from the server', 'error' );
+            $redirect_url = wc_get_checkout_url();
         }
+
+        return wp_safe_redirect($redirect_url);
     }
 
     public function process_payment($order_id) {
@@ -136,25 +152,26 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
             $signatureZeleri = new Zeleri_Woo_Oficial_Signature($secret);
             $payload = array(
                 "amount" => (int) number_format($order->get_total(), 0, ',', ''),
-                "gateway_id" => 1,
-                "title" => "Order: ".$order->get_id(),
-                "description" => "pago por checkout",
+                "gateway_id"  => 1,
+                "title"       => "Order: ".$order->get_id(),
+                "description" => "Pago checkout woocommerce",
                 "currency_id" => 1,
-                "customer" => [
+                "customer"    => [
                     "email" => $order->get_billing_email(), // Use order billing email
-                    "name" => $order->get_billing_first_name() . ' ' . $order->get_billing_last_name(), // Use order billing name
+                    "name"  => $order->get_billing_first_name() . ' ' . $order->get_billing_last_name(), // Use order billing name
                 ],
-                "success_url" => esc_url('http://localhost/wordpress/wc-api/zeleri_woo_oficial_payment_gateways/'),
-                "failure_url" => esc_url('http://localhost/wordpress/wc-api/zeleri_woo_oficial_payment_gateways/')
+                "success_url" => esc_url( home_url('/wc-api/'.static::WOOCOMMERCE_API_SLUG.'/') ),
+                "failure_url" => esc_url( home_url('/wc-api/'.static::WOOCOMMERCE_API_SLUG.'/') )
             );
             
+
             $signature = $signatureZeleri->generate($payload);
             $payload["signature"] = $signature;
 
     
             $createResponse = $apiZeleri->crear_orden_zeleri($payload, $token);
             if( is_wp_error($createResponse) ) {
-                throw new Exception($createResponse->get_error_code().' - '.$createResponse->get_error_message());
+                throw new Exception($createResponse->get_error_code().' '.$createResponse->get_error_message());
             }
 
             return [
