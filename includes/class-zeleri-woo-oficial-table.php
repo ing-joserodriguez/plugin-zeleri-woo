@@ -81,12 +81,11 @@
 	    public function get_sortable_columns() {
 	    	$columns = array(
 	    		'trx_id'       => array('trx_id', true),
-	    		'producto'     => array('producto', false),
-          'order_woo'    => array('order_woo', false),
-          'estado_woo'   => array('estado_woo', false),
-          'orden_zeleri' => array('orden_zeleri', false),
-          'monto'        => array('monto', false),
-          'fecha'        => array('fecha', false)
+          'order_woo'    => array('order_woo', true),
+          'orden_zeleri' => array('orden_zeleri', true),
+          'monto'        => array('monto', true),
+          'fecha'        => array('fecha', true),
+					'fecha_zeleri' => array('fecha_zeleri', true)
 	    	);
 	        return $columns;
 	    }
@@ -109,59 +108,6 @@
 				);
 				
 				$orders = wc_get_orders( $args );
-
-				//var_dump($orders);
-	      /*global $wpdb;
-
-	      $query = "
-	        	SELECT
-	        		post.ID AS orden_id,
-				  	DATE_FORMAT(post.post_date, '%d-%m-%Y') AS fecha,
-				  	CONCAT(metaFirstName.meta_value, ' ', metaLastName.meta_value) AS destinatario,
-				  	metaOTNumber.meta_value AS numero_ot,
-				  	metaCNumber.meta_value AS numero_certificado,
-                    metaCostoEnvio.meta_value AS costo_envio
-				FROM {$wpdb->prefix}posts AS post
-				    LEFT JOIN (
-				      SELECT * FROM {$wpdb->prefix}postmeta WHERE meta_key = '_shipping_first_name'
-				    ) AS metaFirstName
-				ON post.ID = metaFirstName.post_id
-				    LEFT JOIN (
-				      SELECT * FROM {$wpdb->prefix}postmeta WHERE meta_key = '_shipping_last_name'
-				    ) AS metaLastName
-				ON post.ID = metaLastName.post_id
-					LEFT JOIN (
-				      SELECT * FROM {$wpdb->prefix}postmeta WHERE meta_key = 'transportOrderNumbers'
-				    ) AS metaOTNumber
-				ON post.ID = metaOTNumber.post_id
-					LEFT JOIN (
-				      SELECT * FROM {$wpdb->prefix}postmeta WHERE meta_key = 'certificateNumber'
-				    ) AS metaCNumber
-				ON post.ID = metaCNumber.post_id
-                LEFT JOIN (
-				      SELECT * FROM {$wpdb->prefix}postmeta WHERE meta_key = '_shipping_total'
-				    ) AS metaCostoEnvio
-				ON post.ID = metaCostoEnvio.post_id
-
-				WHERE post.post_type = 'shop_order'
-				AND metaOTNumber.meta_value != ''
-                -- AND post.post_status = 'wc-completed'
-	        ";
-
-	        if( isset($_GET['s']) ) {
-            $str = $_GET['s'];
-            $query = $query." 
-              AND (
-                post.ID LIKE '%".$str."%' OR 
-                DATE_FORMAT(post.post_date, '%d-%m-%Y') LIKE '%".$str."%' OR 
-                metaOTNumber.meta_value LIKE '%".$str."%' OR 
-                metaCNumber.meta_value LIKE '%".$str."%'
-              )";
-	    	  }
-
-	    	$query = $query." ORDER BY post.ID DESC";
-
-			  $results = $wpdb->get_results( $query , OBJECT );*/
 
 			  $data = array();
 
@@ -241,8 +187,8 @@
 	        }
 
 	        if($orderby == 'trx_id') {
-	        	$_orderID1 = $this->get_order_id( $a[$orderby] );
-	        	$_orderID2 = $this->get_order_id( $b[$orderby] );
+	        	$_orderID1 = intval($this->get_order_id( $a[$orderby] ));
+	        	$_orderID2 = intval($this->get_order_id( $b[$orderby] ));
 	        	$result = ($_orderID1 > $_orderID2) ? +1 : -1;
 	        }
 
@@ -252,11 +198,30 @@
 	        	$result = ($_fecha1 > $_fecha2) ? +1 : -1;
 	        }
 
-          if($orderby == 'producto') {
-            $result = strcmp($a[$orderby], $b[$orderby]);
+          if($orderby == 'order_woo') {
+            $_orderID1 = intval($this->get_order_id( $a[$orderby] ));
+	        	$_orderID2 = intval($this->get_order_id( $b[$orderby] ));
+	        	$result = ($_orderID1 > $_orderID2) ? +1 : -1;
           }
 
-	        
+					if($orderby == 'orden_zeleri') {
+            $_orderID1 = intval($this->get_order_id( $a[$orderby] ));
+	        	$_orderID2 = intval($this->get_order_id( $b[$orderby] ));
+	        	$result = ($_orderID1 > $_orderID2) ? +1 : -1;
+          }
+
+					if($orderby == 'monto') {
+            $_amountID1 = intval($a[$orderby] );
+	        	$_amountID2 = intval($b[$orderby] );
+	        	$result = ($_amountID1 > $_amountID2) ? +1 : -1;
+          }
+
+					if($orderby == 'fecha_zeleri') {
+	        	$_fecha1 = strtotime( $a[$orderby] );
+	        	$_fecha2 = strtotime( $b[$orderby] );
+	        	$result = ($_fecha1 > $_fecha2) ? +1 : -1;
+	        }
+
 	        if($order === 'asc') {
 	            return $result;
 	        }
