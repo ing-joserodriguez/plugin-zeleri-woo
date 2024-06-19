@@ -34,20 +34,20 @@
 				<div class="col-md-2">
 					<ul class="nav nav-tabs flex-column">
 						<li class="nav-item">
-							<a class="nav-link active" data-toggle="tab" href="#tabZeleriInicio">Inicio <i class="ph-bold ph-caret-right"></i></a>
+							<a class="nav-link nav-link-zeleri <?php if(!isset($_GET['tab_pane'])) echo 'active'; ?>" data-toggle="tab" href="#tabZeleriInicio">Inicio <i class="ph-bold ph-caret-right"></i></a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" data-toggle="tab" href="#tabZeleriTransacciones">Transacciones <i class="ph-bold ph-caret-right"></i></a>
+							<a class="nav-link nav-link-zeleri <?php if( isset($_GET['tab_pane']) && $_GET['tab_pane'] == 'tabZeleriTransacciones' )  echo 'active'; ?>" data-toggle="tab" href="#tabZeleriTransacciones">Transacciones <i class="ph-bold ph-caret-right"></i></a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" data-toggle="tab" href="#tabZeleriConfiguracion">Configuración <i class="ph-bold ph-caret-right"></i></a>
+							<a class="nav-link nav-link-zeleri <?php if( isset($_GET['tab_pane']) && $_GET['tab_pane'] == 'tabZeleriConfiguracion' )  echo 'active'; ?>" data-toggle="tab" href="#tabZeleriConfiguracion">Configuración <i class="ph-bold ph-caret-right"></i></a>
 						</li>
 					</ul>
 				</div>
 				<div class="col-md-7">
 					<div class="tab-content">
 						<!--INICIO-->
-						<div id="tabZeleriInicio" class="tab-pane fade show active">
+						<div id="tabZeleriInicio" class="tab-pane fade <?php if(!isset($_GET['tab_pane'])) echo 'show active'; ?>">
 							<div class="container">
 								<div class="row">
 									<div class="col" style="padding: 0px; margin-bottom: 20px;">
@@ -142,7 +142,7 @@
 							</div>
 						</div>
 						<!--TRANSACCIONES-->
-						<div id="tabZeleriTransacciones" class="tab-pane fade">
+						<div id="tabZeleriTransacciones" class="tab-pane fade <?php if( isset($_GET['tab_pane']) && $_GET['tab_pane'] == 'tabZeleriTransacciones' )  echo 'show active'; ?>">
 							<?php 
 								$tablaTransaccionesZeleri = new Tabla_Transacciones_Zeleri();
 								$tablaTransaccionesZeleri->prepare_items();
@@ -159,7 +159,7 @@
             	</form>
 						</div>
 						<!--CONFIGURACION-->
-						<div id="tabZeleriConfiguracion" class="tab-pane fade">
+						<div id="tabZeleriConfiguracion" class="tab-pane fade <?php if( isset($_GET['tab_pane']) && $_GET['tab_pane'] == 'tabZeleriConfiguracion' )  echo 'show active'; ?>">
 							<?php $this->generate_settings_html(); ?>
 							<p class="submit zeleri-button-submit">
 								<button name="save" class="button-primary woocommerce-save-button" type="submit" value="Guardar los cambios">Guardar los cambios</button>

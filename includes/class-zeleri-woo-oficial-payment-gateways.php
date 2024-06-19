@@ -31,13 +31,13 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
         }
     }
 
+    /**
+     * Inicializar campos de formulario.
+     **/
     public function init_form_fields() { 
-        $zeleriKeyDescription = 'Indica tu código de comercio para el ambiente de producción. <br/><br/>' .
-            'Este se te entregará al completar el proceso de afiliación comercial. <br /><br />' .
-            'Siempre comienza con 5970 y debe tener 12 dígitos. Si el tuyo tiene 8, antepone 5970.';
+        $zeleriKeyDescription = 'Puedes solicitar la Zeleri Key en soporte@zeleri.com';
 
-        $apiKeyDescription = 'Esta llave privada te la entregará Transbank luego de que completes el proceso ' .
-            'de validación (link más abajo).<br/><br/>No la compartas con nadie una vez que la tengas. ';
+        $apiKeyDescription = 'Puedes solicitar la API Key en soporte@zeleri.com';
 
         $this->form_fields = array(
             'enabled' => array(
@@ -52,17 +52,19 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
                 'type'      => 'text',
                 'desc_tip'  => __($apiKeyDescription, 'zeleri_woo_oficial_payment_gateways'),
                 'default'   => '',
+                'required'  => true
             ),
             'zeleri_payment_gateway_token' => array(
                 'title'     => __('Zeleri Key:', 'zeleri_woo_oficial_payment_gateways'),
                 'type'      => 'text',
                 'desc_tip'  => __($zeleriKeyDescription, 'zeleri_woo_oficial_payment_gateways'),
                 'default'   => '',
+                'required'  => true
             ),
             'zeleri_payment_gateway_order_status' => array(
                 'title'     => __('Estado de la orden', 'zeleri'),
                 'type'      => 'select',
-                'desc_tip'  => __('Define el estado de la orden luego del pago exitoso.', 'zeleri_woo_oficial_payment_gateways'),
+                'desc_tip'  => __('Selecciona el estado que tendrá la orden por defecto al finalizar una compra.', 'zeleri_woo_oficial_payment_gateways'),
                 'options'   => [
                     'on-hold'    => 'En espera',
                     'processing' => 'Procesando',
@@ -73,8 +75,9 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
             'zeleri_payment_gateway_description' => array(
                 'title'     => __('Descripcion medio de pago:', 'zeleri_woo_oficial_payment_gateways'),
                 'type'      => 'textarea',
-                'desc_tip'  => __('Description displayed during checkout.', 'zeleri_woo_oficial_payment_gateways'),
+                'desc_tip'  => __('Describe el medio de pago que verá el usuario en la pantalla de pago.', 'zeleri_woo_oficial_payment_gateways'),
                 'default'   => '',
+                'required'  => true
             ),
         );
     }
@@ -143,6 +146,9 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
         return wp_safe_redirect($redirect_url);
     }
 
+    /**
+     * Procesar pago y retornar resultado.
+     **/
     public function process_payment($order_id) {
         try {
             $secret = $this->get_option('zeleri_payment_gateway_secret');

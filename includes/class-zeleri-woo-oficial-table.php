@@ -1,9 +1,7 @@
 <?php 
 	class Tabla_Transacciones_Zeleri extends WP_List_Table
 	{
-		
-		//use Automattic\WooCommerce\Utilities\OrderUtil;
-
+	
 	    /**
 	     * Prepare the items for the table to process
 	     *
@@ -96,17 +94,44 @@
 	     * @return Array
 	     */
 	    private function table_data() {
-
-				$str = ( isset($_GET['s']) ) ? $_GET['s'] : '';
+				
+				$str = ( isset($_POST['s']) ) ? $_POST['s'] : '';
 
 				$args = array(
 					'payment_method' => 'zeleri_woo_oficial_payment_gateways',
-					'order' 		     => 'DESC', 
-					'orderby' 			 => 'date',
-					'search'      	 => $str,
-    			'search_columns' => array('id', 'status', 'transaction_id', 'date_updated_gmt')
+					'order'          => 'DESC',
+					'orderby'        => 'date',
+					'limit' 				 => -1, // Para obtener todos los registros
+					'field_query' => array(
+            'relation' => 'OR',
+						array(
+							'field'   => 'id',
+							'value'   => $str,
+							'compare' => 'LIKE',
+						),
+            array(
+              'field'   => 'status',
+              'value'   => $str,
+              'compare' => 'LIKE',
+            ),
+						array(
+							'field'   => 'transaction_id',
+							'value'   => $str,
+							'compare' => 'LIKE',
+						),
+						array(
+							'field'   => 'date_created',
+							'value'   => date('Y-m-d', strtotime($str)),// Para formatear fecha a mysql
+							'compare' => 'LIKE',
+						),
+						array(
+							'field'   => 'total',
+							'value'   => intval($str),
+							'compare' => 'LIKE',
+						),
+        	)
 				);
-				
+
 				$orders = wc_get_orders( $args );
 
 			  $data = array();
@@ -125,16 +150,14 @@
             'orden_zeleri'   => $order->get_transaction_id(),
             'token'          => '',
             'monto'          => wc_price($order->get_total()),
-            'fecha'          => $fecha->format('d-m-Y'),
-            'fecha_zeleri'   => $fecha_zeleri->format('d-m-Y'),
+            'fecha'          => $fecha->format('d M, Y'),
+            'fecha_zeleri'   => $fecha_zeleri->format('d M, Y'),
             'error'          => $order->get_meta('zeleri_error'),
             'detalle_error'  => $order->get_meta('zeleri_details_error')
           );
 			  }
 
-
-
-	        return $data;
+	      return $data;
 	    }
 
 	    /**
@@ -187,8 +210,8 @@
 	        }
 
 	        if($orderby == 'trx_id') {
-	        	$_orderID1 = intval($this->get_order_id( $a[$orderby] ));
-	        	$_orderID2 = intval($this->get_order_id( $b[$orderby] ));
+	        	$_orderID1 = intval( $a[$orderby] );
+	        	$_orderID2 = intval( $b[$orderby] );
 	        	$result = ($_orderID1 > $_orderID2) ? +1 : -1;
 	        }
 
@@ -199,14 +222,14 @@
 	        }
 
           if($orderby == 'order_woo') {
-            $_orderID1 = intval($this->get_order_id( $a[$orderby] ));
-	        	$_orderID2 = intval($this->get_order_id( $b[$orderby] ));
+            $_orderID1 = intval( $a[$orderby] );
+	        	$_orderID2 = intval( $b[$orderby] );
 	        	$result = ($_orderID1 > $_orderID2) ? +1 : -1;
           }
 
 					if($orderby == 'orden_zeleri') {
-            $_orderID1 = intval($this->get_order_id( $a[$orderby] ));
-	        	$_orderID2 = intval($this->get_order_id( $b[$orderby] ));
+            $_orderID1 = intval( $a[$orderby] );
+	        	$_orderID2 = intval( $b[$orderby] );
 	        	$result = ($_orderID1 > $_orderID2) ? +1 : -1;
           }
 
@@ -236,13 +259,6 @@
 		  	);
 		  	return $actions;
 		}*/
-
-		public function get_order_id( $str ) {
-			$_str = strip_tags($str);
-			$_str = trim($_str);
-			$order_id = substr($_str, 1);
-			return intval($order_id);
-		}
 
 
 		/*public function column_cb($item) {

@@ -39,14 +39,19 @@
       //Oculto el boton de "Guardar cambios" por defecto y muestro el del formulario de configuracion
       $("#wpbody-content .submit").hide();
       $("#wpbody-content .zeleri-button-submit").show();
-
-      //Valido si la variable "tab_pane" viene en la url
-      if (params.get("tab_pane")) {
-        //Si existe, se simulamuestra la seccion en donde se estaba anteriormente
-        const IDTabActive = "#" + params.get("tab_pane");
-        $('.nav-tabs a[href="' + IDTabActive + '"]').trigger("click");
-      }
     }
+
+    $(".nav-link-zeleri").on("click", function (e) {
+      e.preventDefault(); // Previene la navegación predeterminada
+      const currentUrl = new URL(window.location.href);
+      const hrefValue = $(this).attr("href").slice(1);
+      currentUrl.searchParams.delete("tab_pane");
+      currentUrl.searchParams.delete("paged");
+      currentUrl.searchParams.delete("orderby");
+      currentUrl.searchParams.delete("order");
+      currentUrl.searchParams.set("tab_pane", hrefValue); // Agrega o actualiza la variable con el nuevo valor
+      window.history.pushState({}, "", currentUrl.href); // Actualiza la URL sin recargar la página
+    });
 
     //Hace que el enlace de la seccion de inicio despliegue la seccion de las configuraciones
     $("#irZeleriConfiguracion").on("click", function () {
