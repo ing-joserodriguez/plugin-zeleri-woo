@@ -115,6 +115,8 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
                 $order->update_meta_data( 'zeleri_commerce_name', $data['commerce_name'] );
                 $order->update_meta_data( 'zeleri_commerce_id', $data['commerce_id'] );
                 $order->update_meta_data( 'zeleri_status', 'success' );
+                $order->update_meta_data( 'zeleri_error', '' );
+                $order->update_meta_data( 'zeleri_details_error', '' );
 
                 $order->set_transaction_id( $data['order'] );
                 $order->update_status($setting_order_status); 
@@ -129,6 +131,7 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
                 }
 
                 $woocommerce->cart->empty_cart();
+                $data_order_note = 
                 $redirect_url = $order->get_checkout_order_received_url(); 
             }
             else{
@@ -144,7 +147,7 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
                 $redirect_url = wc_get_checkout_url();
             }
 
-            //$order->add_order_note( \_\_('IPN payment completed', 'woothemes') );
+            $order->add_order_note( json_encode($data) );
             $order->save();
 
         } else {

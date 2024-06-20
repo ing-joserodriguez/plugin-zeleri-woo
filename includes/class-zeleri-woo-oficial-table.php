@@ -80,7 +80,6 @@
 	    		'trx_id'       => array('trx_id', true),
           'order_woo'    => array('order_woo', true),
           'orden_zeleri' => array('orden_zeleri', true),
-          'monto'        => array('monto', true),
           'fecha'        => array('fecha', true),
 					'fecha_zeleri' => array('fecha_zeleri', true)
 	    	);
@@ -219,8 +218,8 @@
 	        }
 
           if($orderby == 'order_woo') {
-            $_orderID1 = intval( $this->get_order_id($a[$orderby]) );
-	        	$_orderID2 = intval( $this->get_order_id($b[$orderby]) );
+            $_orderID1 = intval( $this->get_order_id( $a[$orderby]) );
+	        	$_orderID2 = intval( $this->get_order_id( $b[$orderby]) );
 	        	$result = ($_orderID1 > $_orderID2) ? +1 : -1;
           }
 
@@ -228,12 +227,6 @@
             $_orderID1 = intval( $a[$orderby] );
 	        	$_orderID2 = intval( $b[$orderby] );
 	        	$result = ($_orderID1 > $_orderID2) ? +1 : -1;
-          }
-
-					if($orderby == 'monto') {
-            $_amountID1 = intval($a[$orderby] );
-	        	$_amountID2 = intval($b[$orderby] );
-	        	$result = ($_amountID1 > $_amountID2) ? +1 : -1;
           }
 
 					if($orderby == 'fecha_zeleri') {
