@@ -30,8 +30,8 @@
    */
 
   $(function () {
-    const URLactual = jQuery(location).attr("href");
-    const url = new URL(URLactual);
+    const currentUrl = jQuery(location).attr("href");
+    const url = new URL(currentUrl);
     const params = url.searchParams;
 
     //Valido que estoy dentro de la seccion del plugin de zeleri
@@ -49,8 +49,20 @@
       currentUrl.searchParams.delete("paged");
       currentUrl.searchParams.delete("orderby");
       currentUrl.searchParams.delete("order");
-      currentUrl.searchParams.set("tab_pane", hrefValue); // Agrega o actualiza la variable con el nuevo valor
+
+      if (hrefValue != "tabZeleriInicio") {
+        currentUrl.searchParams.set("tab_pane", hrefValue); // Agrega o actualiza la variable con el nuevo valor
+      }
+
       window.history.pushState({}, "", currentUrl.href); // Actualiza la URL sin recargar la página
+    });
+
+    $(".wp-list-table .manage-column a").on("click", function (e) {
+      e.preventDefault(); // Previene la navegación predeterminada
+      const hrefValue = $(this).attr("href");
+      const urlEnlace = new URL(hrefValue);
+      urlEnlace.searchParams.set("tab_pane", "tabZeleriTransacciones");
+      window.location.href = urlEnlace.href;
     });
 
     //Hace que el enlace de la seccion de inicio despliegue la seccion de las configuraciones

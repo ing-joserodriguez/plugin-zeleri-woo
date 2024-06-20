@@ -45,18 +45,17 @@
 	     */
 	    public function get_columns() {
 	        $columns = array(
-	            'trx_id'         => 'ID trx',
-	            'producto'       => 'Producto',
-	            'order_woo'      => 'Orden WooCommerce',
-	            'estado_woo'     => 'Estado interno',
-	            'estado_zeleri'  => 'Estado Transaccion',
-	            'orden_zeleri'   => 'Orden Compra Zeleri',
-              'token'          => 'Token',
-	            'monto'          => 'Monto',
-              'fecha'          => 'Fecha creación',
-              'fecha_zeleri'   => 'Fecha Transacción Zeleri',
-              'error'          => 'Error',
-              'detalle_error'  => 'Detalle de Error'
+	            'trx_id'         			=> 'ID',
+	            'order_woo'      			=> 'Orden WooCommerce',
+	            'estado_woo'     			=> 'Estado interno',
+	            'estado_zeleri'  			=> 'Estado Transaccion',
+	            'orden_zeleri'   			=> 'Orden Compra Zeleri',
+              'autorizacion_zeleri' => 'Codigo de Autorizacion Zeleri',
+	            'monto'          		  => 'Monto',
+              'fecha'          			=> 'Fecha creación',
+              'fecha_zeleri'   			=> 'Fecha Transacción Zeleri',
+              'error'          			=> 'Error',
+              'detalle_error'  			=> 'Detalle de Error'
 	        );
 
 	        return $columns;
@@ -142,18 +141,17 @@
 					$fecha_zeleri = new DateTime( $order->get_meta('zeleri_payment_date') );
 
 					$data[] = array(
-            'trx_id'         => $order->get_order_number(),
-            'producto'       => 'Producto_'.$key,
-            'order_woo'      => $order->get_id(),
-            'estado_woo'     => $order->get_status(),
-            'estado_zeleri'  => $order->get_meta('zeleri_status'),
-            'orden_zeleri'   => $order->get_transaction_id(),
-            'token'          => '',
-            'monto'          => wc_price($order->get_total()),
-            'fecha'          => $fecha->format('d M, Y'),
-            'fecha_zeleri'   => $fecha_zeleri->format('d M, Y'),
-            'error'          => $order->get_meta('zeleri_error'),
-            'detalle_error'  => $order->get_meta('zeleri_details_error')
+            'trx_id'         			=> $order->get_id(),
+            'order_woo'      			=> '<a href="'.admin_url('admin.php?page=wc-orders&action=edit&id='.$order->get_id()).'">Pedido #'.$order->get_order_number().'</a>',
+            'estado_woo'     			=> $order->get_status(),
+            'estado_zeleri'  			=> $order->get_meta('zeleri_status'),
+            'orden_zeleri'   			=> $order->get_transaction_id(),
+            'autorizacion_zeleri' => $order->get_meta('zeleri_authorization_code'),
+            'monto'          			=> wc_price($order->get_total()),
+            'fecha'          			=> $fecha->format('d M, Y'),
+            'fecha_zeleri'   			=> $fecha_zeleri->format('d M, Y'),
+            'error'          			=> $order->get_meta('zeleri_error'),
+            'detalle_error'  			=> $order->get_meta('zeleri_details_error')
           );
 			  }
 
@@ -171,12 +169,11 @@
 	    public function column_default( $item, $column_name ) {
 	        switch( $column_name ) {
 	            case 'trx_id':
-	            case 'producto':
 	            case 'order_woo':
 	            case 'estado_woo':
 	            case 'estado_zeleri':
 	            case 'orden_zeleri':
-	            case 'token':
+	            case 'autorizacion_zeleri':
 	            case 'monto':
               case 'fecha':
               case 'fecha_zeleri':
@@ -222,8 +219,8 @@
 	        }
 
           if($orderby == 'order_woo') {
-            $_orderID1 = intval( $a[$orderby] );
-	        	$_orderID2 = intval( $b[$orderby] );
+            $_orderID1 = intval( $this->get_order_id($a[$orderby]) );
+	        	$_orderID2 = intval( $this->get_order_id($b[$orderby]) );
 	        	$result = ($_orderID1 > $_orderID2) ? +1 : -1;
           }
 
@@ -252,6 +249,12 @@
 	        return -$result;
 	    }
 
+			public function get_order_id( $str ){
+				$_str = strip_tags($str);
+				$_str = trim($_str);
+				$order_id = substr($_str, 8);
+				return intval($order_id);
+			}
 
 	    /*public function get_bulk_actions() {
 			$actions = array(

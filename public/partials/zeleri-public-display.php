@@ -14,3 +14,6 @@
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
+<p>Introduce tu información personalizada:</p>
+<input type="text" name="tu_campo_personalizado" placeholder="Tu campo">
+<input type="text" name="zeleri_payment_gateway_id_number" placeholder="Enter your ID number">

@@ -16,6 +16,7 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
         $this->title = 'Zeleri';
         $this->method_description  = $this->get_option('zeleri_payment_gateway_description', self::PAYMENT_GW_DESCRIPTION);
         $this->description  = $this->get_option('zeleri_payment_gateway_description', self::PAYMENT_GW_DESCRIPTION);
+        $this->has_fields = true;
 
          /**
          * Carga configuración y variables de inicio.
@@ -32,7 +33,15 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
     }
 
     /**
-     * Inicializar campos de formulario.
+     * Inicializar campos de formulario (Pagina de pago).
+     **/
+    public function payment_fields() {
+        var_dump("HOLAAAAAAAAAA");
+        include_once ABSPATH . 'wp-content/plugins/zeleri/public/partials/zeleri-public-display.php';
+    }
+
+    /**
+     * Inicializar campos de formulario (Configuracion).
      **/
     public function init_form_fields() { 
         $zeleriKeyDescription = 'Puedes solicitar la Zeleri Key en soporte@zeleri.com';

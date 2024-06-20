@@ -82,7 +82,7 @@
 														</p>
 													</div>
 													<div class="col">
-														<a href="#">Verificar</a>
+														<a href="https://portal.zeleri.com/login" target="_blank">Verificar</a>
 													</div>
 												</div>
 											</li>
@@ -96,7 +96,7 @@
 														</p>
 													</div>
 													<div class="col">
-														<a href="#">Verificar</a>
+														<a href="mailto:soporte@zeleri.com?subject=Solicitud LLaves de API y Zeleri">Verificar</a>
 													</div>
 												</div>
 											</li>
@@ -126,7 +126,7 @@
 								</div>
 								<div class="row zeleri-verificacion-plugin">
 									<div class="col">
-										<p>Si necesitas ayuda contáctanos o <a href="#">revisa la documentación</a> del plugin</p>
+										<p>Si necesitas ayuda contáctanos.</p>
 									</div>
 								</div>
 								<div class="row zeleri-verificacion-plugin">
@@ -135,8 +135,12 @@
 										<p>soporte@zeleri.com</p>
 									</div>
 									<div class="col">
+										<i class="ph-bold ph-whatsapp-logo"></i>
+										<p>+569 4420 9837</p>
+									</div>
+									<div class="col">
 										<i class="ph-bold ph-phone"></i>
-										<p>+023323222312</p>
+										<p>+56 2 2594 0647</p>
 									</div>
 								</div>
 							</div>
