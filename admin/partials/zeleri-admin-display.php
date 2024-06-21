@@ -44,7 +44,7 @@
 						</li>
 					</ul>
 				</div>
-				<div class="col-md-7">
+				<div class="col-md-10">
 					<div class="tab-content">
 						<!--INICIO-->
 						<div id="tabZeleriInicio" class="tab-pane fade <?php if(!isset($_GET['tab_pane'])) echo 'show active'; ?>">
@@ -164,7 +164,9 @@
 						</div>
 						<!--CONFIGURACION-->
 						<div id="tabZeleriConfiguracion" class="tab-pane fade <?php if( isset($_GET['tab_pane']) && $_GET['tab_pane'] == 'tabZeleriConfiguracion' )  echo 'show active'; ?>">
-							<?php $this->generate_settings_html(); ?>
+							<table class="form-table" role="presentation">
+								<?php $this->generate_settings_html(); ?>
+							</table>
 							<p class="submit zeleri-button-submit">
 								<button name="save" class="button-primary woocommerce-save-button" type="submit" value="Guardar los cambios">Guardar los cambios</button>
 								<?php wp_nonce_field( 'woocommerce-settings', '_wpnonce'); ?>

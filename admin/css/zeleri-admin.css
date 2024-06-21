@@ -32,15 +32,6 @@
   padding: 20px; /* Espaciado interno para mayor claridad */
   border-radius: 5px;
 }
-/*#wpbody-content .submit {
-  display: none !important;
-}
-#wpbody-content .zeleri-button-submit {
-  display: block !important;
-}
-#wpbody-content .row {
-  max-width: 90%;
-}*/
 /* Fin Estructura Menu */
 
 /* Inicio notice resena */
@@ -128,3 +119,11 @@ ul {
   text-decoration: none;
 }
 /*Final home plugin*/
+
+/*Inicio Textarea Formulario Configuracion*/
+.woocommerce table.form-table textarea.wide-input {
+  width: 0% !important;
+  min-width: 400px !important;
+  border: 1px solid #757575 !important;
+}
+/*Final Textarea Formulario Configuracion*/

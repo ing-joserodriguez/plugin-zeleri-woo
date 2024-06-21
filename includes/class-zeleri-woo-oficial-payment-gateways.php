@@ -33,14 +33,6 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
     }
 
     /**
-     * Inicializar campos de formulario (Pagina de pago).
-     **/
-    public function payment_fields() {
-        var_dump("HOLAAAAAAAAAA");
-        include_once ABSPATH . 'wp-content/plugins/zeleri/public/partials/zeleri-public-display.php';
-    }
-
-    /**
      * Inicializar campos de formulario (Configuracion).
      **/
     public function init_form_fields() { 
@@ -52,15 +44,17 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
             'enabled' => array(
                 'title'     => __('Activar/Desactivar plugin:', 'zeleri_woo_oficial_payment_gateways'),
                 'type'      => 'checkbox',
-                'label'     =>  __('Activar/Desactivar:', 'zeleri_woo_oficial_payment_gateways'),
+                'label'     =>  __('Activar/Desactivar', 'zeleri_woo_oficial_payment_gateways'),
                 'desc_tip'  => __('Title displayed during checkout.', 'zeleri_woo_oficial_payment_gateways'),
                 'default'   => 'yes',
+                'class'     => 'form-control'
             ),
             'zeleri_payment_gateway_secret' => array(
                 'title'     => __('API Key (llave secreta) Produccion:', 'zeleri_woo_oficial_payment_gateways'),
                 'type'      => 'text',
                 'desc_tip'  => __($apiKeyDescription, 'zeleri_woo_oficial_payment_gateways'),
                 'default'   => '',
+                'class'     => 'form-control',
                 'required'  => true
             ),
             'zeleri_payment_gateway_token' => array(
@@ -68,6 +62,7 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
                 'type'      => 'text',
                 'desc_tip'  => __($zeleriKeyDescription, 'zeleri_woo_oficial_payment_gateways'),
                 'default'   => '',
+                'class'     => 'form-control',
                 'required'  => true
             ),
             'zeleri_payment_gateway_order_status' => array(
@@ -80,12 +75,14 @@ class Zeleri_Woo_Oficial_Payment_Gateways extends WC_Payment_Gateway {
                     'completed'  => 'Completada',
                 ],
                 'default'   => '',
+                'class'     => 'form-control'
             ),
             'zeleri_payment_gateway_description' => array(
                 'title'     => __('Descripcion medio de pago:', 'zeleri_woo_oficial_payment_gateways'),
                 'type'      => 'textarea',
                 'desc_tip'  => __('Describe el medio de pago que verá el usuario en la pantalla de pago.', 'zeleri_woo_oficial_payment_gateways'),
                 'default'   => '',
+                'class'     => 'form-control',
                 'required'  => true
             ),
         );
